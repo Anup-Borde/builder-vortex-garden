@@ -306,7 +306,10 @@ const LeadDetailsDrawer = ({
           </div>
 
           <div className="mb-4">
-            <Label htmlFor="comments" className="text-sm text-[#616060]">
+            <Label
+              htmlFor="comments"
+              className="text-sm text-[#616060] text-left block"
+            >
               Internal Comments
             </Label>
             <textarea
@@ -319,12 +322,14 @@ const LeadDetailsDrawer = ({
             />
           </div>
 
-          <Button
-            onClick={handleSave}
-            className="h-12 px-6 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white"
-          >
-            Save
-          </Button>
+          <div className="text-left">
+            <Button
+              onClick={handleSave}
+              className="h-12 px-6 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white"
+            >
+              Save
+            </Button>
+          </div>
         </div>
 
         {/* Tab Navigation */}
@@ -349,61 +354,92 @@ const LeadDetailsDrawer = ({
         {/* Tab Content */}
         <div className="p-6 flex-1">
           {activeTab === "details" && (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="text-left">
-                <h3 className="text-lg font-semibold text-[#282828] mb-4">
-                  Customer Details
-                </h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm text-[#616060]">EMI</p>
-                    <p className="font-medium text-[#282828]">
-                      {displayData.emi}
-                    </p>
+            <div className="space-y-6">
+              {/* First Row: Customer Details & Other Details side by side on mobile */}
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-6">
+                <div className="text-left">
+                  <h3 className="text-sm lg:text-lg font-semibold text-[#282828] mb-3 lg:mb-4">
+                    Customer Details
+                  </h3>
+                  <div className="space-y-2 lg:space-y-3">
+                    <div>
+                      <p className="text-xs lg:text-sm text-[#616060]">EMI</p>
+                      <p className="font-medium text-xs lg:text-base text-[#282828]">
+                        {displayData.emi}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs lg:text-sm text-[#616060]">
+                        EMI Due Date
+                      </p>
+                      <p className="font-medium text-xs lg:text-base text-[#282828]">
+                        {displayData.emiDueDate}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs lg:text-sm text-[#616060]">
+                        Number of EMIs
+                      </p>
+                      <p className="font-medium text-xs lg:text-base text-[#282828]">
+                        {displayData.numberOfEmis}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-[#616060]">EMI Due Date</p>
-                    <p className="font-medium text-[#282828]">
-                      {displayData.emiDueDate}
-                    </p>
+                </div>
+                <div className="text-left">
+                  <h3 className="text-sm lg:text-lg font-semibold text-[#282828] mb-3 lg:mb-4">
+                    Other Details
+                  </h3>
+                  <div className="space-y-2 lg:space-y-3">
+                    <div>
+                      <p className="text-xs lg:text-sm text-[#616060]">
+                        DP Refund
+                      </p>
+                      <p className="font-medium text-xs lg:text-base text-[#282828]">
+                        {displayData.dpRefund}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs lg:text-sm text-[#616060]">
+                        DP Status
+                      </p>
+                      <p className="font-medium text-xs lg:text-base text-[#282828]">
+                        {displayData.dpStatus}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-[#616060]">Number of EMIs</p>
-                    <p className="font-medium text-[#282828]">
-                      {displayData.numberOfEmis}
-                    </p>
+                </div>
+                {/* Disbursement Details - Third column on desktop only */}
+                <div className="text-left hidden lg:block">
+                  <h3 className="text-lg font-semibold text-[#282828] mb-4">
+                    Disbursement Details
+                  </h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm text-[#616060]">Settlement Date</p>
+                      <p className="font-medium text-[#282828]">
+                        {displayData.settlementDate}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="text-left">
-                <h3 className="text-lg font-semibold text-[#282828] mb-4">
-                  Other Details
-                </h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm text-[#616060]">DP Refund</p>
-                    <p className="font-medium text-[#282828]">
-                      {displayData.dpRefund}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-[#616060]">DP Status</p>
-                    <p className="font-medium text-[#282828]">
-                      {displayData.dpStatus}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="text-left">
-                <h3 className="text-lg font-semibold text-[#282828] mb-4">
-                  Disbursement Details
-                </h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm text-[#616060]">Settlement Date</p>
-                    <p className="font-medium text-[#282828]">
-                      {displayData.settlementDate}
-                    </p>
+
+              {/* Second Row: Disbursement Details below on mobile/tablet */}
+              <div className="lg:hidden">
+                <div className="text-left">
+                  <h3 className="text-sm lg:text-lg font-semibold text-[#282828] mb-3 lg:mb-4">
+                    Disbursement Details
+                  </h3>
+                  <div className="space-y-2 lg:space-y-3">
+                    <div>
+                      <p className="text-xs lg:text-sm text-[#616060]">
+                        Settlement Date
+                      </p>
+                      <p className="font-medium text-xs lg:text-base text-[#282828]">
+                        {displayData.settlementDate}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
