@@ -218,7 +218,10 @@ const LeadDetailsDrawer = ({
           {/* Form Fields */}
           <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-4 mb-4">
             <div>
-              <Label htmlFor="typeOfCall" className="text-xs sm:text-sm text-[#616060] text-left block mb-1">
+              <Label
+                htmlFor="typeOfCall"
+                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
+              >
                 Type of Call
               </Label>
               <Select
@@ -236,7 +239,10 @@ const LeadDetailsDrawer = ({
               </Select>
             </div>
             <div>
-              <Label htmlFor="categoryType" className="text-xs sm:text-sm text-[#616060] text-left block mb-1">
+              <Label
+                htmlFor="categoryType"
+                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
+              >
                 Category Type
               </Label>
               <Select
@@ -256,7 +262,10 @@ const LeadDetailsDrawer = ({
               </Select>
             </div>
             <div>
-              <Label htmlFor="rCode" className="text-xs sm:text-sm text-[#616060] text-left block mb-1">
+              <Label
+                htmlFor="rCode"
+                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
+              >
                 R-Code
               </Label>
               <Select
@@ -274,7 +283,10 @@ const LeadDetailsDrawer = ({
               </Select>
             </div>
             <div>
-              <Label htmlFor="subRCode" className="text-xs sm:text-sm text-[#616060] text-left block mb-1">
+              <Label
+                htmlFor="subRCode"
+                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
+              >
                 Sub R-Code
               </Label>
               <Select
