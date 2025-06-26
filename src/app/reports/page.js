@@ -194,127 +194,260 @@ const ReportsPage = () => {
           </div>
 
           {/* Filters Section */}
-          <div className="mb-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="mb-8 p-2 bg-gray-50 rounded-lg border border-gray-200">
             <h2 className="text-lg font-semibold text-[#282828] mb-4">
               Filters
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
-              {/* Channel Filter */}
-              <div>
-                <Label
-                  htmlFor="channel"
-                  className="text-sm text-[#616060] mb-1 block"
-                >
-                  Select Channel
-                </Label>
-                <Select
-                  value={filters.channel}
-                  onValueChange={(value) =>
-                    handleFilterChange("channel", value)
-                  }
-                >
-                  <SelectTrigger className="h-10 border-[#E0E0E0]">
-                    <SelectValue placeholder="Select Channel" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {channelOptions.map((channel) => (
-                      <SelectItem key={channel} value={channel}>
-                        {channel}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            {/* Mobile view: Two rows */}
+            <div className="block md:hidden">
+              {/* First row: Channel, Segment, Merchant */}
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                {/* Channel Filter */}
+                <div>
+                  <Label
+                    htmlFor="channel"
+                    className="text-xs text-[#616060] mb-1 block"
+                  >
+                    Channel
+                  </Label>
+                  <Select
+                    value={filters.channel}
+                    onValueChange={(value) =>
+                      handleFilterChange("channel", value)
+                    }
+                  >
+                    <SelectTrigger className="h-10 border-[#E0E0E0] text-xs">
+                      <SelectValue placeholder="Channel" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {channelOptions.map((channel) => (
+                        <SelectItem key={channel} value={channel}>
+                          {channel}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Segment Filter */}
+                <div>
+                  <Label
+                    htmlFor="segment"
+                    className="text-xs text-[#616060] mb-1 block"
+                  >
+                    Segment
+                  </Label>
+                  <Select
+                    value={filters.segment}
+                    onValueChange={(value) =>
+                      handleFilterChange("segment", value)
+                    }
+                  >
+                    <SelectTrigger className="h-10 border-[#E0E0E0] text-xs">
+                      <SelectValue placeholder="Segment" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {segmentOptions.map((segment) => (
+                        <SelectItem key={segment} value={segment}>
+                          {segment}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Merchant Filter */}
+                <div>
+                  <Label
+                    htmlFor="merchant"
+                    className="text-xs text-[#616060] mb-1 block"
+                  >
+                    Merchant
+                  </Label>
+                  <Select
+                    value={filters.merchant}
+                    onValueChange={(value) =>
+                      handleFilterChange("merchant", value)
+                    }
+                  >
+                    <SelectTrigger className="h-10 border-[#E0E0E0] text-xs">
+                      <SelectValue placeholder="Merchant" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {merchantOptions.map((merchant) => (
+                        <SelectItem key={merchant} value={merchant}>
+                          {merchant}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
-              {/* Segment Filter */}
-              <div>
-                <Label
-                  htmlFor="segment"
-                  className="text-sm text-[#616060] mb-1 block"
-                >
-                  Select Segment
-                </Label>
-                <Select
-                  value={filters.segment}
-                  onValueChange={(value) =>
-                    handleFilterChange("segment", value)
-                  }
-                >
-                  <SelectTrigger className="h-10 border-[#E0E0E0]">
-                    <SelectValue placeholder="Select Segment" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {segmentOptions.map((segment) => (
-                      <SelectItem key={segment} value={segment}>
-                        {segment}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              {/* Second row: From Date, To Date */}
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                {/* From Date */}
+                <div>
+                  <Label
+                    htmlFor="fromDate"
+                    className="text-xs text-[#616060] mb-1 block"
+                  >
+                    From Date
+                  </Label>
+                  <Input
+                    id="fromDate"
+                    type="date"
+                    value={filters.fromDate}
+                    onChange={(e) =>
+                      handleFilterChange("fromDate", e.target.value)
+                    }
+                    className="h-10 border-[#E0E0E0] text-xs"
+                  />
+                </div>
 
-              {/* Merchant Filter */}
-              <div>
-                <Label
-                  htmlFor="merchant"
-                  className="text-sm text-[#616060] mb-1 block"
-                >
-                  Select Merchant
-                </Label>
-                <Select
-                  value={filters.merchant}
-                  onValueChange={(value) =>
-                    handleFilterChange("merchant", value)
-                  }
-                >
-                  <SelectTrigger className="h-10 border-[#E0E0E0]">
-                    <SelectValue placeholder="Select Merchant" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {merchantOptions.map((merchant) => (
-                      <SelectItem key={merchant} value={merchant}>
-                        {merchant}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                {/* To Date */}
+                <div>
+                  <Label
+                    htmlFor="toDate"
+                    className="text-xs text-[#616060] mb-1 block"
+                  >
+                    To Date
+                  </Label>
+                  <Input
+                    id="toDate"
+                    type="date"
+                    value={filters.toDate}
+                    onChange={(e) =>
+                      handleFilterChange("toDate", e.target.value)
+                    }
+                    className="h-10 border-[#E0E0E0] text-xs"
+                  />
+                </div>
               </div>
+            </div>
 
-              {/* From Date */}
-              <div>
-                <Label
-                  htmlFor="fromDate"
-                  className="text-sm text-[#616060] mb-1 block"
-                >
-                  From Date
-                </Label>
-                <Input
-                  id="fromDate"
-                  type="date"
-                  value={filters.fromDate}
-                  onChange={(e) =>
-                    handleFilterChange("fromDate", e.target.value)
-                  }
-                  className="h-10 border-[#E0E0E0]"
-                />
-              </div>
+            {/* Desktop view: Original layout */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
+                {/* Channel Filter */}
+                <div>
+                  <Label
+                    htmlFor="channel-desktop"
+                    className="text-sm text-[#616060] mb-1 block"
+                  >
+                    Select Channel
+                  </Label>
+                  <Select
+                    value={filters.channel}
+                    onValueChange={(value) =>
+                      handleFilterChange("channel", value)
+                    }
+                  >
+                    <SelectTrigger className="h-10 border-[#E0E0E0]">
+                      <SelectValue placeholder="Select Channel" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {channelOptions.map((channel) => (
+                        <SelectItem key={channel} value={channel}>
+                          {channel}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              {/* To Date */}
-              <div>
-                <Label
-                  htmlFor="toDate"
-                  className="text-sm text-[#616060] mb-1 block"
-                >
-                  To Date
-                </Label>
-                <Input
-                  id="toDate"
-                  type="date"
-                  value={filters.toDate}
-                  onChange={(e) => handleFilterChange("toDate", e.target.value)}
-                  className="h-10 border-[#E0E0E0]"
-                />
+                {/* Segment Filter */}
+                <div>
+                  <Label
+                    htmlFor="segment-desktop"
+                    className="text-sm text-[#616060] mb-1 block"
+                  >
+                    Select Segment
+                  </Label>
+                  <Select
+                    value={filters.segment}
+                    onValueChange={(value) =>
+                      handleFilterChange("segment", value)
+                    }
+                  >
+                    <SelectTrigger className="h-10 border-[#E0E0E0]">
+                      <SelectValue placeholder="Select Segment" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {segmentOptions.map((segment) => (
+                        <SelectItem key={segment} value={segment}>
+                          {segment}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Merchant Filter */}
+                <div>
+                  <Label
+                    htmlFor="merchant-desktop"
+                    className="text-sm text-[#616060] mb-1 block"
+                  >
+                    Select Merchant
+                  </Label>
+                  <Select
+                    value={filters.merchant}
+                    onValueChange={(value) =>
+                      handleFilterChange("merchant", value)
+                    }
+                  >
+                    <SelectTrigger className="h-10 border-[#E0E0E0]">
+                      <SelectValue placeholder="Select Merchant" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {merchantOptions.map((merchant) => (
+                        <SelectItem key={merchant} value={merchant}>
+                          {merchant}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* From Date */}
+                <div>
+                  <Label
+                    htmlFor="fromDate-desktop"
+                    className="text-sm text-[#616060] mb-1 block"
+                  >
+                    From Date
+                  </Label>
+                  <Input
+                    id="fromDate-desktop"
+                    type="date"
+                    value={filters.fromDate}
+                    onChange={(e) =>
+                      handleFilterChange("fromDate", e.target.value)
+                    }
+                    className="h-10 border-[#E0E0E0]"
+                  />
+                </div>
+
+                {/* To Date */}
+                <div>
+                  <Label
+                    htmlFor="toDate-desktop"
+                    className="text-sm text-[#616060] mb-1 block"
+                  >
+                    To Date
+                  </Label>
+                  <Input
+                    id="toDate-desktop"
+                    type="date"
+                    value={filters.toDate}
+                    onChange={(e) =>
+                      handleFilterChange("toDate", e.target.value)
+                    }
+                    className="h-10 border-[#E0E0E0]"
+                  />
+                </div>
               </div>
             </div>
 
