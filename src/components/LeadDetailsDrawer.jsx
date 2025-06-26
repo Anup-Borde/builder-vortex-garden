@@ -178,31 +178,38 @@ const LeadDetailsDrawer = ({
         </div>
 
         {/* Lead Summary */}
-        <div className="p-6 bg-gray-50 border-b border-[#E0E0E0]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div className="p-3 sm:p-6 bg-gray-50 border-b border-[#E0E0E0]">
+          <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mb-3 sm:mb-6">
+            {/* Name & Mobile Section */}
             <div className="text-left">
-              <p className="text-sm text-[#616060] mb-1">Name</p>
-              <p className="font-medium text-[#282828]">{displayData.name}</p>
-              <p className="text-sm text-[#616060] mt-2 mb-1">Mobile</p>
-              <p className="font-medium text-[#282828]">{displayData.mobile}</p>
+              <p className="text-xs text-[#616060] mb-1">Name</p>
+              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight">
+                {displayData.name}
+              </p>
+              <p className="text-xs text-[#616060] mb-1">Mobile</p>
+              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight">
+                {displayData.mobile}
+              </p>
             </div>
+            {/* Customer ID & Order ID Section */}
             <div className="text-left">
-              <p className="text-sm text-[#616060] mb-1">Customer ID</p>
-              <p className="font-medium text-[#282828]">
+              <p className="text-xs text-[#616060] mb-1">Customer ID</p>
+              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight break-all">
                 {displayData.customerId}
               </p>
-              <p className="text-sm text-[#616060] mt-2 mb-1">Order ID</p>
-              <p className="font-medium text-[#282828]">
+              <p className="text-xs text-[#616060] mb-1">Order ID</p>
+              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight break-all">
                 {displayData.orderId}
               </p>
             </div>
-            <div className="text-left">
-              <p className="text-sm text-[#616060] mb-1">Customer Ref ID</p>
-              <p className="font-medium text-[#282828]">
+            {/* Customer Ref ID & Transaction ID Section */}
+            <div className="text-left sm:col-span-2 lg:col-span-1">
+              <p className="text-xs text-[#616060] mb-1">Ref ID</p>
+              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight break-all">
                 {displayData.customerRefId}
               </p>
-              <p className="text-sm text-[#616060] mt-2 mb-1">Transaction ID</p>
-              <p className="font-medium text-[#282828]">
+              <p className="text-xs text-[#616060] mb-1">Transaction ID</p>
+              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight break-all">
                 {displayData.transactionId}
               </p>
             </div>
