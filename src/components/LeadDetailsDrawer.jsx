@@ -216,16 +216,16 @@ const LeadDetailsDrawer = ({
           </div>
 
           {/* Form Fields */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+          <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-4 mb-4">
             <div>
-              <Label htmlFor="typeOfCall" className="text-sm text-[#616060]">
+              <Label htmlFor="typeOfCall" className="text-xs sm:text-sm text-[#616060] text-left block mb-1">
                 Type of Call
               </Label>
               <Select
                 value={formData.typeOfCall}
                 onValueChange={(value) => handleFormChange("typeOfCall", value)}
               >
-                <SelectTrigger className="h-10 border-[#E0E0E0]">
+                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
@@ -236,7 +236,7 @@ const LeadDetailsDrawer = ({
               </Select>
             </div>
             <div>
-              <Label htmlFor="categoryType" className="text-sm text-[#616060]">
+              <Label htmlFor="categoryType" className="text-xs sm:text-sm text-[#616060] text-left block mb-1">
                 Category Type
               </Label>
               <Select
@@ -245,7 +245,7 @@ const LeadDetailsDrawer = ({
                   handleFormChange("categoryType", value)
                 }
               >
-                <SelectTrigger className="h-10 border-[#E0E0E0]">
+                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
@@ -256,14 +256,14 @@ const LeadDetailsDrawer = ({
               </Select>
             </div>
             <div>
-              <Label htmlFor="rCode" className="text-sm text-[#616060]">
+              <Label htmlFor="rCode" className="text-xs sm:text-sm text-[#616060] text-left block mb-1">
                 R-Code
               </Label>
               <Select
                 value={formData.rCode}
                 onValueChange={(value) => handleFormChange("rCode", value)}
               >
-                <SelectTrigger className="h-10 border-[#E0E0E0]">
+                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
@@ -274,14 +274,14 @@ const LeadDetailsDrawer = ({
               </Select>
             </div>
             <div>
-              <Label htmlFor="subRCode" className="text-sm text-[#616060]">
+              <Label htmlFor="subRCode" className="text-xs sm:text-sm text-[#616060] text-left block mb-1">
                 Sub R-Code
               </Label>
               <Select
                 value={formData.subRCode}
                 onValueChange={(value) => handleFormChange("subRCode", value)}
               >
-                <SelectTrigger className="h-10 border-[#E0E0E0]">
+                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
