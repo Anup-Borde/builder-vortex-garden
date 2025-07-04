@@ -45,10 +45,10 @@ const Header = ({ onLogout }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-8">
             <div
-              className="text-2xl font-bold text-[#079F9F] cursor-pointer"
+              className="cursor-pointer flex items-center"
               onClick={() => handleNavigation("/dashboard")}
             >
-              Fibe
+              <img src="/fibe-logo.svg" alt="Fibe" className="h-12 w-auto" />
             </div>
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6">
@@ -113,7 +113,7 @@ const Header = ({ onLogout }) => {
           <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 md:hidden transform transition-transform duration-300 ease-in-out">
             <div className="p-6 border-b border-[#E0E0E0]">
               <div className="flex items-center justify-between">
-                <div className="text-xl font-bold text-[#079F9F]">Menu</div>
+                <img src="/fibe-logo.svg" alt="Fibe" className="h-10 w-auto" />
                 <Button
                   onClick={toggleMobileMenu}
                   variant="ghost"

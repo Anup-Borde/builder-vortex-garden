@@ -111,7 +111,7 @@ export default function SignIn() {
       <div className="w-full lg:w-1/2 flex flex-col">
         {/* Brand Logo */}
         <div className="flex justify-end p-6 lg:p-8">
-          <div className="text-2xl font-bold text-[#079F9F]">Fibe</div>
+          <img src="/fibe-black.svg" alt="Fibe" className="h-16 w-auto" />
         </div>
 
         {/* Mobile Illustration */}
@@ -135,9 +135,13 @@ export default function SignIn() {
           <Card className="w-full max-w-md bg-white shadow-lg border-0">
             <CardHeader className="space-y-4 pb-6">
               <div className="text-center">
-                <CardTitle className="text-2xl font-semibold text-[#282828] mb-2">
-                  Fibe
-                </CardTitle>
+                <div className="flex justify-center mb-2">
+                  <img
+                    src="/fibe-black.svg"
+                    alt="Fibe"
+                    className="h-16 w-auto"
+                  />
+                </div>
                 <CardDescription className="text-base text-[#616060] font-normal">
                   Welcome back — Sign in to your account
                 </CardDescription>
