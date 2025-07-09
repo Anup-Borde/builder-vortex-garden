@@ -98,7 +98,7 @@ export default function SignIn() {
           </div>
           <div className="space-y-4">
             <h1 className="text-3xl font-semibold text-[#282828] leading-tight">
-              Lead Tracking Dashboard
+              Lead Tracking
             </h1>
             <p className="text-lg text-[#616060] font-normal">
               Simplify Management, For All Support Team
@@ -123,7 +123,7 @@ export default function SignIn() {
 
         <div className="lg:hidden text-center px-6 pb-8 space-y-3">
           <h1 className="text-2xl font-semibold text-[#282828] leading-tight">
-            Lead Tracking Dashboard
+            Lead Tracking
           </h1>
           <p className="text-base text-[#616060] font-normal">
             Simplify Management, For All Support Team
