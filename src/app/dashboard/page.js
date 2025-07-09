@@ -23,6 +23,8 @@ import {
   Calculator,
   UserPlus,
   FileText,
+  Play,
+  HelpCircle,
 } from "lucide-react";
 
 export default function Dashboard() {
@@ -91,6 +93,16 @@ export default function Dashboard() {
       title: "Reports",
       icon: FileText,
       color: "bg-orange-50 text-orange-600",
+    },
+    {
+      title: "Video link",
+      icon: Play,
+      color: "bg-red-50 text-red-600",
+    },
+    {
+      title: "How to use LTD? /FAQ",
+      icon: HelpCircle,
+      color: "bg-yellow-50 text-yellow-600",
     },
   ];
 
@@ -214,7 +226,7 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {quickLinks.map((link, index) => (
                   <button
                     key={index}
