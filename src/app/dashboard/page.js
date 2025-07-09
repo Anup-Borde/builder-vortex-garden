@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
+import MonthlyDisbursedChart from "@/components/MonthlyDisbursedChart";
+import FunnelMetricsCard from "@/components/FunnelMetricsCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -25,6 +27,7 @@ import {
 
 export default function Dashboard() {
   const router = useRouter();
+  const [selectedSegment, setSelectedSegment] = useState("");
   const [selectedMerchant, setSelectedMerchant] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [userContact] = useState("user@example.com"); // You can get this from auth context
@@ -109,11 +112,24 @@ export default function Dashboard() {
             </div>
             <div className="flex space-x-4">
               <Select
+                value={selectedSegment}
+                onValueChange={setSelectedSegment}
+              >
+                <SelectTrigger className="w-48 border-[#E0E0E0]">
+                  <SelectValue placeholder="Segment" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="segment1">Segment 1</SelectItem>
+                  <SelectItem value="segment2">Segment 2</SelectItem>
+                  <SelectItem value="segment3">Segment 3</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select
                 value={selectedMerchant}
                 onValueChange={setSelectedMerchant}
               >
                 <SelectTrigger className="w-48 border-[#E0E0E0]">
-                  <SelectValue placeholder="Select Merchant" />
+                  <SelectValue placeholder="Merchant" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="merchant1">Merchant 1</SelectItem>
@@ -165,7 +181,7 @@ export default function Dashboard() {
 
           {/* Charts Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Bar Chart Placeholder */}
+            {/* Bar Chart */}
             <Card className="bg-white border-[#E0E0E0] shadow-sm">
               <CardHeader>
                 <CardTitle className="text-lg font-semibold text-[#282828]">
@@ -173,12 +189,7 @@ export default function Dashboard() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-64 bg-gradient-to-br from-[#079F9F]/5 to-[#079F9F]/10 rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <BarChart3 className="w-12 h-12 text-[#079F9F]/40 mx-auto mb-2" />
-                    <p className="text-[#616060]">Bar Chart Placeholder</p>
-                  </div>
-                </div>
+                <MonthlyDisbursedChart />
               </CardContent>
             </Card>
 
@@ -190,12 +201,7 @@ export default function Dashboard() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-64 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <TrendingUp className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                    <p className="text-[#616060]">Funnel (TBD)</p>
-                  </div>
-                </div>
+                <FunnelMetricsCard />
               </CardContent>
             </Card>
           </div>
