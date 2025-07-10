@@ -191,8 +191,8 @@ export default function Dashboard() {
             ))}
           </div>
 
-          {/* Charts Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Charts and Quick Links Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {/* Bar Chart */}
             <Card className="bg-white border-[#E0E0E0] shadow-sm">
               <CardHeader>
@@ -216,35 +216,35 @@ export default function Dashboard() {
                 <FunnelMetricsCard />
               </CardContent>
             </Card>
-          </div>
 
-          {/* Quick Links Panel */}
-          <Card className="bg-white border-[#E0E0E0] shadow-sm">
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold text-[#282828]">
-                Quick Links
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {quickLinks.map((link, index) => (
-                  <button
-                    key={index}
-                    className="p-4 rounded-lg border border-[#E0E0E0] hover:shadow-md transition-all duration-200 text-left group"
-                  >
-                    <div
-                      className={`w-12 h-12 rounded-lg ${link.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
+            {/* Quick Links Panel */}
+            <Card className="bg-white border-[#E0E0E0] shadow-sm md:col-span-2 xl:col-span-1">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold text-[#282828]">
+                  Quick Links
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-3">
+                  {quickLinks.map((link, index) => (
+                    <button
+                      key={index}
+                      className="p-3 rounded-lg border border-[#E0E0E0] hover:shadow-md transition-all duration-200 text-left group"
                     >
-                      <link.icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="font-medium text-[#282828] text-sm">
-                      {link.title}
-                    </h3>
-                  </button>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                      <div
+                        className={`w-8 h-8 rounded-lg ${link.color} flex items-center justify-center mb-2 group-hover:scale-110 transition-transform`}
+                      >
+                        <link.icon className="w-4 h-4" />
+                      </div>
+                      <h3 className="font-medium text-[#282828] text-xs leading-tight">
+                        {link.title}
+                      </h3>
+                    </button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </main>
     </div>

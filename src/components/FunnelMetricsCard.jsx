@@ -38,21 +38,21 @@ const FunnelMetricsCard = () => {
 
   return (
     <div className="w-full h-64 flex flex-col justify-center">
-      <div className="space-y-4">
+      <div className="space-y-2">
         {funnelData.map((metric, index) => (
           <div
             key={index}
-            className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
+            className="flex items-center justify-between py-1.5 border-b border-gray-100 last:border-b-0"
           >
-            <div className="flex items-center space-x-3">
-              <div className={`p-2 rounded-lg bg-gray-50`}>
-                <metric.icon className={`w-4 h-4 ${metric.color}`} />
+            <div className="flex items-center space-x-2">
+              <div className={`p-1.5 rounded-lg bg-gray-50`}>
+                <metric.icon className={`w-3 h-3 ${metric.color}`} />
               </div>
-              <span className="text-sm text-[#616060] font-normal">
+              <span className="text-xs text-[#616060] font-normal">
                 {metric.label}
               </span>
             </div>
-            <span className="text-lg font-medium text-[#282828]">
+            <span className="text-sm font-medium text-[#282828]">
               {metric.value}
             </span>
           </div>
