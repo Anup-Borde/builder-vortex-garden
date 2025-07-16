@@ -228,7 +228,7 @@ export default function SignIn() {
                     )}
                   </button>
                 ) : (
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     {/* OTP Input */}
                     <div>
                       <input
@@ -237,7 +237,7 @@ export default function SignIn() {
                         onChange={(e) => handleOtpChange(e.target.value)}
                         placeholder="Enter OTP"
                         maxLength={6}
-                        className="w-full h-16 px-4 rounded-lg border-2 border-gray-200 bg-white text-xl placeholder-gray-400 focus:border-teal-500 focus:outline-none transition-colors text-center tracking-widest"
+                        className="w-full h-14 px-4 rounded-lg border-2 border-gray-200 bg-white text-lg placeholder-gray-400 focus:border-teal-500 focus:outline-none transition-colors text-center tracking-widest"
                         style={{
                           fontFamily: "Gilroy, sans-serif",
                           fontWeight: "400",
