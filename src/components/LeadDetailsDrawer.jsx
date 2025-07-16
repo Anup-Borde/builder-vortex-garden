@@ -308,27 +308,26 @@ const LeadDetailsDrawer = ({
           <div className="mb-4">
             <Label
               htmlFor="comments"
-              className="text-sm text-[#616060] text-left block"
+              className="text-sm text-[#616060] text-left block mb-2"
             >
               Internal Comments
             </Label>
-            <textarea
-              id="comments"
-              value={formData.comments}
-              onChange={(e) => handleFormChange("comments", e.target.value)}
-              className="w-full mt-1 p-3 border border-[#E0E0E0] rounded-md resize-none focus:ring-[#079F9F] focus:border-[#079F9F]"
-              rows={3}
-              placeholder="Add your comments here..."
-            />
-          </div>
-
-          <div className="text-left">
-            <Button
-              onClick={handleSave}
-              className="h-12 px-6 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white"
-            >
-              Save
-            </Button>
+            <div className="flex gap-3 items-start">
+              <textarea
+                id="comments"
+                value={formData.comments}
+                onChange={(e) => handleFormChange("comments", e.target.value)}
+                className="flex-1 p-3 border border-[#E0E0E0] rounded-md resize-none focus:ring-[#079F9F] focus:border-[#079F9F] text-sm"
+                rows={2}
+                placeholder="Add your comments here..."
+              />
+              <Button
+                onClick={handleSave}
+                className="h-12 px-4 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white text-sm flex-shrink-0"
+              >
+                Save
+              </Button>
+            </div>
           </div>
         </div>
 

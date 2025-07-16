@@ -6,29 +6,39 @@ import { CheckCircle, Clock, Circle } from "lucide-react";
 const LeadTrackingStepper = ({ value = {} }) => {
   // Set the exact values as specified in the requirements
   const progress = {
-    documentation: { selfie: true, poi: true }, // Both checked - step completed
-    approval: "Approved", // Approved checked - step completed
-    kyc: { poa: false }, // POA unchecked - step in progress/current
+    customerCreation: true, // Completed
+    approval: "Surrogate Approval", // Surrogate Approval checked - step completed
+    kycBankVerification: {
+      selfie: false,
+      poa: false,
+      poi: false,
+      vkyc: false,
+      pennyDrop: false,
+    }, // All unchecked - step in progress/current
     autoDebitSetup: false, // Inactive
     disbursed: false, // Inactive
+    settlementCompleted: { partial: false, full: false }, // Inactive
   };
 
   // Helper function to determine step status - fixed to match requirements
   const getStepStatus = (stepKey) => {
     switch (stepKey) {
-      case "documentation":
+      case "customerCreation":
         return "completed"; // Always completed as specified
 
       case "approval":
         return "completed"; // Always completed as specified
 
-      case "kyc":
+      case "kycBankVerification":
         return "in-progress"; // Current step
 
       case "autoDebitSetup":
         return "not-started"; // Inactive
 
       case "disbursed":
+        return "not-started"; // Inactive
+
+      case "settlementCompleted":
         return "not-started"; // Inactive
 
       default:
@@ -50,35 +60,28 @@ const LeadTrackingStepper = ({ value = {} }) => {
 
   // Helper function to determine if step should be marked as current
   const isCurrentStep = (stepKey, stepIndex) => {
-    // KYC is the current step as specified
-    return stepKey === "kyc";
+    // KYC & Bank Verification is the current step as specified
+    return stepKey === "kycBankVerification";
   };
 
   const steps = [
     {
-      key: "documentation",
-      title: "Documentation",
-      subItems: [
-        {
-          key: "selfie",
-          label: "Click Selfie",
-          checked: progress.documentation.selfie,
-        },
-        { key: "poi", label: "POI", checked: progress.documentation.poi },
-      ],
+      key: "customerCreation",
+      title: "Customer Creation",
+      subItems: [],
     },
     {
       key: "approval",
       title: "Approval",
       subItems: [
         {
-          key: "approved",
-          label: "Approved",
-          checked: progress.approval === "Approved",
+          key: "surrogateApproval",
+          label: "Surrogate Approval",
+          checked: progress.approval === "Surrogate Approval",
         },
         {
-          key: "pending",
-          label: "Decision Pending",
+          key: "incomeVerification",
+          label: "Income Verification",
           checked: false, // Always unchecked as specified
         },
         {
@@ -94,9 +97,27 @@ const LeadTrackingStepper = ({ value = {} }) => {
       ],
     },
     {
-      key: "kyc",
-      title: "KYC",
-      subItems: [{ key: "poa", label: "POA", checked: progress.kyc.poa }],
+      key: "kycBankVerification",
+      title: "KYC & Bank Verification",
+      subItems: [
+        {
+          key: "selfie",
+          label: "Selfie",
+          checked: progress.kycBankVerification.selfie,
+        },
+        { key: "poa", label: "POA", checked: progress.kycBankVerification.poa },
+        { key: "poi", label: "POI", checked: progress.kycBankVerification.poi },
+        {
+          key: "vkyc",
+          label: "VKYC",
+          checked: progress.kycBankVerification.vkyc,
+        },
+        {
+          key: "pennyDrop",
+          label: "Penny Drop",
+          checked: progress.kycBankVerification.pennyDrop,
+        },
+      ],
     },
     {
       key: "autoDebitSetup",
@@ -107,6 +128,22 @@ const LeadTrackingStepper = ({ value = {} }) => {
       key: "disbursed",
       title: "Disbursed",
       subItems: [],
+    },
+    {
+      key: "settlementCompleted",
+      title: "Settlement completed",
+      subItems: [
+        {
+          key: "partial",
+          label: "Partial",
+          checked: progress.settlementCompleted.partial,
+        },
+        {
+          key: "full",
+          label: "Full",
+          checked: progress.settlementCompleted.full,
+        },
+      ],
     },
   ];
 
@@ -139,6 +176,11 @@ const LeadTrackingStepper = ({ value = {} }) => {
                   <span className="block">
                     <span className="block">Auto Debit</span>
                     <span className="block">Setup</span>
+                  </span>
+                ) : step.title === "Settlement completed" ? (
+                  <span className="block">
+                    <span className="block">Settlement</span>
+                    <span className="block">completed</span>
                   </span>
                 ) : (
                   step.title
