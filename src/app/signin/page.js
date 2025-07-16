@@ -162,11 +162,11 @@ export default function SignIn() {
           </div>
 
           {/* Right Section - Sign In Form */}
-          <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16">
+          <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-8">
             <div className="w-full max-w-md">
-              <div className="mb-8">
+              <div className="mb-6">
                 <h2
-                  className="text-4xl font-bold mb-4"
+                  className="text-3xl font-bold mb-3"
                   style={{
                     color: "#434343",
                     fontFamily: "Gilroy, sans-serif",
@@ -175,7 +175,7 @@ export default function SignIn() {
                   Let's get started
                 </h2>
                 <p
-                  className="text-xl"
+                  className="text-lg"
                   style={{
                     color: "#282828",
                     fontFamily: "Gilroy, sans-serif",
