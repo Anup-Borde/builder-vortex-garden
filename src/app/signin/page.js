@@ -172,7 +172,7 @@ export default function SignIn() {
                     fontFamily: "Gilroy, sans-serif",
                   }}
                 >
-                  Let's get started
+                  {showOtpField ? "Verify mobile number" : "Let's get started"}
                 </h2>
                 <p
                   className="text-lg"
@@ -182,7 +182,9 @@ export default function SignIn() {
                     fontWeight: "500",
                   }}
                 >
-                  Sign in with your mobile number
+                  {showOtpField
+                    ? `OTP has sent to ${contact}`
+                    : "Sign in with your mobile number"}
                 </p>
               </div>
 
