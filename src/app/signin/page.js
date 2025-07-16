@@ -50,6 +50,17 @@ export default function SignIn() {
     setOtp(numericValue);
   };
 
+  // Helper function to detect if contact is email or mobile
+  const isEmail = (contact) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(contact);
+  };
+
+  const getContactType = () => {
+    if (!contact.trim()) return "mobile number";
+    return isEmail(contact) ? "email ID" : "mobile number";
+  };
+
   const handleSignIn = async (e) => {
     e.preventDefault();
     if (!otp || otp.length !== 6) return;
