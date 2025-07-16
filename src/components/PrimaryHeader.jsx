@@ -59,7 +59,7 @@ const PrimaryHeader = () => {
         <div
           className="flex items-center bg-white rounded-full border border-gray-200 px-4 py-2 cursor-pointer"
           onClick={toggleDropdown}
-          style={{ height: "50px", width: "203px" }}
+          style={{ height: "50px", width: "240px" }}
         >
           {/* Profile Image */}
           <div className="w-9 h-9 mr-3 relative overflow-hidden rounded-full">
