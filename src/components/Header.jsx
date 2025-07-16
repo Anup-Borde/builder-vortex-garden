@@ -106,8 +106,7 @@ const Header = ({ onLogout }) => {
           {/* Mobile Menu */}
           <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 md:hidden transform transition-transform duration-300 ease-in-out">
             <div className="p-6 border-b border-[#E0E0E0]">
-              <div className="flex items-center justify-between">
-                <img src="/fibe-logo.svg" alt="Fibe" className="h-10 w-auto" />
+              <div className="flex items-center justify-end">
                 <Button
                   onClick={toggleMobileMenu}
                   variant="ghost"
