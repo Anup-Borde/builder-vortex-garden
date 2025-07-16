@@ -131,7 +131,7 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
             </div>
 
             {/* Search Button (Mobile) */}
-            <div className="lg:hidden">
+            <div className="md:hidden">
               <Button
                 onClick={handleSearch}
                 className="w-full h-12 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white"
@@ -253,7 +253,7 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
         {/* Desktop Layout - All filters in one line */}
         <div className="hidden md:block">
           {/* All Filters in One Row */}
-          <div className="grid grid-cols-5 gap-4 mb-6">
+          <div className="grid grid-cols-7 gap-4">
             <Select
               value={filters.channel}
               onValueChange={(value) => handleInputChange("channel", value)}
@@ -325,14 +325,21 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
                 className="h-10 border-[#E0E0E0] focus:ring-[#079F9F] pl-16"
               />
             </div>
-          </div>
 
-          {/* Desktop Reset Button */}
-          <div className="w-full">
+            {/* Search Button */}
+            <Button
+              onClick={handleSearch}
+              className="h-10 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white px-6"
+            >
+              <Search className="mr-2 h-4 w-4" />
+              Search
+            </Button>
+
+            {/* Reset Button */}
             <Button
               onClick={handleReset}
               variant="outline"
-              className="w-full h-10 border-[#E0E0E0] hover:border-[#079F9F] focus:ring-[#079F9F] text-[#282828]"
+              className="h-10 border-[#E0E0E0] hover:border-[#079F9F] focus:ring-[#079F9F] text-[#282828] px-6"
             >
               <RotateCcw className="mr-2 h-4 w-4" />
               Reset
