@@ -277,7 +277,7 @@ export default function SignIn() {
                       type="button"
                       onClick={handleSignIn}
                       disabled={isLoading || otp.length !== 6}
-                      className="w-full h-16 rounded-lg text-white text-xl font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full h-14 rounded-lg text-white text-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                       style={{
                         backgroundColor: "#079F9F",
                         fontFamily: "Gilroy, sans-serif",
