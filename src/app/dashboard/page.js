@@ -110,7 +110,10 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
-      {/* Header */}
+      {/* Primary Header */}
+      <PrimaryHeader />
+
+      {/* Secondary Header */}
       <Header onLogout={handleLogout} />
 
       {/* Main Content */}
