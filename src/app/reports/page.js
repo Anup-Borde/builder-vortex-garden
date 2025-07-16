@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { PrimaryHeader } from "@/components/PrimaryHeader";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ import {
 } from "lucide-react";
 
 const ReportsPage = () => {
+  const router = useRouter();
   const [filters, setFilters] = useState({
     channel: "",
     segment: "",
@@ -41,6 +43,11 @@ const ReportsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const itemsPerPage = 10;
+
+  const handleLogout = () => {
+    // Add your logout logic here (clear tokens, etc.)
+    router.push("/signin");
+  };
 
   // Mock data for demonstration
   const mockReports = [
@@ -129,7 +136,7 @@ const ReportsPage = () => {
         filtered = filtered.filter((report) =>
           report.channelName
             .toLowerCase()
-            .includes(filters.channel.toLowerCase()),
+            .includes(filters.channel.toLowerCase())
         );
       }
 
@@ -183,7 +190,7 @@ const ReportsPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Primary Header */}
-      <PrimaryHeader />
+      <PrimaryHeader onLogout={handleLogout} />
 
       {/* Secondary Header */}
       <Header />
@@ -542,7 +549,7 @@ const ReportsPage = () => {
                             onClick={() =>
                               handleDownload(
                                 report.downloadLink,
-                                report.channelName,
+                                report.channelName
                               )
                             }
                             size="sm"
@@ -595,7 +602,7 @@ const ReportsPage = () => {
                     >
                       {page}
                     </Button>
-                  ),
+                  )
                 )}
 
                 <Button

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { LogOut, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Header = ({ onLogout }) => {
   const router = useRouter();
@@ -80,16 +80,6 @@ const Header = ({ onLogout }) => {
                 <Menu className="w-5 h-5 text-[#616060]" />
               )}
             </Button>
-
-            {/* Logout Button */}
-            <Button
-              onClick={handleLogout}
-              variant="outline"
-              className="hidden sm:flex items-center space-x-2 border-[#E0E0E0] text-[#616060] hover:text-[#282828]"
-            >
-              <LogOut className="w-4 h-4" />
-              <span>Logout</span>
-            </Button>
           </div>
         </div>
       </header>
@@ -136,18 +126,6 @@ const Header = ({ onLogout }) => {
                   {item.label}
                 </a>
               ))}
-
-              {/* Mobile Logout Button */}
-              <div className="pt-4 border-t border-[#E0E0E0]">
-                <Button
-                  onClick={handleLogout}
-                  variant="outline"
-                  className="w-full flex items-center justify-center space-x-2 border-[#E0E0E0] text-[#616060] hover:text-[#282828]"
-                >
-                  <LogOut className="w-4 h-4" />
-                  <span>Logout</span>
-                </Button>
-              </div>
             </nav>
           </div>
         </>

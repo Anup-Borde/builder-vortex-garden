@@ -44,10 +44,10 @@ export default function ManageLeads({ userRole = "internal" }) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Primary Header */}
-      <PrimaryHeader />
+      <PrimaryHeader onLogout={handleLogout} />
 
       {/* Secondary Header */}
-      <Header onLogout={handleLogout} />
+      <Header />
 
       {/* Main Content */}
       <div className="p-4 sm:p-6 lg:p-8">

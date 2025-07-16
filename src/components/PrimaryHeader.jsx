@@ -1,12 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import { NavigationDrawer } from "./NavigationDrawer";
 
-const PrimaryHeader = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+const PrimaryHeader = ({ onLogout }) => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
   };
 
   return (
@@ -58,7 +63,7 @@ const PrimaryHeader = () => {
       <div className="relative">
         <div
           className="flex items-center bg-white rounded-full border border-gray-200 px-4 py-2 cursor-pointer"
-          onClick={toggleDropdown}
+          onClick={toggleDrawer}
           style={{ height: "50px", width: "240px" }}
         >
           {/* Profile Image */}
@@ -102,56 +107,14 @@ const PrimaryHeader = () => {
             />
           </svg>
         </div>
-
-        {/* Dropdown Menu */}
-        {isDropdownOpen && (
-          <>
-            {/* Backdrop */}
-            <div
-              className="fixed inset-0 z-40"
-              onClick={() => setIsDropdownOpen(false)}
-            />
-
-            {/* Dropdown Content */}
-            <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-              <div className="py-2">
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsDropdownOpen(false);
-                  }}
-                >
-                  Profile
-                </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsDropdownOpen(false);
-                  }}
-                >
-                  Settings
-                </a>
-                <hr className="my-1" />
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsDropdownOpen(false);
-                    // Add logout logic here if needed
-                  }}
-                >
-                  Logout
-                </a>
-              </div>
-            </div>
-          </>
-        )}
       </div>
+
+      {/* Navigation Drawer */}
+      <NavigationDrawer
+        isOpen={isDrawerOpen}
+        onClose={closeDrawer}
+        onLogout={onLogout}
+      />
     </header>
   );
 };
