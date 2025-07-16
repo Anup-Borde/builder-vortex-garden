@@ -71,10 +71,13 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#F2F7FB" }}>
+    <div
+      className="h-screen flex flex-col"
+      style={{ backgroundColor: "#F2F7FB" }}
+    >
       {/* Header */}
       <div
-        className="w-full h-20 flex items-center px-5"
+        className="w-full h-20 flex items-center px-5 flex-shrink-0"
         style={{ backgroundColor: "#011854" }}
       >
         <div className="flex items-center">
