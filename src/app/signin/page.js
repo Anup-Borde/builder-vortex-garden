@@ -182,7 +182,9 @@ export default function SignIn() {
                     fontFamily: "Gilroy, sans-serif",
                   }}
                 >
-                  {showOtpField ? "Verify mobile number" : "Let's get started"}
+                  {showOtpField
+                    ? `Verify ${getContactType()}`
+                    : "Let's get started"}
                 </h2>
                 <p
                   className="text-lg"
