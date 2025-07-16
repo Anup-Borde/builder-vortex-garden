@@ -32,12 +32,8 @@ export default function Dashboard() {
   const [selectedSegment, setSelectedSegment] = useState("");
   const [selectedMerchant, setSelectedMerchant] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
-<<<<<<< HEAD
-  const [userContact] = useState("Darshna"); // You can get this from auth context
-=======
   const [chartViewType, setChartViewType] = useState("value");
-  const [userContact] = useState("user@example.com"); // You can get this from auth context
->>>>>>> origin/main
+  const [userContact] = useState("Darshna"); // You can get this from auth context
 
   const handleLogout = () => {
     // Add your logout logic here (clear tokens, etc.)
