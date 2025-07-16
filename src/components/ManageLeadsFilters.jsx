@@ -35,6 +35,7 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
     { id: "custId", label: "Cust ID", placeholder: "Enter Customer ID" },
     { id: "mobile", label: "Mobile No", placeholder: "Enter Mobile Number" },
     { id: "orderId", label: "Order ID", placeholder: "Enter Order ID" },
+    { id: "loanId", label: "Loan ID", placeholder: "Enter Loan ID" },
   ];
 
   // Dropdown options
