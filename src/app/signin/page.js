@@ -237,17 +237,18 @@ export default function SignIn() {
                         type="text"
                         value={otp}
                         onChange={(e) => handleOtpChange(e.target.value)}
-                        placeholder="Enter OTP"
+                        placeholder=""
                         maxLength={6}
-                        className="w-full h-14 px-4 rounded-lg border-2 border-gray-200 bg-white text-lg placeholder-gray-400 focus:border-teal-500 focus:outline-none transition-colors text-center tracking-widest"
+                        className="w-full h-14 px-4 rounded-lg border-2 border-gray-200 bg-white text-lg focus:border-teal-500 focus:outline-none transition-colors"
                         style={{
                           fontFamily: "Gilroy, sans-serif",
                           fontWeight: "400",
+                          color: "#282828",
                         }}
                       />
 
-                      {/* Resend OTP */}
-                      <div className="flex justify-center mt-3">
+                      {/* Resend OTP - positioned to the right */}
+                      <div className="flex justify-end mt-2">
                         {!canResend ? (
                           <p
                             className="text-sm"
@@ -262,7 +263,7 @@ export default function SignIn() {
                           <button
                             type="button"
                             onClick={handleResendOtp}
-                            className="text-sm underline"
+                            className="text-lg font-semibold"
                             style={{
                               color: "#079F9F",
                               fontFamily: "Gilroy, sans-serif",
