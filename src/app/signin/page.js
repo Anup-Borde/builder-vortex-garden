@@ -195,7 +195,7 @@ export default function SignIn() {
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
                       placeholder="Enter email ID / mobile number"
-                      className="w-full h-16 px-4 rounded-lg border-2 border-gray-200 bg-white text-xl placeholder-gray-400 focus:border-teal-500 focus:outline-none transition-colors"
+                      className="w-full h-14 px-4 rounded-lg border-2 border-gray-200 bg-white text-lg placeholder-gray-400 focus:border-teal-500 focus:outline-none transition-colors"
                       style={{
                         fontFamily: "Gilroy, sans-serif",
                         fontWeight: "400",
