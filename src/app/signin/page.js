@@ -184,7 +184,7 @@ export default function SignIn() {
                 >
                   {showOtpField
                     ? `OTP has sent to ${contact}`
-                    : "Sign in with your mobile number"}
+                    : "Sign in with your mobile number / email"}
                 </p>
               </div>
 
