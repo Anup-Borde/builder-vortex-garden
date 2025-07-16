@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
+import { PrimaryHeader } from "@/components/PrimaryHeader";
 import { ManageLeadsHeader } from "@/components/ManageLeadsHeader";
 import { ManageLeadsFilters } from "@/components/ManageLeadsFilters";
 import { ManageLeadsTable } from "@/components/ManageLeadsTable";
@@ -42,7 +43,10 @@ export default function ManageLeads({ userRole = "internal" }) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+      {/* Primary Header */}
+      <PrimaryHeader />
+
+      {/* Secondary Header */}
       <Header onLogout={handleLogout} />
 
       {/* Main Content */}

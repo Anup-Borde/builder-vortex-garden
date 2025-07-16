@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Header } from "@/components/Header";
+import { PrimaryHeader } from "@/components/PrimaryHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -128,7 +129,7 @@ const ReportsPage = () => {
         filtered = filtered.filter((report) =>
           report.channelName
             .toLowerCase()
-            .includes(filters.channel.toLowerCase())
+            .includes(filters.channel.toLowerCase()),
         );
       }
 
@@ -181,6 +182,10 @@ const ReportsPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Primary Header */}
+      <PrimaryHeader />
+
+      {/* Secondary Header */}
       <Header />
 
       <main className="container mx-auto px-6 py-8">
@@ -537,7 +542,7 @@ const ReportsPage = () => {
                             onClick={() =>
                               handleDownload(
                                 report.downloadLink,
-                                report.channelName
+                                report.channelName,
                               )
                             }
                             size="sm"
@@ -590,7 +595,7 @@ const ReportsPage = () => {
                     >
                       {page}
                     </Button>
-                  )
+                  ),
                 )}
 
                 <Button

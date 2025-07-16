@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
+import { PrimaryHeader } from "@/components/PrimaryHeader";
 import MonthlyDisbursedChart from "@/components/MonthlyDisbursedChart";
 import FunnelMetricsCard from "@/components/FunnelMetricsCard";
 import { Button } from "@/components/ui/button";
@@ -109,7 +110,10 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#FAFAFA]">
-      {/* Header */}
+      {/* Primary Header */}
+      <PrimaryHeader />
+
+      {/* Secondary Header */}
       <Header onLogout={handleLogout} />
 
       {/* Main Content */}

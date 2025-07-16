@@ -43,13 +43,7 @@ const Header = ({ onLogout }) => {
     <>
       <header className="sticky top-0 bg-white border-b border-[#E0E0E0] px-6 py-4 z-50 shadow-sm">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-8">
-            <div
-              className="cursor-pointer flex items-center"
-              onClick={() => handleNavigation("/dashboard")}
-            >
-              <img src="/fibe-logo.svg" alt="Fibe" className="h-12 w-auto" />
-            </div>
+          <div className="flex items-center">
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6">
               {navItems.map((item) => (
@@ -112,8 +106,7 @@ const Header = ({ onLogout }) => {
           {/* Mobile Menu */}
           <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 md:hidden transform transition-transform duration-300 ease-in-out">
             <div className="p-6 border-b border-[#E0E0E0]">
-              <div className="flex items-center justify-between">
-                <img src="/fibe-logo.svg" alt="Fibe" className="h-10 w-auto" />
+              <div className="flex items-center justify-end">
                 <Button
                   onClick={toggleMobileMenu}
                   variant="ghost"
