@@ -43,13 +43,7 @@ const Header = ({ onLogout }) => {
     <>
       <header className="sticky top-0 bg-white border-b border-[#E0E0E0] px-6 py-4 z-50 shadow-sm">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-8">
-            <div
-              className="cursor-pointer flex items-center"
-              onClick={() => handleNavigation("/dashboard")}
-            >
-              <img src="/fibe-logo.svg" alt="Fibe" className="h-12 w-auto" />
-            </div>
+          <div className="flex items-center">
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6">
               {navItems.map((item) => (
