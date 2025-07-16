@@ -186,7 +186,7 @@ export default function SignIn() {
                 </p>
               </div>
 
-              <form className="space-y-6">
+              <form className="space-y-4">
                 {/* Contact Input */}
                 <div>
                   <div className="relative">
