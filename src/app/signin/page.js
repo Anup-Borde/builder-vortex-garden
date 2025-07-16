@@ -201,23 +201,25 @@ export default function SignIn() {
               </div>
 
               <form className="space-y-4">
-                {/* Contact Input */}
-                <div>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={contact}
-                      onChange={(e) => setContact(e.target.value)}
-                      placeholder="Enter email ID / mobile number"
-                      className="w-full h-14 px-4 rounded-lg border-2 border-gray-200 bg-white text-lg placeholder-gray-400 focus:border-teal-500 focus:outline-none transition-colors"
-                      style={{
-                        fontFamily: "Gilroy, sans-serif",
-                        fontWeight: "400",
-                      }}
-                      required
-                    />
+                {/* Contact Input - Only show when not in OTP mode */}
+                {!showOtpField && (
+                  <div>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={contact}
+                        onChange={(e) => setContact(e.target.value)}
+                        placeholder="Enter email ID / mobile number"
+                        className="w-full h-14 px-4 rounded-lg border-2 border-gray-200 bg-white text-lg placeholder-gray-400 focus:border-teal-500 focus:outline-none transition-colors"
+                        style={{
+                          fontFamily: "Gilroy, sans-serif",
+                          fontWeight: "400",
+                        }}
+                        required
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* OTP Button or Verify OTP Button */}
                 {!showOtpField ? (
