@@ -125,7 +125,16 @@ export default function SignIn() {
       <div className="flex-1 flex justify-center items-center px-4 py-8">
         <div className="w-full max-w-7xl bg-white rounded-2xl border border-gray-200 overflow-hidden h-full max-h-[600px] flex">
           {/* Left Section - Welcome back with illustration */}
-          <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-50 to-purple-50 items-center justify-center p-8">
+          <div
+            className="hidden lg:flex lg:w-1/2 items-center justify-center p-8"
+            style={{
+              backgroundImage:
+                "url('https://cdn.builder.io/api/v1/image/assets%2Fc5146f66add545dcbac2c6a386fb167d%2Fe55e9c53fd18468a84296df527ec26af?format=webp&width=800')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
             <div className="text-center max-w-md">
               <h1
                 className="text-4xl font-bold mb-6"
@@ -148,16 +157,6 @@ export default function SignIn() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Curabitur ut justo dui.
               </p>
-
-              {/* Illustration */}
-              <div className="flex justify-center">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2Fc5146f66add545dcbac2c6a386fb167d%2F9ecb1186b9ba448fb64be4cb17c1d88b?format=webp&width=800"
-                  alt="Welcome illustration"
-                  className="max-w-full h-auto"
-                  style={{ maxHeight: "320px" }}
-                />
-              </div>
             </div>
           </div>
 
