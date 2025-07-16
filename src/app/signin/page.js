@@ -125,7 +125,7 @@ export default function SignIn() {
       <div className="flex-1 flex justify-center items-center px-4 py-8">
         <div className="w-full max-w-7xl bg-white rounded-2xl border border-gray-200 overflow-hidden h-full max-h-[600px] flex">
           {/* Left Section - Welcome back with illustration */}
-          <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-50 to-purple-50 items-center justify-center p-16">
+          <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-50 to-purple-50 items-center justify-center p-8">
             <div className="text-center max-w-md">
               <h1
                 className="text-4xl font-bold mb-6"
