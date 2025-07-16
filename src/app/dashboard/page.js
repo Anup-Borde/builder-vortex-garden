@@ -32,7 +32,12 @@ export default function Dashboard() {
   const [selectedSegment, setSelectedSegment] = useState("");
   const [selectedMerchant, setSelectedMerchant] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
+<<<<<<< HEAD
   const [userContact] = useState("Darshna"); // You can get this from auth context
+=======
+  const [chartViewType, setChartViewType] = useState("value");
+  const [userContact] = useState("user@example.com"); // You can get this from auth context
+>>>>>>> origin/main
 
   const handleLogout = () => {
     // Add your logout logic here (clear tokens, etc.)
@@ -196,12 +201,36 @@ export default function Dashboard() {
             {/* Bar Chart */}
             <Card className="bg-white border-[#E0E0E0] shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-[#282828]">
-                  Monthly Disbursed Amount
-                </CardTitle>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-lg font-semibold text-[#282828]">
+                    Monthly Disbursed Amount
+                  </CardTitle>
+                  <div className="flex bg-gray-100 rounded-lg p-1">
+                    <button
+                      onClick={() => setChartViewType("value")}
+                      className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                        chartViewType === "value"
+                          ? "bg-white text-[#282828] shadow-sm"
+                          : "text-[#616060] hover:text-[#282828]"
+                      }`}
+                    >
+                      Value
+                    </button>
+                    <button
+                      onClick={() => setChartViewType("volume")}
+                      className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+                        chartViewType === "volume"
+                          ? "bg-white text-[#282828] shadow-sm"
+                          : "text-[#616060] hover:text-[#282828]"
+                      }`}
+                    >
+                      Volumes
+                    </button>
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
-                <MonthlyDisbursedChart />
+                <MonthlyDisbursedChart viewType={chartViewType} />
               </CardContent>
             </Card>
 

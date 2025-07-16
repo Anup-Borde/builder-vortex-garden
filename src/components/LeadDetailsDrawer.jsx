@@ -305,30 +305,33 @@ const LeadDetailsDrawer = ({
             </div>
           </div>
 
-          <div className="mb-4">
-            <Label
-              htmlFor="comments"
-              className="text-sm text-[#616060] text-left block"
-            >
-              Internal Comments
-            </Label>
-            <textarea
-              id="comments"
-              value={formData.comments}
-              onChange={(e) => handleFormChange("comments", e.target.value)}
-              className="w-full mt-1 p-3 border border-[#E0E0E0] rounded-md resize-none focus:ring-[#079F9F] focus:border-[#079F9F]"
-              rows={3}
-              placeholder="Add your comments here..."
-            />
-          </div>
-
-          <div className="text-left">
-            <Button
-              onClick={handleSave}
-              className="h-12 px-6 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white"
-            >
-              Save
-            </Button>
+          {/* Second Row - Comments and Save Button */}
+          <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-4 mb-4">
+            <div className="col-span-2">
+              <Label
+                htmlFor="comments"
+                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
+              >
+                Internal Comments
+              </Label>
+              <textarea
+                id="comments"
+                value={formData.comments}
+                onChange={(e) => handleFormChange("comments", e.target.value)}
+                className="w-full p-2 border border-[#E0E0E0] rounded-md resize-none focus:ring-[#079F9F] focus:border-[#079F9F] text-xs sm:text-sm"
+                rows={2}
+                placeholder="Add your comments here..."
+              />
+            </div>
+            <div className="flex items-center">
+              <Button
+                onClick={handleSave}
+                className="h-8 sm:h-10 px-3 sm:px-4 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white text-xs sm:text-sm w-full"
+              >
+                Save
+              </Button>
+            </div>
+            <div></div>
           </div>
         </div>
 

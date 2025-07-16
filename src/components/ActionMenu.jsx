@@ -15,6 +15,7 @@ import {
   Phone,
   XCircle,
   AlertTriangle,
+  Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Toast } from "@/components/Toast";
@@ -29,7 +30,7 @@ const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
   const [toastTimestamp, setToastTimestamp] = useState("");
 
   const handleAction = (action, id) => {
-    if (action === "view") {
+    if (action === "view" || action === "track") {
       setShowLeadDetailsDrawer(true);
       setIsOpen(false);
     } else if (action === "sendToUW") {
@@ -96,50 +97,11 @@ const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
           />
           <div className="absolute right-0 top-8 z-20 w-56 rounded-md border border-[#E0E0E0] bg-white py-1 shadow-lg max-h-80 overflow-y-auto">
             <button
-              onClick={() => handleAction("view", leadId)}
-              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
-            >
-              <Eye className="mr-2 h-4 w-4" />
-              View Details
-            </button>
-            <button
-              onClick={() => handleAction("assign", leadId)}
-              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
-            >
-              <UserPlus className="mr-2 h-4 w-4" />
-              Assign Lead
-            </button>
-
-            {/* Separator */}
-            <div className="border-t border-gray-200 my-1"></div>
-
-            <button
               onClick={() => handleAction("track", leadId)}
               className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
             >
               <MapPin className="mr-2 h-4 w-4" />
               Track Lead
-            </button>
-            <button
-              onClick={() => handleAction("sendToUW", leadId)}
-              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
-            >
-              <Send className="mr-2 h-4 w-4" />
-              Send to UW
-            </button>
-            <button
-              onClick={() => handleAction("sendBankStatement", leadId)}
-              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
-            >
-              <FileText className="mr-2 h-4 w-4" />
-              Send Bank Statement
-            </button>
-            <button
-              onClick={() => handleAction("sendToBRE", leadId)}
-              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
-            >
-              <Zap className="mr-2 h-4 w-4" />
-              Send to BRE
             </button>
             <button
               onClick={() => handleAction("sendPortalLink", leadId)}
@@ -149,29 +111,57 @@ const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
               Send Portal Link
             </button>
             <button
+              onClick={() => handleAction("qec", leadId)}
+              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
+            >
+              <Shield className="mr-2 h-4 w-4" />
+              QEC
+            </button>
+            <button
               onClick={() => handleAction("clickToCall", leadId)}
               className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
             >
               <Phone className="mr-2 h-4 w-4" />
               Click to Call
             </button>
+            <button
+              onClick={() => handleAction("edit", leadId)}
+              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
+            >
+              <Edit className="mr-2 h-4 w-4" />
+              Edit Lead Details
+            </button>
+            <button
+              onClick={() => handleAction("sendBankStatement", leadId)}
+              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
+            >
+              <FileText className="mr-2 h-4 w-4" />
+              Send Bank Statement
+            </button>
 
             {/* Separator */}
             <div className="border-t border-gray-200 my-1"></div>
 
-            <button
-              onClick={() => handleAction("close", leadId)}
-              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
-            >
-              <X className="mr-2 h-4 w-4" />
-              Mark as Closed
-            </button>
             <button
               onClick={() => handleAction("cancel", leadId)}
               className="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50"
             >
               <XCircle className="mr-2 h-4 w-4" />
               Cancel Lead
+            </button>
+            <button
+              onClick={() => handleAction("sendToUW", leadId)}
+              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
+            >
+              <Send className="mr-2 h-4 w-4" />
+              Send to UW
+            </button>
+            <button
+              onClick={() => handleAction("sendToBRE", leadId)}
+              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
+            >
+              <Zap className="mr-2 h-4 w-4" />
+              Send to BRE
             </button>
           </div>
         </>
