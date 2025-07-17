@@ -36,10 +36,28 @@ export default function RootLayout({ children }) {
                 if (typeof window !== 'undefined') {
                   const originalFetch = window.fetch;
                   window.fetch = function(...args) {
-                    // Allow Next.js internal requests to pass through without FullStory interference
-                    if (args[0] && (args[0].includes('/_next/') || args[0].includes('__nextjs'))) {
+                    // Get the URL from the first argument regardless of type
+                    let url = '';
+                    try {
+                      if (typeof args[0] === 'string') {
+                        url = args[0];
+                      } else if (args[0] instanceof Request) {
+                        url = args[0].url;
+                      } else if (args[0] instanceof URL) {
+                        url = args[0].href;
+                      } else if (args[0] && typeof args[0].toString === 'function') {
+                        url = args[0].toString();
+                      }
+
+                      // Allow Next.js internal requests to pass through without FullStory interference
+                      if (url && (url.includes('/_next/') || url.includes('__nextjs') || url.includes('localhost'))) {
+                        return originalFetch.apply(this, args);
+                      }
+                    } catch (e) {
+                      // If there's any error getting the URL, just pass through to original fetch
                       return originalFetch.apply(this, args);
                     }
+
                     return originalFetch.apply(this, args);
                   };
                 }
