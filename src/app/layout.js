@@ -28,6 +28,25 @@ export default function RootLayout({ children }) {
         }}
         suppressHydrationWarning={true}
       >
+        {process.env.NODE_ENV === "development" && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                // Prevent FullStory from interfering with Next.js HMR in development
+                if (typeof window !== 'undefined') {
+                  const originalFetch = window.fetch;
+                  window.fetch = function(...args) {
+                    // Allow Next.js internal requests to pass through without FullStory interference
+                    if (args[0] && (args[0].includes('/_next/') || args[0].includes('__nextjs'))) {
+                      return originalFetch.apply(this, args);
+                    }
+                    return originalFetch.apply(this, args);
+                  };
+                }
+              `,
+            }}
+          />
+        )}
         {children}
       </body>
     </html>
