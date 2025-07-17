@@ -34,6 +34,7 @@ const NavigationDrawer = ({ isOpen, onClose, onLogout }) => {
     onClose();
   };
 
+  // Main navigation items
   const navigationItems = [
     {
       icon: LayoutDashboard,
@@ -118,6 +119,7 @@ const NavigationDrawer = ({ isOpen, onClose, onLogout }) => {
         {/* Navigation Items */}
         <div className="flex-1 overflow-y-auto">
           <nav className="p-4 space-y-2">
+            {/* Main navigation items */}
             {navigationItems.map((item, index) => (
               <button
                 key={index}
