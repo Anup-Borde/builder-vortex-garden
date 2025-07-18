@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, RotateCcw, Calendar, ChevronDown } from "lucide-react";
+import { Search, RotateCcw, Calendar } from "lucide-react";
 
 const ManageLeadsFilters = ({ onSearch, onReset }) => {
   // Filter state
@@ -107,7 +107,7 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
   // Get current placeholder and label based on search type
   const getCurrentSearchConfig = () => {
     const config = searchTypeOptions.find(
-      (option) => option.value === filters.searchType,
+      (option) => option.value === filters.searchType
     );
     return config || searchTypeOptions[0];
   };
@@ -123,15 +123,14 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
           <div className="flex-1 max-w-[372px]">
             <div className="relative border-[1.5px] border-[#079F9F] rounded-lg bg-white h-12 flex">
               {/* Search Type Dropdown */}
-              <div className="flex items-center px-3 min-w-[89px] border-r border-[#079F9F]">
+              <div className="flex items-center px-3 min-w-[110px] border-r border-[#079F9F]">
                 <Select
                   value={filters.searchType}
                   onValueChange={handleSearchTypeChange}
                 >
-                  <SelectTrigger className="border-0 p-0 h-auto bg-transparent focus:ring-0 shadow-none">
-                    <div className="flex items-center gap-1 text-[#434343] text-sm font-medium">
-                      {currentConfig.label}
-                      <ChevronDown className="h-4 w-4 text-[#333333]" />
+                  <SelectTrigger className="border-0 p-0 h-auto bg-transparent focus:ring-0 shadow-none w-full">
+                    <div className="flex items-center justify-between w-full text-[#434343] text-sm font-medium whitespace-nowrap">
+                      <span>{currentConfig.label}</span>
                     </div>
                   </SelectTrigger>
                   <SelectContent>
@@ -293,15 +292,14 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
             {/* Mobile Search */}
             <div className="space-y-3">
               <div className="relative border-[1.5px] border-[#079F9F] rounded-lg bg-white h-12 flex">
-                <div className="flex items-center px-3 min-w-[89px] border-r border-[#079F9F]">
+                <div className="flex items-center px-3 min-w-[110px] border-r border-[#079F9F]">
                   <Select
                     value={filters.searchType}
                     onValueChange={handleSearchTypeChange}
                   >
-                    <SelectTrigger className="border-0 p-0 h-auto bg-transparent focus:ring-0 shadow-none">
-                      <div className="flex items-center gap-1 text-[#434343] text-sm font-medium">
-                        {currentConfig.label}
-                        <ChevronDown className="h-4 w-4 text-[#333333]" />
+                    <SelectTrigger className="border-0 p-0 h-auto bg-transparent focus:ring-0 shadow-none w-full">
+                      <div className="flex items-center justify-between w-full text-[#434343] text-sm font-medium whitespace-nowrap">
+                        <span>{currentConfig.label}</span>
                       </div>
                     </SelectTrigger>
                     <SelectContent>
