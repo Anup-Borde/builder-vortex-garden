@@ -16,7 +16,7 @@ const PrimaryHeader = ({ onLogout }) => {
 
   return (
     <header
-      className="w-full h-20 flex items-center justify-between px-5 relative"
+      className="sticky top-0 z-50 w-full h-20 flex items-center justify-between px-5"
       style={{ backgroundColor: "#011854" }}
     >
       {/* Fibe Logo */}
