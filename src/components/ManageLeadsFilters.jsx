@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, RotateCcw, Calendar } from "lucide-react";
+import { Search, RotateCcw } from "lucide-react";
 
 const ManageLeadsFilters = ({ onSearch, onReset }) => {
   // Filter state
@@ -202,8 +202,6 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
                   className="border-0 focus:ring-0 shadow-none text-[#434343] text-base h-auto p-0 w-auto"
                   placeholder="DD/MM/YYYY"
                 />
-
-                <Calendar className="ml-2 h-6 w-6 text-[#079F9F]" />
               </div>
             </div>
           </div>
@@ -326,57 +324,34 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
             </div>
           </div>
 
-          {/* Mobile Date Range - Full width single row */}
-          <div className="w-full">
-            <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-12 flex items-center px-4">
-              <span className="text-[#999] text-sm mr-2 whitespace-nowrap">
+          {/* Mobile Date Range - Two separate rows */}
+          <div className="w-full space-y-3">
+            {/* To Date */}
+            <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-10 flex items-center px-4">
+              <span className="text-[#999] text-sm mr-3 whitespace-nowrap">
                 To
               </span>
               <Input
                 type="date"
                 value={filters.dateTo}
                 onChange={(e) => handleInputChange("dateTo", e.target.value)}
-                className="border-0 focus:ring-0 shadow-none text-[#434343] text-sm h-auto p-0 w-auto"
+                className="border-0 focus:ring-0 shadow-none text-[#434343] text-sm h-auto p-0 flex-1"
                 placeholder="dd/mm/yyyy"
               />
+            </div>
 
-              <div className="mx-3 flex items-center">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.7793 1L16.7793 5L0.779297 5"
-                    stroke="#999999"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M4.7793 17L0.779297 13L16.7793 13"
-                    stroke="#999999"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-
-              <span className="text-[#999] text-sm mr-2 whitespace-nowrap">
+            {/* From Date */}
+            <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-10 flex items-center px-4">
+              <span className="text-[#999] text-sm mr-3 whitespace-nowrap">
                 From:
               </span>
               <Input
                 type="date"
                 value={filters.dateFrom}
                 onChange={(e) => handleInputChange("dateFrom", e.target.value)}
-                className="border-0 focus:ring-0 shadow-none text-[#434343] text-sm h-auto p-0 w-auto"
+                className="border-0 focus:ring-0 shadow-none text-[#434343] text-sm h-auto p-0 flex-1"
                 placeholder="dd/mm/yyyy"
               />
-
-              <Calendar className="ml-2 h-5 w-5 text-[#079F9F]" />
             </div>
           </div>
 
