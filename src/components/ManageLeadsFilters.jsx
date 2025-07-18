@@ -116,13 +116,188 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
 
   return (
     <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 mb-6">
-      <div className="space-y-4">
-        {/* First Row: Combined Search Input + Date Range */}
-        <div className="flex items-center gap-4">
-          {/* Combined Search Type Dropdown + Input */}
-          <div className="flex-1 max-w-[372px]">
+      {/* Desktop Layout */}
+      <div className="hidden lg:block">
+        <div className="space-y-4">
+          {/* First Row: Combined Search Input + Date Range */}
+          <div className="flex items-center gap-4">
+            {/* Combined Search Type Dropdown + Input */}
+            <div className="flex-1 max-w-[372px]">
+              <div className="relative border-[1.5px] border-[#079F9F] rounded-lg bg-white h-12 flex">
+                {/* Search Type Dropdown */}
+                <div className="flex items-center px-3 min-w-[110px] border-r border-[#079F9F]">
+                  <Select
+                    value={filters.searchType}
+                    onValueChange={handleSearchTypeChange}
+                  >
+                    <SelectTrigger className="border-0 p-0 h-auto bg-transparent focus:ring-0 shadow-none w-full">
+                      <div className="flex items-center justify-between w-full text-[#434343] text-sm font-medium whitespace-nowrap">
+                        <span>{currentConfig.label}</span>
+                      </div>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {searchTypeOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Search Input */}
+                <Input
+                  placeholder={currentConfig.placeholder}
+                  value={filters.query}
+                  onChange={(e) => handleInputChange("query", e.target.value)}
+                  className="border-0 focus:ring-0 shadow-none placeholder:text-[#999] text-sm h-full rounded-l-none pl-4"
+                />
+              </div>
+            </div>
+
+            {/* Date Range Section */}
+            <div className="flex-1 max-w-[529px]">
+              <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-12 flex items-center px-4">
+                <span className="text-[#999] text-base mr-2">To</span>
+                <Input
+                  type="date"
+                  value={filters.dateTo}
+                  onChange={(e) => handleInputChange("dateTo", e.target.value)}
+                  className="border-0 focus:ring-0 shadow-none text-[#434343] text-base h-auto p-0 w-auto"
+                  placeholder="DD/MM/YYYY"
+                />
+
+                <div className="mx-4 flex items-center">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.7793 1L16.7793 5L0.779297 5"
+                      stroke="#999999"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M4.7793 17L0.779297 13L16.7793 13"
+                      stroke="#999999"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                <span className="text-[#999] text-base mr-2">From:</span>
+                <Input
+                  type="date"
+                  value={filters.dateFrom}
+                  onChange={(e) =>
+                    handleInputChange("dateFrom", e.target.value)
+                  }
+                  className="border-0 focus:ring-0 shadow-none text-[#434343] text-base h-auto p-0 w-auto"
+                  placeholder="DD/MM/YYYY"
+                />
+
+                <Calendar className="ml-2 h-6 w-6 text-[#079F9F]" />
+              </div>
+            </div>
+          </div>
+
+          {/* Second Row: Channel, Segment, Merchant Dropdowns + Action Buttons */}
+          <div className="flex items-center gap-4">
+            {/* Channel Dropdown */}
+            <div className="w-[300px]">
+              <Select
+                value={filters.channel}
+                onValueChange={(value) => handleInputChange("channel", value)}
+              >
+                <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-base">
+                  <SelectValue placeholder="Select Channel" />
+                </SelectTrigger>
+                <SelectContent>
+                  {channelOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Segment Dropdown */}
+            <div className="w-[300px]">
+              <Select
+                value={filters.segment}
+                onValueChange={(value) => handleInputChange("segment", value)}
+              >
+                <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-base">
+                  <SelectValue placeholder="Select Segment" />
+                </SelectTrigger>
+                <SelectContent>
+                  {segmentOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Merchant Dropdown */}
+            <div className="w-[300px]">
+              <Select
+                value={filters.merchant}
+                onValueChange={(value) => handleInputChange("merchant", value)}
+              >
+                <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-base">
+                  <SelectValue placeholder="Select Merchant" />
+                </SelectTrigger>
+                <SelectContent>
+                  {merchantOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-4 ml-auto">
+              {/* Search Button */}
+              <Button
+                onClick={handleSearch}
+                className="h-12 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white px-6 rounded-lg flex items-center gap-2"
+              >
+                <Search className="h-6 w-6" />
+                <span className="font-semibold text-base">Search</span>
+              </Button>
+
+              {/* Reset Button */}
+              <Button
+                onClick={handleReset}
+                variant="outline"
+                className="h-12 border-[#079F9F] hover:border-[#079F9F] focus:ring-[#079F9F] text-[#079F9F] px-6 rounded-lg flex items-center gap-2"
+              >
+                <RotateCcw className="h-8 w-8" />
+                <span className="font-semibold text-base">Reset</span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="block lg:hidden">
+        <div className="space-y-4">
+          {/* Mobile Search - Full width */}
+          <div className="w-full">
             <div className="relative border-[1.5px] border-[#079F9F] rounded-lg bg-white h-12 flex">
-              {/* Search Type Dropdown */}
               <div className="flex items-center px-3 min-w-[110px] border-r border-[#079F9F]">
                 <Select
                   value={filters.searchType}
@@ -142,8 +317,6 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
                   </SelectContent>
                 </Select>
               </div>
-
-              {/* Search Input */}
               <Input
                 placeholder={currentConfig.placeholder}
                 value={filters.query}
@@ -153,22 +326,24 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
             </div>
           </div>
 
-          {/* Date Range Section */}
-          <div className="flex-1 max-w-[529px]">
+          {/* Mobile Date Range - Full width single row */}
+          <div className="w-full">
             <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-12 flex items-center px-4">
-              <span className="text-[#999] text-base mr-2">To</span>
+              <span className="text-[#999] text-sm mr-2 whitespace-nowrap">
+                To
+              </span>
               <Input
                 type="date"
                 value={filters.dateTo}
                 onChange={(e) => handleInputChange("dateTo", e.target.value)}
-                className="border-0 focus:ring-0 shadow-none text-[#434343] text-base h-auto p-0 w-auto"
-                placeholder="DD/MM/YYYY"
+                className="border-0 focus:ring-0 shadow-none text-[#434343] text-sm h-auto p-0 w-auto"
+                placeholder="dd/mm/yyyy"
               />
 
-              <div className="mx-4 flex items-center">
+              <div className="mx-3 flex items-center">
                 <svg
-                  width="18"
-                  height="18"
+                  width="16"
+                  height="16"
                   viewBox="0 0 18 18"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -190,29 +365,28 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
                 </svg>
               </div>
 
-              <span className="text-[#999] text-base mr-2">From:</span>
+              <span className="text-[#999] text-sm mr-2 whitespace-nowrap">
+                From:
+              </span>
               <Input
                 type="date"
                 value={filters.dateFrom}
                 onChange={(e) => handleInputChange("dateFrom", e.target.value)}
-                className="border-0 focus:ring-0 shadow-none text-[#434343] text-base h-auto p-0 w-auto"
-                placeholder="DD/MM/YYYY"
+                className="border-0 focus:ring-0 shadow-none text-[#434343] text-sm h-auto p-0 w-auto"
+                placeholder="dd/mm/yyyy"
               />
 
-              <Calendar className="ml-2 h-6 w-6 text-[#079F9F]" />
+              <Calendar className="ml-2 h-5 w-5 text-[#079F9F]" />
             </div>
           </div>
-        </div>
 
-        {/* Second Row: Channel, Segment, Merchant Dropdowns + Action Buttons */}
-        <div className="flex items-center gap-4">
-          {/* Channel Dropdown */}
-          <div className="w-[300px]">
+          {/* Mobile Dropdowns - Single column layout */}
+          <div className="space-y-3">
             <Select
               value={filters.channel}
               onValueChange={(value) => handleInputChange("channel", value)}
             >
-              <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-base">
+              <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-sm">
                 <SelectValue placeholder="Select Channel" />
               </SelectTrigger>
               <SelectContent>
@@ -223,15 +397,12 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
                 ))}
               </SelectContent>
             </Select>
-          </div>
 
-          {/* Segment Dropdown */}
-          <div className="w-[300px]">
             <Select
               value={filters.segment}
               onValueChange={(value) => handleInputChange("segment", value)}
             >
-              <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-base">
+              <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-sm">
                 <SelectValue placeholder="Select Segment" />
               </SelectTrigger>
               <SelectContent>
@@ -242,15 +413,12 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
                 ))}
               </SelectContent>
             </Select>
-          </div>
 
-          {/* Merchant Dropdown */}
-          <div className="w-[300px]">
             <Select
               value={filters.merchant}
               onValueChange={(value) => handleInputChange("merchant", value)}
             >
-              <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-base">
+              <SelectTrigger className="h-12 border-[#E6E6E6] focus:ring-[#079F9F] text-sm">
                 <SelectValue placeholder="Select Merchant" />
               </SelectTrigger>
               <SelectContent>
@@ -263,160 +431,23 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
             </Select>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-4 ml-auto">
-            {/* Search Button */}
+          {/* Mobile Action Buttons - Full width */}
+          <div className="flex gap-3">
             <Button
               onClick={handleSearch}
-              className="h-12 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white px-6 rounded-lg flex items-center gap-2"
+              className="flex-1 h-12 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white rounded-lg flex items-center justify-center gap-2"
             >
-              <Search className="h-6 w-6" />
+              <Search className="h-5 w-5" />
               <span className="font-semibold text-base">Search</span>
             </Button>
-
-            {/* Reset Button */}
             <Button
               onClick={handleReset}
               variant="outline"
-              className="h-12 border-[#079F9F] hover:border-[#079F9F] focus:ring-[#079F9F] text-[#079F9F] px-6 rounded-lg flex items-center gap-2"
+              className="flex-1 h-12 border-[#079F9F] hover:border-[#079F9F] focus:ring-[#079F9F] text-[#079F9F] rounded-lg flex items-center justify-center gap-2"
             >
-              <RotateCcw className="h-8 w-8" />
+              <RotateCcw className="h-5 w-5" />
               <span className="font-semibold text-base">Reset</span>
             </Button>
-          </div>
-        </div>
-
-        {/* Mobile Layout */}
-        <div className="block lg:hidden">
-          <div className="space-y-4">
-            {/* Mobile Search */}
-            <div className="space-y-3">
-              <div className="relative border-[1.5px] border-[#079F9F] rounded-lg bg-white h-12 flex">
-                <div className="flex items-center px-3 min-w-[110px] border-r border-[#079F9F]">
-                  <Select
-                    value={filters.searchType}
-                    onValueChange={handleSearchTypeChange}
-                  >
-                    <SelectTrigger className="border-0 p-0 h-auto bg-transparent focus:ring-0 shadow-none w-full">
-                      <div className="flex items-center justify-between w-full text-[#434343] text-sm font-medium whitespace-nowrap">
-                        <span>{currentConfig.label}</span>
-                      </div>
-                    </SelectTrigger>
-                    <SelectContent>
-                      {searchTypeOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <Input
-                  placeholder={currentConfig.placeholder}
-                  value={filters.query}
-                  onChange={(e) => handleInputChange("query", e.target.value)}
-                  className="border-0 focus:ring-0 shadow-none placeholder:text-[#999] text-sm h-full rounded-l-none pl-4"
-                />
-              </div>
-            </div>
-
-            {/* Mobile Date Range */}
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block text-xs font-medium text-[#616060] mb-1">
-                  From Date
-                </label>
-                <Input
-                  type="date"
-                  value={filters.dateFrom}
-                  onChange={(e) =>
-                    handleInputChange("dateFrom", e.target.value)
-                  }
-                  className="h-10 border-[#E6E6E6] focus:ring-[#079F9F] text-xs"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-[#616060] mb-1">
-                  To Date
-                </label>
-                <Input
-                  type="date"
-                  value={filters.dateTo}
-                  onChange={(e) => handleInputChange("dateTo", e.target.value)}
-                  className="h-10 border-[#E6E6E6] focus:ring-[#079F9F] text-xs"
-                />
-              </div>
-            </div>
-
-            {/* Mobile Dropdowns */}
-            <div className="grid grid-cols-3 gap-2">
-              <Select
-                value={filters.channel}
-                onValueChange={(value) => handleInputChange("channel", value)}
-              >
-                <SelectTrigger className="h-10 border-[#E6E6E6] focus:ring-[#079F9F] text-xs">
-                  <SelectValue placeholder="Channel" />
-                </SelectTrigger>
-                <SelectContent>
-                  {channelOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select
-                value={filters.segment}
-                onValueChange={(value) => handleInputChange("segment", value)}
-              >
-                <SelectTrigger className="h-10 border-[#E6E6E6] focus:ring-[#079F9F] text-xs">
-                  <SelectValue placeholder="Segment" />
-                </SelectTrigger>
-                <SelectContent>
-                  {segmentOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select
-                value={filters.merchant}
-                onValueChange={(value) => handleInputChange("merchant", value)}
-              >
-                <SelectTrigger className="h-10 border-[#E6E6E6] focus:ring-[#079F9F] text-xs">
-                  <SelectValue placeholder="Merchant" />
-                </SelectTrigger>
-                <SelectContent>
-                  {merchantOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Mobile Action Buttons */}
-            <div className="flex gap-2">
-              <Button
-                onClick={handleSearch}
-                className="flex-1 h-12 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white"
-              >
-                <Search className="mr-2 h-4 w-4" />
-                Search
-              </Button>
-              <Button
-                onClick={handleReset}
-                variant="outline"
-                className="flex-1 h-12 border-[#079F9F] hover:border-[#079F9F] focus:ring-[#079F9F] text-[#079F9F]"
-              >
-                <RotateCcw className="mr-2 h-4 w-4" />
-                Reset
-              </Button>
-            </div>
           </div>
         </div>
       </div>
