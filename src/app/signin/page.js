@@ -178,7 +178,7 @@ export default function SignIn() {
           </div>
 
           {/* Right Section - Sign In Form */}
-          <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-8">
+          <div className="w-full lg:w-1/2 flex items-start justify-center p-6 lg:p-8">
             <div className="w-full max-w-md">
               <div className="mb-6">
                 <h2
