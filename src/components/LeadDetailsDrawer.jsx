@@ -183,7 +183,7 @@ const LeadDetailsDrawer = ({
           <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 mb-6">
             <h3 className="text-xl font-semibold text-[#333] mb-6" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer details</h3>
 
-            <div className="flex flex-wrap gap-16 items-start mb-6">
+            <div className="flex flex-wrap gap-8 lg:gap-16 items-start mb-6">
               {/* Name */}
               <div className="flex flex-col gap-2">
                 <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Name</span>
