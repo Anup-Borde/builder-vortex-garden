@@ -146,23 +146,29 @@ export default function SignIn() {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <div className="text-center max-w-md">
-              <h1
-                className="text-4xl font-bold mb-6"
-                style={{
-                  color: "#434343",
-                  fontFamily: "Gilroy, sans-serif",
-                  lineHeight: "1.4",
-                }}
-              >
-                Welcome back
-              </h1>
+            <div className="max-w-md">
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  style={{
+                    color: "#434343",
+                    textAlign: "left",
+                    paddingBottom: "24px",
+                    fontFamily: "Gilroy, sans-serif",
+                    fontSize: "36px",
+                    fontWeight: "700",
+                    lineHeight: "50.4px",
+                  }}
+                >
+                  <p>Welcome back</p>
+                </div>
+              </div>
               <p
                 className="text-xl mb-12 leading-relaxed"
                 style={{
                   color: "#282828",
                   fontFamily: "Gilroy, sans-serif",
                   fontWeight: "500",
+                  textAlign: "left",
                 }}
               >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
