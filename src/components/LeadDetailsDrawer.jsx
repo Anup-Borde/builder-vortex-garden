@@ -180,58 +180,65 @@ const LeadDetailsDrawer = ({
         {/* Customer Details Section */}
         <div className="p-6 bg-gray-50 border-b border-[#E0E0E0]">
           {/* Customer Details Card */}
-          <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 mb-6">
-            <h3 className="text-xl font-semibold text-[#333] mb-6" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer details</h3>
-
-            <div className="flex flex-wrap gap-8 lg:gap-16 items-start justify-start mb-6">
-              {/* Name */}
-              <div className="flex flex-col gap-2 min-w-[120px]">
-                <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Name</span>
-                <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.name}</span>
-              </div>
-
-              {/* Customer ID */}
-              <div className="flex flex-col gap-2 min-w-[110px]">
-                <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer ID</span>
-                <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerId}</span>
-              </div>
-
-              {/* Customer Ref ID */}
-              <div className="flex flex-col gap-2 min-w-[140px]">
-                <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer Ref ID</span>
-                <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerRefId}</span>
-              </div>
-
-              {/* Mobile no */}
-              <div className="flex flex-col gap-2 min-w-[140px]">
-                <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Mobile no</span>
-                <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>
-                  {displayData.mobile.startsWith('+91') ? displayData.mobile : `+91-${displayData.mobile}`}
-                </span>
-              </div>
-
-              {/* Order ID */}
-              <div className="flex flex-col gap-2 min-w-[120px]">
-                <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Order ID</span>
-                <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.orderId}</span>
-              </div>
-
-              {/* Transaction ID */}
-              <div className="flex flex-col gap-2 min-w-[130px]">
-                <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Transaction ID</span>
-                <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.transactionId}</span>
-              </div>
+          <div className="bg-white border border-[#E6E6E6] rounded-2xl relative">
+            {/* Title */}
+            <div className="px-6 pt-5 pb-4">
+              <h3 className="text-xl font-semibold text-[#333]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer details</h3>
             </div>
 
-            {/* View CIBIL Report Button */}
-            <div className="flex justify-end">
-              <Button
-                variant="outline"
-                className="border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-3 rounded-lg font-semibold"
-                style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}
-              >
-                View CIBIL Report
-              </Button>
+            {/* Content Area */}
+            <div className="px-6 pb-6 flex items-center justify-between">
+              {/* Left side - Customer Fields */}
+              <div className="flex flex-wrap gap-12 lg:gap-16 items-start">
+                {/* Name */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Name</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.name}</span>
+                </div>
+
+                {/* Customer ID */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer ID</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerId}</span>
+                </div>
+
+                {/* Customer Ref ID */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer Ref ID</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerRefId}</span>
+                </div>
+
+                {/* Mobile no */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Mobile no</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>
+                    {displayData.mobile.startsWith('+91') ? displayData.mobile : `+91-${displayData.mobile}`}
+                  </span>
+                </div>
+
+                {/* Order ID */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Order ID</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.orderId}</span>
+                </div>
+
+                {/* Transaction ID */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Transaction ID</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.transactionId}</span>
+                </div>
+              </div>
+
+              {/* Right side - Button */}
+              <div className="flex-shrink-0 ml-8">
+                <Button
+                  variant="outline"
+                  className="border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-3 rounded-lg font-semibold"
+                  style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}
+                >
+                  View CIBIL Report
+                </Button>
+              </div>
             </div>
           </div>
 
