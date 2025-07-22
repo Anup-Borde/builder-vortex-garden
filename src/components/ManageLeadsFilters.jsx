@@ -119,7 +119,7 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
       {/* Desktop Layout */}
       <div className="hidden lg:block">
         <div className="space-y-4">
-          {/* First Row: Combined Search Input + Date Range */}
+          {/* First Row: Combined Search Input + Date Range + Merchant Details Button (inline) */}
           <div className="flex items-center gap-4">
             {/* Combined Search Type Dropdown + Input */}
             <div className="flex-1 max-w-[372px]">
@@ -155,9 +155,10 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
               </div>
             </div>
 
-            {/* Date Range Section */}
-            <div className="flex-1 max-w-[529px]">
-              <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-12 flex items-center px-4">
+            {/* Date Range Section + Merchant Details Button inline */}
+            <div className="flex-1 max-w-[529px] flex items-center gap-4">
+              {/* Date Range Section */}
+              <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-12 flex items-center px-4 flex-1">
                 <span className="text-[#999] text-base mr-2">To</span>
                 <Input
                   type="date"
@@ -203,6 +204,18 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
                   placeholder="DD/MM/YYYY"
                 />
               </div>
+            </div>
+            <div className="flex gap-4 ml-auto">
+              {/* View Merchant details Button right aligned */}
+              <Button
+                variant="outline"
+                className="h-12 border-[#079F9F] text-[#079F9F] px-6 rounded-lg font-semibold text-base whitespace-nowrap"
+                onClick={() => {
+                  /* TODO: Add merchant details logic */
+                }}
+              >
+                View Merchant details
+              </Button>
             </div>
           </div>
 
