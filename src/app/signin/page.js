@@ -186,6 +186,7 @@ export default function SignIn() {
                   style={{
                     color: "#434343",
                     fontFamily: "Gilroy, sans-serif",
+                    paddingBottom: "20px",
                   }}
                 >
                   {showOtpField
@@ -198,6 +199,7 @@ export default function SignIn() {
                     color: "#282828",
                     fontFamily: "Gilroy, sans-serif",
                     fontWeight: "500",
+                    paddingBottom: "20px",
                   }}
                 >
                   {showOtpField
