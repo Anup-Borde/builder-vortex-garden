@@ -137,7 +137,7 @@ export default function SignIn() {
         <div className="w-full max-w-7xl bg-white rounded-2xl border border-gray-200 overflow-hidden h-full max-h-[600px] flex">
           {/* Left Section - Welcome back with illustration */}
           <div
-            className="hidden lg:flex lg:w-1/2 items-center justify-center p-8"
+            className="hidden lg:flex lg:w-1/2 items-start justify-start p-8"
             style={{
               backgroundImage:
                 "url('https://cdn.builder.io/api/v1/image/assets%2Fc5146f66add545dcbac2c6a386fb167d%2Fe55e9c53fd18468a84296df527ec26af?format=webp&width=800')",
