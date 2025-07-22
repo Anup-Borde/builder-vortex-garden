@@ -617,7 +617,7 @@ const ManageLeadsTable = ({ data, filters, userRole = "internal" }) => {
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
-            <TableRow className="bg-gray-50 border-b border-[#E0E0E0]">
+            <TableRow className="bg-[#FFFBF1] border-b border-[#E0E0E0]">
               <TableHead className="font-semibold text-[#616060]">
                 Cust ID
               </TableHead>

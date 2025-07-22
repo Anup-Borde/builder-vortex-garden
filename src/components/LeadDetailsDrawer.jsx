@@ -155,8 +155,8 @@ const LeadDetailsDrawer = ({
         onClick={onClose}
       />
 
-      {/* Drawer */}
-      <div className="fixed right-0 top-0 h-full w-full max-w-4xl bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto">
+      {/* Drawer - now full screen */}
+      <div className="fixed inset-0 h-full w-full bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-[#E0E0E0] bg-white sticky top-0 z-10">
           <div className="flex items-center space-x-4">
