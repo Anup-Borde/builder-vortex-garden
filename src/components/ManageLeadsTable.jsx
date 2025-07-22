@@ -619,19 +619,19 @@ const ManageLeadsTable = ({ data, filters, userRole = "internal" }) => {
           <TableHeader>
             <TableRow className="bg-gray-50 border-b border-[#E0E0E0]">
               <TableHead className="font-semibold text-[#616060]">
-                Customer ID
+                Cust ID
               </TableHead>
               <TableHead className="font-semibold text-[#616060]">
                 Order ID
               </TableHead>
               <TableHead className="font-semibold text-[#616060]">
-                Mobile Number
+                Mobile no.
               </TableHead>
               <TableHead className="font-semibold text-[#616060]">
                 Cust Ref No.
               </TableHead>
               <TableHead className="font-semibold text-[#616060]">
-                Chance of Approval
+                Approval chance
               </TableHead>
               <TableHead className="font-semibold text-[#616060]">
                 <div
@@ -654,7 +654,7 @@ const ManageLeadsTable = ({ data, filters, userRole = "internal" }) => {
                 Maximum Limit
               </TableHead>
               <TableHead className="font-semibold text-[#616060]">
-                Date
+                Date/Time
               </TableHead>
               <TableHead className="font-semibold text-[#616060] text-center">
                 Action
