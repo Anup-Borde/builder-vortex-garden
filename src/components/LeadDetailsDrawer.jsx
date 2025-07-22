@@ -31,12 +31,12 @@ const LeadDetailsDrawer = ({
 
   // Mock data - replace with actual leadData props
   const defaultLeadData = {
-    name: "Gokul Bijarson",
-    mobile: "9999999999",
+    name: "Sudesh shettty",
+    mobile: "+91-9876543210",
     customerId: "CUST001",
-    orderId: "23899344",
-    customerRefId: "5498548845",
-    transactionId: "348934989345",
+    orderId: "ORD2025001",
+    customerRefId: "REF001",
+    transactionId: "N/A",
     emi: "₹9,999.00",
     emiDueDate: "15th of every month",
     dpRefund: "₹2,000.00",
