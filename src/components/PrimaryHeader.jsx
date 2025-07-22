@@ -17,7 +17,9 @@ const PrimaryHeader = ({ onLogout }) => {
   return (
     <header
       className="w-full h-20 flex items-center justify-between px-5 relative"
-      style={{ backgroundColor: "#011854" }}
+      style={{
+        background: "linear-gradient(173deg, rgba(87, 116, 193, 0.50) -15.14%, rgba(201, 255, 255, 0.50) 165.05%)"
+      }}
     >
       {/* Fibe Logo */}
       <div className="flex items-center">
