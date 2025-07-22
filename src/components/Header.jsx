@@ -23,7 +23,7 @@ const Header = ({ onLogout }) => {
 
   return (
     <>
-      <header className="hidden md:block sticky top-0 bg-white border-b border-[#E0E0E0] px-6 py-4 z-50 shadow-sm">
+      <header className="hidden md:block sticky top-20 bg-white border-b border-[#E0E0E0] px-6 py-4 z-40 shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             {/* Desktop Navigation */}
