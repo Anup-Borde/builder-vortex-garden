@@ -185,25 +185,25 @@ const LeadDetailsDrawer = ({
 
             <div className="flex flex-wrap gap-8 lg:gap-16 items-start mb-6">
               {/* Name */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 min-w-[120px]">
                 <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Name</span>
                 <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.name}</span>
               </div>
 
               {/* Customer ID */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 min-w-[110px]">
                 <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer ID</span>
                 <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerId}</span>
               </div>
 
               {/* Customer Ref ID */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 min-w-[140px]">
                 <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer Ref ID</span>
                 <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerRefId}</span>
               </div>
 
               {/* Mobile no */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 min-w-[140px]">
                 <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Mobile no</span>
                 <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>
                   {displayData.mobile.startsWith('+91') ? displayData.mobile : `+91-${displayData.mobile}`}
@@ -211,13 +211,13 @@ const LeadDetailsDrawer = ({
               </div>
 
               {/* Order ID */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 min-w-[120px]">
                 <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Order ID</span>
                 <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.orderId}</span>
               </div>
 
               {/* Transaction ID */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 min-w-[130px]">
                 <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Transaction ID</span>
                 <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.transactionId}</span>
               </div>
