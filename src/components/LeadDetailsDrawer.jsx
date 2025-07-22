@@ -31,12 +31,12 @@ const LeadDetailsDrawer = ({
 
   // Mock data - replace with actual leadData props
   const defaultLeadData = {
-    name: "Gokul Bijarson",
-    mobile: "9999999999",
+    name: "Sudesh shettty",
+    mobile: "+91-9876543210",
     customerId: "CUST001",
-    orderId: "23899344",
-    customerRefId: "5498548845",
-    transactionId: "348934989345",
+    orderId: "ORD2025001",
+    customerRefId: "REF001",
+    transactionId: "N/A",
     emi: "₹9,999.00",
     emiDueDate: "15th of every month",
     dpRefund: "₹2,000.00",
@@ -177,41 +177,68 @@ const LeadDetailsDrawer = ({
           </Button>
         </div>
 
-        {/* Lead Summary */}
-        <div className="p-3 sm:p-6 bg-gray-50 border-b border-[#E0E0E0]">
-          <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mb-3 sm:mb-6">
-            {/* Name & Mobile Section */}
-            <div className="text-left">
-              <p className="text-xs text-[#616060] mb-1">Name</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight">
-                {displayData.name}
-              </p>
-              <p className="text-xs text-[#616060] mb-1">Mobile</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight">
-                {displayData.mobile}
-              </p>
+        {/* Customer Details Section */}
+        <div className="p-6 bg-gray-50 border-b border-[#E0E0E0]">
+          {/* Customer Details Card */}
+          <div className="bg-white border border-[#E6E6E6] rounded-2xl relative">
+            {/* Title */}
+            <div className="px-6 pt-5 pb-4">
+              <h3 className="text-xl font-semibold text-[#333]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer details</h3>
             </div>
-            {/* Customer ID & Order ID Section */}
-            <div className="text-left">
-              <p className="text-xs text-[#616060] mb-1">Customer ID</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight break-all">
-                {displayData.customerId}
-              </p>
-              <p className="text-xs text-[#616060] mb-1">Order ID</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight break-all">
-                {displayData.orderId}
-              </p>
-            </div>
-            {/* Customer Ref ID & Transaction ID Section */}
-            <div className="text-left sm:col-span-2 lg:col-span-1">
-              <p className="text-xs text-[#616060] mb-1">Ref ID</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight break-all">
-                {displayData.customerRefId}
-              </p>
-              <p className="text-xs text-[#616060] mb-1">Transaction ID</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight break-all">
-                {displayData.transactionId}
-              </p>
+
+            {/* Content Area */}
+            <div className="px-6 pb-6 flex items-center justify-between">
+              {/* Left side - Customer Fields */}
+              <div className="flex flex-wrap gap-12 lg:gap-16 items-start">
+                {/* Name */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Name</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.name}</span>
+                </div>
+
+                {/* Customer ID */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer ID</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerId}</span>
+                </div>
+
+                {/* Customer Ref ID */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer Ref ID</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerRefId}</span>
+                </div>
+
+                {/* Mobile no */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Mobile no</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>
+                    {displayData.mobile.startsWith('+91') ? displayData.mobile : `+91-${displayData.mobile}`}
+                  </span>
+                </div>
+
+                {/* Order ID */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Order ID</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.orderId}</span>
+                </div>
+
+                {/* Transaction ID */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Transaction ID</span>
+                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.transactionId}</span>
+                </div>
+              </div>
+
+              {/* Right side - Button */}
+              <div className="flex-shrink-0 ml-8">
+                <Button
+                  variant="outline"
+                  className="border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-3 rounded-lg font-semibold"
+                  style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}
+                >
+                  View CIBIL Report
+                </Button>
+              </div>
             </div>
           </div>
 
