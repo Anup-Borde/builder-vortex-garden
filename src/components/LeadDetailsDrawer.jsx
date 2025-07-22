@@ -205,7 +205,9 @@ const LeadDetailsDrawer = ({
               {/* Mobile no */}
               <div className="flex flex-col gap-2">
                 <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Mobile no</span>
-                <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>+91-{displayData.mobile}</span>
+                <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>
+                  {displayData.mobile.startsWith('+91') ? displayData.mobile : `+91-${displayData.mobile}`}
+                </span>
               </div>
 
               {/* Order ID */}
