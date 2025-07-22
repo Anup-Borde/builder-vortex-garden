@@ -320,21 +320,6 @@ export default function SignIn() {
                     </button>
                   </div>
                 )}
-
-                {/* Create Account Link */}
-                <div className="flex justify-center">
-                  <button
-                    type="button"
-                    className="text-lg underline"
-                    style={{
-                      color: "#079F9F",
-                      fontFamily: "Gilroy, sans-serif",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Create account or Sign up
-                  </button>
-                </div>
               </form>
             </div>
           </div>
