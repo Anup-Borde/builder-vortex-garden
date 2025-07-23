@@ -407,36 +407,16 @@ const LeadDetailsDrawer = ({
               </Select>
             </div>
             <div className="flex-1">
-              <input
-                type="text"
-                id="comments"
+              <CommentInput
                 value={formData.comments}
-                onChange={(e) => handleFormChange("comments", e.target.value)}
-                className="w-full h-8 sm:h-10 px-2 border border-[#E0E0E0] rounded-md focus:ring-[#079F9F] focus:border-[#079F9F] text-xs sm:text-sm"
+                onChange={(value) => handleFormChange("comments", value)}
+                onSubmit={(comment) => {
+                  console.log("Comment submitted:", comment);
+                  handleSave();
+                }}
                 placeholder="Add your comment here..."
+                className="w-full max-w-none"
               />
-            </div>
-            <div>
-              <Button
-                onClick={handleSave}
-                className="h-8 sm:h-10 w-10 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white flex items-center justify-center rounded-md"
-                title="Save Comment"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12h14m-7-7l7 7-7 7"
-                  />
-                </svg>
-              </Button>
             </div>
           </div>
 
