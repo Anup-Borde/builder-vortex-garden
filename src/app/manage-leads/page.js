@@ -50,7 +50,7 @@ export default function ManageLeads({ userRole = "internal" }) {
       <Header />
 
       {/* Main Content */}
-      <div className="p-4 sm:p-6 lg:p-8 pb-28">
+      <div className="p-4 sm:p-6 lg:p-8">
         <div className="max-w-8xl mx-auto">
           {/* Filters Section */}
           <ManageLeadsFilters onSearch={handleSearch} onReset={handleReset} />
@@ -68,9 +68,6 @@ export default function ManageLeads({ userRole = "internal" }) {
           </div>
         </div>
       </div>
-
-      {/* Sticky Action Bar */}
-      <StickyActionBar onAction={handleAction} />
     </div>
   );
 }
