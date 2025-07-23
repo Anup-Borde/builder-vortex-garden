@@ -450,12 +450,12 @@ const LeadDetailsDrawer = ({
               {/* Customer Details Card */}
               <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden">
                 <div className="bg-[#FFFBF1] border-b border-[#E6E6E6] px-7 py-4">
-                  <h3 className="text-lg font-semibold text-black">
+                  <h3 className="text-lg font-semibold text-black text-left">
                     Customer Details
                   </h3>
                 </div>
                 <div className="px-7 py-6 space-y-2">
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Name
                     </span>
@@ -463,7 +463,7 @@ const LeadDetailsDrawer = ({
                       {displayData.name}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -471,7 +471,7 @@ const LeadDetailsDrawer = ({
                       {displayData.numberOfEmis}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       EMI Due Date :
                     </span>
@@ -479,7 +479,7 @@ const LeadDetailsDrawer = ({
                       {displayData.emiDueDate}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Name
                     </span>
@@ -487,20 +487,18 @@ const LeadDetailsDrawer = ({
                       {displayData.name}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
-                    <div className="flex items-center gap-3">
-                      <span className="text-base font-semibold text-[#434343]">
-                        {displayData.numberOfEmis}
-                      </span>
-                      <span className="text-base font-semibold text-[#079F9F] cursor-pointer hover:underline">
-                        Verify link
-                      </span>
-                    </div>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                    <span className="text-base font-semibold text-[#079F9F] cursor-pointer hover:underline">
+                      Verify link
+                    </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -514,12 +512,12 @@ const LeadDetailsDrawer = ({
               {/* Order Details Card */}
               <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden">
                 <div className="bg-[#FFFBF1] border-b border-[#E6E6E6] px-7 py-4">
-                  <h3 className="text-lg font-semibold text-black">
+                  <h3 className="text-lg font-semibold text-black text-left">
                     Order Details
                   </h3>
                 </div>
                 <div className="px-7 py-6 space-y-2">
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Name
                     </span>
@@ -527,7 +525,7 @@ const LeadDetailsDrawer = ({
                       {displayData.name}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -535,7 +533,7 @@ const LeadDetailsDrawer = ({
                       {displayData.numberOfEmis}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       EMI Due Date :
                     </span>
@@ -543,7 +541,7 @@ const LeadDetailsDrawer = ({
                       {displayData.emiDueDate}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Name
                     </span>
@@ -551,7 +549,7 @@ const LeadDetailsDrawer = ({
                       {displayData.name}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -559,7 +557,7 @@ const LeadDetailsDrawer = ({
                       {displayData.numberOfEmis}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -567,7 +565,7 @@ const LeadDetailsDrawer = ({
                       {displayData.numberOfEmis}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -581,12 +579,12 @@ const LeadDetailsDrawer = ({
               {/* Disbursement Details Card */}
               <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden">
                 <div className="bg-[#FFFBF1] border-b border-[#E6E6E6] px-7 py-4">
-                  <h3 className="text-lg font-semibold text-black">
+                  <h3 className="text-lg font-semibold text-black text-left">
                     Disbursement Details
                   </h3>
                 </div>
                 <div className="px-7 py-6 space-y-2">
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Name
                     </span>
@@ -594,7 +592,7 @@ const LeadDetailsDrawer = ({
                       {displayData.name}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -602,7 +600,7 @@ const LeadDetailsDrawer = ({
                       {displayData.numberOfEmis}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       EMI Due Date :
                     </span>
@@ -610,7 +608,7 @@ const LeadDetailsDrawer = ({
                       {displayData.emiDueDate}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Name
                     </span>
@@ -618,7 +616,7 @@ const LeadDetailsDrawer = ({
                       {displayData.name}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -626,7 +624,7 @@ const LeadDetailsDrawer = ({
                       {displayData.numberOfEmis}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
@@ -634,7 +632,7 @@ const LeadDetailsDrawer = ({
                       {displayData.numberOfEmis}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1">
+                  <div className="flex items-center py-1 text-left gap-2">
                     <span className="text-sm text-[#999] font-medium">
                       Number of EMI :
                     </span>
