@@ -158,20 +158,18 @@ const LeadDetailsDrawer = ({
 
       {/* Drawer - now full screen */}
       <div className="fixed inset-0 h-full w-full bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-[#E0E0E0] bg-white sticky top-0 z-10">
-          <div className="flex items-center space-x-4">
-            <h2 className="text-2xl font-semibold text-[#282828]">
-              Lead Details
-            </h2>
-          </div>
-          <Button variant="ghost" size="sm" onClick={onClose} className="p-2">
+        {/* Customer Details Section - now at top */}
+        <div className="p-6 bg-gray-50 border-b border-[#E0E0E0] relative">
+          {/* Fixed Close Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="p-2 fixed top-6 right-6 z-50"
+            style={{ zIndex: 100 }}
+          >
             <X className="h-5 w-5" />
           </Button>
-        </div>
-
-        {/* Customer Details Section */}
-        <div className="p-6 bg-gray-50 border-b border-[#E0E0E0]">
           {/* Customer Details Card */}
           <div className="bg-white border border-[#E6E6E6] rounded-2xl relative p-4 sm:p-6">
             {/* Title */}
@@ -745,7 +743,7 @@ const LeadDetailsDrawer = ({
 
         {/* Bottom Actions */}
         <div className="sticky bottom-0 p-6 border-t border-[#E6E6E6] bg-white z-10 shadow-[0px_-3px_10.4px_0px_rgba(0,0,0,0.12)] rounded-t-2xl">
-          <div className="flex flex-wrap justify-end gap-3 sm:gap-4 overflow-x-auto scrollbar-hide">
+          <div className="flex flex-wrap justify-end gap-3 sm:gap-4 overflow-x-auto">
             {bottomActions.map((action, index) => (
               <Button
                 key={index}

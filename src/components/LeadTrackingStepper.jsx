@@ -133,12 +133,34 @@ const LeadTrackingStepper = ({ value = {} }) => {
     {
       key: "autoDebitSetup",
       title: "Auto Debit Setup",
-      subItems: [],
+      subItems: [
+        {
+          key: "initiated",
+          label: "Initiated",
+          checked: progress.autoDebitSetup.initiated,
+        },
+        {
+          key: "completed",
+          label: "Completed",
+          checked: progress.autoDebitSetup.completed,
+        },
+      ],
     },
     {
       key: "disbursed",
       title: "Disbursed",
-      subItems: [],
+      subItems: [
+        {
+          key: "initiated",
+          label: "Initiated",
+          checked: progress.disbursed.initiated,
+        },
+        {
+          key: "completed",
+          label: "Completed",
+          checked: progress.disbursed.completed,
+        },
+      ],
     },
     {
       key: "settlementCompleted",
