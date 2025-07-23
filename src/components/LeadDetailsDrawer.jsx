@@ -130,19 +130,19 @@ const LeadDetailsDrawer = ({
   };
 
   const tabs = [
-    { id: "details", label: "Details" },
+    { id: "details", label: "Loan Detail" },
     { id: "track", label: "Track" },
     { id: "documents", label: "Document Upload" },
-    { id: "comments", label: "Comment History" },
+    { id: "comments", label: "Comment details" },
   ];
 
   const bottomActions = [
     { label: "Upload Estimated Bill", action: "uploadBill" },
     { label: "Cancel Lead", action: "cancelLead" },
     { label: "Send to UW", action: "sendToUW" },
-    { label: "Send Bank Statement", action: "sendBankStatement" },
-    { label: "Send to BRE", action: "sendToBRE" },
-    { label: "Send to Webhook", action: "sendToWebhook" },
+    { label: "Send Bank Settlement", action: "sendBankStatement" },
+    { label: "Sent to BRE", action: "sendToBRE" },
+    { label: "Send to webhook", action: "sendToWebhook" },
   ];
 
   if (!isOpen) return null;
@@ -425,17 +425,23 @@ const LeadDetailsDrawer = ({
         </div>
 
         {/* Tab Navigation */}
-        <div className="border-b border-[#E0E0E0]">
-          <div className="flex space-x-8 px-6">
+        <div className="p-6 border-b border-[#E0E0E0]">
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                className={`flex-shrink-0 h-12 px-4 flex items-center justify-center rounded-full border transition-all duration-200 whitespace-nowrap ${
                   activeTab === tab.id
-                    ? "border-[#079F9F] text-[#079F9F]"
-                    : "border-transparent text-[#616060] hover:text-[#282828]"
+                    ? "border-[#079F9F] bg-[#E6F5F5] text-[#079F9F] font-semibold"
+                    : "border-[#E6E6E6] bg-white text-[#999] hover:text-[#282828] hover:border-[#D0D0D0]"
                 }`}
+                style={{
+                  fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif',
+                  fontSize: activeTab === tab.id ? '14px' : '16px',
+                  fontWeight: activeTab === tab.id ? '600' : '500',
+                  lineHeight: activeTab === tab.id ? '156%' : '168%'
+                }}
               >
                 {tab.label}
               </button>
@@ -737,17 +743,19 @@ const LeadDetailsDrawer = ({
         </div>
 
         {/* Bottom Actions */}
-        <div className="sticky bottom-0 p-6 border-t border-[#E0E0E0] bg-white z-10 shadow-lg">
-          <div className="flex flex-wrap gap-2">
+        <div className="sticky bottom-0 p-6 border-t border-[#E6E6E6] bg-white z-10 shadow-[0px_-3px_10.4px_0px_rgba(0,0,0,0.12)] rounded-t-2xl">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 overflow-x-auto scrollbar-hide">
             {bottomActions.map((action, index) => (
               <Button
                 key={index}
-                variant={action.action === "cancelLead" ? "outline" : "default"}
-                className={`flex-shrink-0 h-10 px-3 text-xs ${
-                  action.action === "cancelLead"
-                    ? "border-red-300 text-red-600 hover:bg-red-50"
-                    : "bg-[#079F9F] hover:bg-[#079F9F]/90 text-white"
-                }`}
+                variant="outline"
+                className="flex-shrink-0 h-10 px-2 sm:px-3 text-xs sm:text-sm font-bold border-[1.5px] border-[#079F9F] text-[#079F9F] bg-transparent hover:bg-[#079F9F]/5 focus:bg-[#079F9F]/5 active:bg-[#079F9F]/10 rounded-lg transition-all duration-200 whitespace-nowrap min-w-fit"
+                style={{
+                  fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif',
+                  fontWeight: '700',
+                  fontSize: '16px',
+                  lineHeight: '154%'
+                }}
                 onClick={() => handleAction(action.action)}
               >
                 {action.label}
