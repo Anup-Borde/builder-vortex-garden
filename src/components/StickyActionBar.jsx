@@ -66,7 +66,7 @@ const StickyActionBar = ({ onAction }) => {
                 style={{
                   fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif',
                   fontWeight: '700',
-                  fontSize: window.innerWidth >= 640 ? '16px' : '14px',
+                  fontSize: fontSize,
                   lineHeight: '154%'
                 }}
                 onClick={action.onClick}
