@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { LeadTrackingStepper } from "@/components/LeadTrackingStepper";
+import { CommentInput } from "@/components/CommentInput";
 
 const LeadDetailsDrawer = ({
   isOpen,
