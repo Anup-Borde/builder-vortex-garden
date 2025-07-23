@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { LeadTrackingStepper } from "@/components/LeadTrackingStepper";
+import { CommentInput } from "@/components/CommentInput";
 
 const LeadDetailsDrawer = ({
   isOpen,
@@ -348,7 +349,7 @@ const LeadDetailsDrawer = ({
                 value={formData.typeOfCall}
                 onValueChange={(value) => handleFormChange("typeOfCall", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
                   <SelectValue placeholder="Type of Call" />
                 </SelectTrigger>
                 <SelectContent>
@@ -365,7 +366,7 @@ const LeadDetailsDrawer = ({
                   handleFormChange("categoryType", value)
                 }
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
                   <SelectValue placeholder="Category Type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -380,7 +381,7 @@ const LeadDetailsDrawer = ({
                 value={formData.rCode}
                 onValueChange={(value) => handleFormChange("rCode", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
                   <SelectValue placeholder="R-Code" />
                 </SelectTrigger>
                 <SelectContent>
@@ -395,7 +396,7 @@ const LeadDetailsDrawer = ({
                 value={formData.subRCode}
                 onValueChange={(value) => handleFormChange("subRCode", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
                   <SelectValue placeholder="Sub R-Code" />
                 </SelectTrigger>
                 <SelectContent>
@@ -405,37 +406,17 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex-1">
-              <input
-                type="text"
-                id="comments"
+            <div className="flex-[2] min-w-[296px]">
+              <CommentInput
                 value={formData.comments}
-                onChange={(e) => handleFormChange("comments", e.target.value)}
-                className="w-full h-8 sm:h-10 px-2 border border-[#E0E0E0] rounded-md focus:ring-[#079F9F] focus:border-[#079F9F] text-xs sm:text-sm"
+                onChange={(value) => handleFormChange("comments", value)}
+                onSubmit={(comment) => {
+                  console.log("Comment submitted:", comment);
+                  handleSave();
+                }}
                 placeholder="Add your comment here..."
+                className="w-full max-w-none"
               />
-            </div>
-            <div>
-              <Button
-                onClick={handleSave}
-                className="h-8 sm:h-10 w-10 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white flex items-center justify-center rounded-md"
-                title="Save Comment"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12h14m-7-7l7 7-7 7"
-                  />
-                </svg>
-              </Button>
             </div>
           </div>
 
