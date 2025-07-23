@@ -4,6 +4,18 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
 const StickyActionBar = ({ onAction }) => {
+  const [fontSize, setFontSize] = useState('16px');
+
+  useEffect(() => {
+    const updateFontSize = () => {
+      setFontSize(window.innerWidth >= 640 ? '16px' : '14px');
+    };
+
+    updateFontSize();
+    window.addEventListener('resize', updateFontSize);
+    return () => window.removeEventListener('resize', updateFontSize);
+  }, []);
+
   const actions = [
     {
       id: "upload-bill",
