@@ -42,6 +42,33 @@ export default function ManageLeads({ userRole = "internal" }) {
     console.log("Status filter changed:", status);
   };
 
+  const handleAction = (actionId) => {
+    console.log("Action triggered:", actionId);
+    // Add your action logic here based on actionId
+    switch (actionId) {
+      case "upload-bill":
+        // Handle upload estimated bill
+        break;
+      case "cancel-lead":
+        // Handle cancel lead
+        break;
+      case "send-uw":
+        // Handle send to UW
+        break;
+      case "send-bank":
+        // Handle send bank settlement
+        break;
+      case "send-bre":
+        // Handle send to BRE
+        break;
+      case "send-webhook":
+        // Handle send to webhook
+        break;
+      default:
+        console.log("Unknown action:", actionId);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Primary Header */}
