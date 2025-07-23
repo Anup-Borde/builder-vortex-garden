@@ -163,14 +163,6 @@ const LeadDetailsDrawer = ({
             <h2 className="text-2xl font-semibold text-[#282828]">
               Lead Details
             </h2>
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-[#E0E0E0] text-[#079F9F] hover:bg-[#079F9F]/10"
-            >
-              <FileText className="mr-2 h-4 w-4" />
-              View CIBIL Report
-            </Button>
           </div>
           <Button variant="ghost" size="sm" onClick={onClose} className="p-2">
             <X className="h-5 w-5" />
@@ -180,61 +172,168 @@ const LeadDetailsDrawer = ({
         {/* Customer Details Section */}
         <div className="p-6 bg-gray-50 border-b border-[#E0E0E0]">
           {/* Customer Details Card */}
-          <div className="bg-white border border-[#E6E6E6] rounded-2xl relative">
+          <div className="bg-white border border-[#E6E6E6] rounded-2xl relative p-4 sm:p-6">
             {/* Title */}
             <div className="px-6 pt-5 pb-4">
-              <h3 className="text-xl font-semibold text-[#333]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer details</h3>
+              <h3
+                className="text-xl font-semibold text-[#333] text-left"
+                style={{
+                  fontFamily:
+                    "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                }}
+              >
+                Customer details
+              </h3>
             </div>
 
             {/* Content Area */}
-            <div className="px-6 pb-6 flex items-center justify-between">
+            <div className="pb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-y-4 md:gap-y-0 w-full">
               {/* Left side - Customer Fields */}
-              <div className="flex flex-wrap gap-12 lg:gap-16 items-start">
+              <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:gap-12 lg:gap-16 items-start justify-start text-left w-full">
                 {/* Name */}
-                <div className="flex flex-col gap-2">
-                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Name</span>
-                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.name}</span>
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Name
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.name}
+                  </span>
                 </div>
 
                 {/* Customer ID */}
-                <div className="flex flex-col gap-2">
-                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer ID</span>
-                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerId}</span>
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Customer ID
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.customerId}
+                  </span>
                 </div>
 
                 {/* Customer Ref ID */}
-                <div className="flex flex-col gap-2">
-                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Customer Ref ID</span>
-                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.customerRefId}</span>
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Customer Ref ID
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.customerRefId}
+                  </span>
                 </div>
 
                 {/* Mobile no */}
-                <div className="flex flex-col gap-2">
-                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Mobile no</span>
-                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>
-                    {displayData.mobile.startsWith('+91') ? displayData.mobile : `+91-${displayData.mobile}`}
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Mobile no
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.mobile.startsWith("+91")
+                      ? displayData.mobile
+                      : `+91-${displayData.mobile}`}
                   </span>
                 </div>
 
                 {/* Order ID */}
-                <div className="flex flex-col gap-2">
-                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Order ID</span>
-                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.orderId}</span>
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Order ID
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.orderId}
+                  </span>
                 </div>
 
                 {/* Transaction ID */}
-                <div className="flex flex-col gap-2">
-                  <span className="text-base text-[#999] font-medium" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>Transaction ID</span>
-                  <span className="text-lg font-semibold text-[#434343]" style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}>{displayData.transactionId}</span>
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Transaction ID
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.transactionId}
+                  </span>
                 </div>
               </div>
 
               {/* Right side - Button */}
-              <div className="flex-shrink-0 ml-8">
+              <div className="flex-shrink-0 mt-4 md:mt-0 md:ml-8 w-full md:w-auto">
                 <Button
                   variant="outline"
-                  className="border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-3 rounded-lg font-semibold"
-                  style={{fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif'}}
+                  className="border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-3 rounded-lg font-semibold text-left w-full md:w-auto"
+                  style={{
+                    fontFamily:
+                      "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                  }}
                 >
                   View CIBIL Report
                 </Button>
@@ -243,20 +342,14 @@ const LeadDetailsDrawer = ({
           </div>
 
           {/* Form Fields */}
-          <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-4 mb-4">
-            <div>
-              <Label
-                htmlFor="typeOfCall"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                Type of Call
-              </Label>
+          <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-4 mt-4 w-full">
+            <div className="min-w-[120px] flex-1">
               <Select
                 value={formData.typeOfCall}
                 onValueChange={(value) => handleFormChange("typeOfCall", value)}
               >
                 <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
-                  <SelectValue placeholder="Select" />
+                  <SelectValue placeholder="Type of Call" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="inbound">Inbound</SelectItem>
@@ -265,13 +358,7 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label
-                htmlFor="categoryType"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                Category Type
-              </Label>
+            <div className="min-w-[120px] flex-1">
               <Select
                 value={formData.categoryType}
                 onValueChange={(value) =>
@@ -279,7 +366,7 @@ const LeadDetailsDrawer = ({
                 }
               >
                 <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
-                  <SelectValue placeholder="Select" />
+                  <SelectValue placeholder="Category Type" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="inquiry">Inquiry</SelectItem>
@@ -288,19 +375,13 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label
-                htmlFor="rCode"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                R-Code
-              </Label>
+            <div className="min-w-[100px] flex-1">
               <Select
                 value={formData.rCode}
                 onValueChange={(value) => handleFormChange("rCode", value)}
               >
                 <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
-                  <SelectValue placeholder="Select" />
+                  <SelectValue placeholder="R-Code" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="R001">R001</SelectItem>
@@ -309,19 +390,13 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label
-                htmlFor="subRCode"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                Sub R-Code
-              </Label>
+            <div className="min-w-[110px] flex-1">
               <Select
                 value={formData.subRCode}
                 onValueChange={(value) => handleFormChange("subRCode", value)}
               >
                 <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
-                  <SelectValue placeholder="Select" />
+                  <SelectValue placeholder="Sub R-Code" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="SR001">SR001</SelectItem>
@@ -330,36 +405,42 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-          </div>
-
-          {/* Second Row - Comments and Save Button */}
-          <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-4 mb-4">
-            <div className="col-span-2">
-              <Label
-                htmlFor="comments"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                Internal Comments
-              </Label>
-              <textarea
+            <div className="flex-1">
+              <input
+                type="text"
                 id="comments"
                 value={formData.comments}
                 onChange={(e) => handleFormChange("comments", e.target.value)}
-                className="w-full p-2 border border-[#E0E0E0] rounded-md resize-none focus:ring-[#079F9F] focus:border-[#079F9F] text-xs sm:text-sm"
-                rows={2}
-                placeholder="Add your comments here..."
+                className="w-full h-8 sm:h-10 px-2 border border-[#E0E0E0] rounded-md focus:ring-[#079F9F] focus:border-[#079F9F] text-xs sm:text-sm"
+                placeholder="Add your comment here..."
               />
             </div>
-            <div className="flex items-center">
+            <div>
               <Button
                 onClick={handleSave}
-                className="h-8 sm:h-10 px-3 sm:px-4 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white text-xs sm:text-sm w-full"
+                className="h-8 sm:h-10 w-10 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white flex items-center justify-center rounded-md"
+                title="Save Comment"
               >
-                Save
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 12h14m-7-7l7 7-7 7"
+                  />
+                </svg>
               </Button>
             </div>
-            <div></div>
           </div>
+
+          {/* Second Row - Comments and Save Button */}
+          {/* ...removed second row, now handled above... */}
         </div>
 
         {/* Tab Navigation */}

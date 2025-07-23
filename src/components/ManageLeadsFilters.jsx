@@ -115,7 +115,7 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
   const currentConfig = getCurrentSearchConfig();
 
   return (
-    <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 mb-6">
+    <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 mb-6 w-full mx-auto">
       {/* Desktop Layout */}
       <div className="hidden lg:block">
         <div className="space-y-4">
