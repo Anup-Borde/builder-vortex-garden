@@ -349,7 +349,7 @@ const LeadDetailsDrawer = ({
                 value={formData.typeOfCall}
                 onValueChange={(value) => handleFormChange("typeOfCall", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
                   <SelectValue placeholder="Type of Call" />
                 </SelectTrigger>
                 <SelectContent>
@@ -366,7 +366,7 @@ const LeadDetailsDrawer = ({
                   handleFormChange("categoryType", value)
                 }
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
                   <SelectValue placeholder="Category Type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -381,7 +381,7 @@ const LeadDetailsDrawer = ({
                 value={formData.rCode}
                 onValueChange={(value) => handleFormChange("rCode", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
                   <SelectValue placeholder="R-Code" />
                 </SelectTrigger>
                 <SelectContent>
@@ -396,7 +396,7 @@ const LeadDetailsDrawer = ({
                 value={formData.subRCode}
                 onValueChange={(value) => handleFormChange("subRCode", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
                   <SelectValue placeholder="Sub R-Code" />
                 </SelectTrigger>
                 <SelectContent>
@@ -406,7 +406,7 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex-1">
+            <div className="flex-[2] min-w-[296px]">
               <CommentInput
                 value={formData.comments}
                 onChange={(value) => handleFormChange("comments", value)}
