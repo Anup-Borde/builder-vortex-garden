@@ -159,139 +159,51 @@ const LeadTrackingStepper = ({ value = {} }) => {
   ];
 
   return (
-    <div className="w-full">
-      {/* Desktop View - Horizontal Layout */}
-      <div className="hidden md:block">
-        <div className="flex justify-between items-start relative">
-          {/* Connecting Line */}
-          <div className="absolute top-2 sm:top-3 left-0 right-0 h-0.5 bg-gray-200 z-0" />
-
-          {steps.map((step, index) => {
-            const status = getStepStatus(step.key);
-            const isCurrent = isCurrentStep(step.key, index);
-
-            return (
-              <div
-                key={step.key}
-                className="flex flex-col items-start flex-1 z-10 px-1 sm:px-2"
-              >
-                {/* Icon */}
-                <div className="bg-white p-0.5 sm:p-1 rounded-full z-10">
-                  <div className="h-4 w-4 sm:h-6 sm:w-6">
-                    {getStatusIcon(status)}
-                  </div>
-                </div>
-
-                {/* Title */}
-                <div className="mt-1 sm:mt-2 text-xs sm:text-sm font-medium text-center text-[#282828] leading-tight">
-                  {step.title === "Auto Debit Setup" ? (
-                    <span className="block">
-                      <span className="block">Auto Debit</span>
-                      <span className="block">Setup</span>
-                    </span>
-                  ) : step.title === "Settlement completed" ? (
-                    <span className="block">
-                      <span className="block">Settlement</span>
-                      <span className="block">completed</span>
-                    </span>
-                  ) : (
-                    step.title
-                  )}
-                </div>
-
-                {/* Sub-items inline per step */}
-                {step.subItems && step.subItems.length > 0 && (
-                  <div className="mt-2 sm:mt-4 space-y-1 sm:space-y-2">
-                    {step.subItems.map((subItem) => (
+    <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+      {steps.map((step, stepIndex) => (
+        <div
+          key={step.key}
+          className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden flex flex-col items-start min-w-0"
+        >
+          <div
+            className="bg-[#FFFBF1] border-b border-[#E6E6E6] w-full px-3 py-2"
+            style={{ marginBottom: 0 }}
+          >
+            <h3 className="text-base font-semibold text-[#434343] text-left leading-tight">
+              {step.title}
+            </h3>
+          </div>
+          <div className="flex flex-col gap-4 w-full p-3">
+            {step.subItems && step.subItems.length > 0 && (
+              <div className="flex flex-col gap-4 w-full">
+                {step.subItems.map((subItem, subIndex) => (
+                  <div key={subItem.key} className="flex items-center w-full">
+                    <div className="relative flex flex-col items-center mr-3">
                       <div
-                        key={subItem.key}
-                        className="flex items-center space-x-1 sm:space-x-2"
+                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                          subItem.checked
+                            ? "bg-[#079F9F] border-[#079F9F]"
+                            : "border-gray-300 bg-white"
+                        }`}
                       >
-                        <div
-                          className={`w-3 h-3 sm:w-4 sm:h-4 rounded border-2 flex items-center justify-center ${
-                            subItem.checked
-                              ? "bg-[#079F9F] border-[#079F9F]"
-                              : "border-gray-300"
-                          }`}
-                        >
-                          {subItem.checked && (
-                            <CheckCircle className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
-                          )}
-                        </div>
-                        <span className="text-xs sm:text-sm text-[#282828] leading-tight">
-                          {subItem.label}
-                        </span>
+                        {subItem.checked && (
+                          <div className="w-3.5 h-3.5 rounded-full bg-white" />
+                        )}
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Mobile View - Vertical Layout */}
-      <div className="md:hidden">
-        <div className="space-y-4">
-          {steps.map((step, index) => {
-            const status = getStepStatus(step.key);
-            const isCurrent = isCurrentStep(step.key, index);
-
-            return (
-              <div key={step.key} className="flex items-start space-x-3">
-                {/* Vertical Line and Icon */}
-                <div className="flex flex-col items-center">
-                  {/* Icon */}
-                  <div className="bg-white p-1 rounded-full z-10">
-                    <div className="h-5 w-5">{getStatusIcon(status)}</div>
-                  </div>
-
-                  {/* Vertical connecting line (except for last item) */}
-                  {index < steps.length - 1 && (
-                    <div className="w-0.5 h-8 bg-gray-200 mt-2" />
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 pb-2">
-                  {/* Title */}
-                  <div className="text-sm font-medium text-[#282828] mb-2">
-                    {step.title}
-                  </div>
-
-                  {/* Sub-items */}
-                  {step.subItems && step.subItems.length > 0 && (
-                    <div className="space-y-2">
-                      {step.subItems.map((subItem) => (
-                        <div
-                          key={subItem.key}
-                          className="flex items-center space-x-2"
-                        >
-                          <div
-                            className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
-                              subItem.checked
-                                ? "bg-[#079F9F] border-[#079F9F]"
-                                : "border-gray-300"
-                            }`}
-                          >
-                            {subItem.checked && (
-                              <CheckCircle className="w-3 h-3 text-white" />
-                            )}
-                          </div>
-                          <span className="text-sm text-[#282828]">
-                            {subItem.label}
-                          </span>
-                        </div>
-                      ))}
+                      {subIndex < step.subItems.length - 1 && (
+                        <div className="w-0.5 h-7 bg-[#079F9F] absolute top-6 left-1/2 -translate-x-1/2" />
+                      )}
                     </div>
-                  )}
-                </div>
+                    <span className="text-base font-medium text-[#434343]">
+                      {subItem.label}
+                    </span>
+                  </div>
+                ))}
               </div>
-            );
-          })}
+            )}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
