@@ -130,10 +130,10 @@ const LeadDetailsDrawer = ({
   };
 
   const tabs = [
-    { id: "details", label: "Details" },
+    { id: "details", label: "Loan Detail" },
     { id: "track", label: "Track" },
     { id: "documents", label: "Document Upload" },
-    { id: "comments", label: "Comment History" },
+    { id: "comments", label: "Comment details" },
   ];
 
   const bottomActions = [
