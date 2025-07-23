@@ -49,7 +49,7 @@ const CommentInput = ({
           disabled={disabled}
           className="flex-1 h-full px-4 text-[#434343] text-base font-medium placeholder:text-[#434343] placeholder:font-normal bg-transparent border-none outline-none focus:ring-0"
           style={{
-            fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+            fontFamily: 'Gilroy, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
           }}
         />
         
