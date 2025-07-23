@@ -425,17 +425,23 @@ const LeadDetailsDrawer = ({
         </div>
 
         {/* Tab Navigation */}
-        <div className="border-b border-[#E0E0E0]">
-          <div className="flex space-x-8 px-6">
+        <div className="p-6 border-b border-[#E0E0E0]">
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                className={`flex-shrink-0 h-12 px-4 flex items-center justify-center rounded-full border transition-all duration-200 whitespace-nowrap ${
                   activeTab === tab.id
-                    ? "border-[#079F9F] text-[#079F9F]"
-                    : "border-transparent text-[#616060] hover:text-[#282828]"
+                    ? "border-[#079F9F] bg-[#E6F5F5] text-[#079F9F] font-semibold"
+                    : "border-[#E6E6E6] bg-white text-[#999] hover:text-[#282828] hover:border-[#D0D0D0]"
                 }`}
+                style={{
+                  fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif',
+                  fontSize: activeTab === tab.id ? '14px' : '16px',
+                  fontWeight: activeTab === tab.id ? '600' : '500',
+                  lineHeight: activeTab === tab.id ? '156%' : '168%'
+                }}
               >
                 {tab.label}
               </button>
