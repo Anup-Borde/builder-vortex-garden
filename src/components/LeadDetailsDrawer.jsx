@@ -140,9 +140,9 @@ const LeadDetailsDrawer = ({
     { label: "Upload Estimated Bill", action: "uploadBill" },
     { label: "Cancel Lead", action: "cancelLead" },
     { label: "Send to UW", action: "sendToUW" },
-    { label: "Send Bank Statement", action: "sendBankStatement" },
-    { label: "Send to BRE", action: "sendToBRE" },
-    { label: "Send to Webhook", action: "sendToWebhook" },
+    { label: "Send Bank Settlement", action: "sendBankStatement" },
+    { label: "Sent to BRE", action: "sendToBRE" },
+    { label: "Send to webhook", action: "sendToWebhook" },
   ];
 
   if (!isOpen) return null;
