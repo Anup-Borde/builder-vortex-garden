@@ -8,6 +8,7 @@ import { ManageLeadsHeader } from "@/components/ManageLeadsHeader";
 import { ManageLeadsFilters } from "@/components/ManageLeadsFilters";
 import { ManageLeadsTable } from "@/components/ManageLeadsTable";
 import { StatusDropdown } from "@/components/StatusDropdown";
+import { StickyActionBar } from "@/components/StickyActionBar";
 
 export default function ManageLeads({ userRole = "internal" }) {
   const router = useRouter();
