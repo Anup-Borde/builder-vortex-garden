@@ -175,7 +175,7 @@ const LeadDetailsDrawer = ({
           {/* Customer Details Card */}
           <div className="bg-white border border-[#E6E6E6] rounded-2xl relative p-4 sm:p-6">
             {/* Title */}
-            <div className="px-6 pt-5 pb-4">
+            <div className="pt-5 pb-4">
               <h3
                 className="text-xl font-semibold text-[#333] text-left"
                 style={{
@@ -437,10 +437,11 @@ const LeadDetailsDrawer = ({
                     : "border-[#E6E6E6] bg-white text-[#999] hover:text-[#282828] hover:border-[#D0D0D0]"
                 }`}
                 style={{
-                  fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif',
-                  fontSize: activeTab === tab.id ? '14px' : '16px',
-                  fontWeight: activeTab === tab.id ? '600' : '500',
-                  lineHeight: activeTab === tab.id ? '156%' : '168%'
+                  fontFamily:
+                    "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                  fontSize: activeTab === tab.id ? "14px" : "16px",
+                  fontWeight: activeTab === tab.id ? "600" : "500",
+                  lineHeight: activeTab === tab.id ? "156%" : "168%",
                 }}
               >
                 {tab.label}
@@ -744,17 +745,18 @@ const LeadDetailsDrawer = ({
 
         {/* Bottom Actions */}
         <div className="sticky bottom-0 p-6 border-t border-[#E6E6E6] bg-white z-10 shadow-[0px_-3px_10.4px_0px_rgba(0,0,0,0.12)] rounded-t-2xl">
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 overflow-x-auto scrollbar-hide">
+          <div className="flex flex-wrap justify-end gap-3 sm:gap-4 overflow-x-auto scrollbar-hide">
             {bottomActions.map((action, index) => (
               <Button
                 key={index}
                 variant="outline"
                 className="flex-shrink-0 h-10 px-2 sm:px-3 text-xs sm:text-sm font-bold border-[1.5px] border-[#079F9F] text-[#079F9F] bg-transparent hover:bg-[#079F9F]/5 focus:bg-[#079F9F]/5 active:bg-[#079F9F]/10 rounded-lg transition-all duration-200 whitespace-nowrap min-w-fit"
                 style={{
-                  fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif',
-                  fontWeight: '700',
-                  fontSize: '16px',
-                  lineHeight: '154%'
+                  fontFamily:
+                    "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  lineHeight: "154%",
                 }}
                 onClick={() => handleAction(action.action)}
               >

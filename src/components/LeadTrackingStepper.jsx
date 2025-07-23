@@ -7,7 +7,7 @@ const LeadTrackingStepper = ({ value = {} }) => {
   // Set the exact values as specified in the requirements
   const progress = {
     customerCreation: true, // Completed
-    approval: "Surrogate Approval", // Surrogate Approval checked - step completed
+    approval: "Approved", // Show Approved ticked
     kycBankVerification: {
       selfie: false,
       poa: false,
@@ -68,31 +68,42 @@ const LeadTrackingStepper = ({ value = {} }) => {
     {
       key: "customerCreation",
       title: "Customer Creation",
-      subItems: [],
+      subItems: [
+        {
+          key: "clickSelfie",
+          label: "Click Selfie",
+          checked: progress.customerCreation,
+        },
+        {
+          key: "poi",
+          label: "Click POI",
+          checked: progress.customerCreation,
+        },
+      ],
     },
     {
       key: "approval",
       title: "Approval",
       subItems: [
         {
-          key: "surrogateApproval",
-          label: "Surrogate Approval",
-          checked: progress.approval === "Surrogate Approval",
+          key: "Approved",
+          label: "Approved",
+          checked: progress.approval === "Approved",
         },
         {
-          key: "incomeVerification",
-          label: "Income Verification",
-          checked: false, // Always unchecked as specified
+          key: "bsRequired",
+          label: "BS Required",
+          checked: progress.approval === "BS Required",
         },
         {
           key: "suspended",
           label: "Suspended",
-          checked: false, // Always unchecked as specified
+          checked: false,
         },
         {
           key: "rejected",
           label: "Rejected",
-          checked: false, // Always unchecked as specified
+          checked: false,
         },
       ],
     },
