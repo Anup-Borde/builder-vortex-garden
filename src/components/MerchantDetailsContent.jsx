@@ -1,12 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { ProductDetailsTable } from "@/components/ProductDetailsTable";
 import { MerchantDetailsForm } from "@/components/MerchantDetailsForm";
 import { ContactDetailsSection } from "@/components/ContactDetailsSection";
 import { Button } from "@/components/ui/button";
+import ViewDocumentsModal from "@/components/ViewDocumentsModal";
 
 const MerchantDetailsContent = () => {
+  const [isViewDocumentsModalOpen, setIsViewDocumentsModalOpen] = useState(false);
+
   return (
     <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 shadow-sm">
       {/* Product Details Section */}
@@ -29,6 +32,7 @@ const MerchantDetailsContent = () => {
         <div className="flex justify-end max-w-8xl mx-auto">
           <Button
             variant="outline"
+            onClick={() => setIsViewDocumentsModalOpen(true)}
             className="border-[1.5px] border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-2 rounded-lg font-semibold"
             style={{
               fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
@@ -40,6 +44,12 @@ const MerchantDetailsContent = () => {
           </Button>
         </div>
       </div>
+
+      {/* View Documents Modal */}
+      <ViewDocumentsModal
+        isOpen={isViewDocumentsModalOpen}
+        onClose={() => setIsViewDocumentsModalOpen(false)}
+      />
     </div>
   );
 };

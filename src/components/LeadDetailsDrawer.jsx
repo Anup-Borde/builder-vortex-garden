@@ -15,6 +15,7 @@ import {
 import { LeadTrackingStepper } from "@/components/LeadTrackingStepper";
 import { CommentInput } from "@/components/CommentInput";
 import DocumentUploadCard from "@/components/DocumentUploadCard";
+import ViewDocumentsModal from "@/components/ViewDocumentsModal";
 
 const LeadDetailsDrawer = ({
   isOpen,
@@ -23,6 +24,7 @@ const LeadDetailsDrawer = ({
   userRole = "internal",
 }) => {
   const [activeTab, setActiveTab] = useState("details");
+  const [isViewDocumentsModalOpen, setIsViewDocumentsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     typeOfCall: "",
     categoryType: "",
@@ -329,13 +331,14 @@ const LeadDetailsDrawer = ({
               <div className="flex-shrink-0 mt-4 md:mt-0 md:ml-8 w-full md:w-auto">
                 <Button
                   variant="outline"
+                  onClick={() => setIsViewDocumentsModalOpen(true)}
                   className="border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-3 rounded-lg font-semibold text-left w-full md:w-auto"
                   style={{
                     fontFamily:
                       "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
                   }}
                 >
-                  View CIBIL Report
+                  View Documents
                 </Button>
               </div>
             </div>
@@ -788,6 +791,11 @@ const LeadDetailsDrawer = ({
           </div>
         </div>
       </div>
+
+      <ViewDocumentsModal
+        isOpen={isViewDocumentsModalOpen}
+        onClose={() => setIsViewDocumentsModalOpen(false)}
+      />
     </>
   );
 };
