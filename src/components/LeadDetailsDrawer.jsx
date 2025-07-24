@@ -331,13 +331,14 @@ const LeadDetailsDrawer = ({
               <div className="flex-shrink-0 mt-4 md:mt-0 md:ml-8 w-full md:w-auto">
                 <Button
                   variant="outline"
+                  onClick={() => setIsViewDocumentsModalOpen(true)}
                   className="border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-3 rounded-lg font-semibold text-left w-full md:w-auto"
                   style={{
                     fontFamily:
                       "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
                   }}
                 >
-                  View CIBIL Report
+                  View Documents
                 </Button>
               </div>
             </div>
