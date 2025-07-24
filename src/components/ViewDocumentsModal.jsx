@@ -71,9 +71,9 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-[810px] max-h-[90vh] mx-4 bg-white rounded-2xl border border-[#E6E6E6] overflow-hidden">
+      <div className="relative w-full max-w-[810px] max-h-[90vh] mx-4 bg-white rounded-2xl border border-[#E6E6E6] overflow-hidden sm:mx-6 lg:mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 bg-[#FFFBF1] border-b border-[#E6E6E6]">
+        <div className="flex items-center justify-between px-4 py-4 sm:px-6 sm:py-5 bg-[#FFFBF1] border-b border-[#E6E6E6]">
           <h2 
             className="text-xl font-bold text-[#333333]"
             style={{
@@ -106,13 +106,13 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden">
             {/* Table Header */}
-            <div className="bg-[#EBEBEB] px-6 py-5 grid grid-cols-12 gap-4">
-              <div className="col-span-5">
-                <h3 
-                  className="text-lg font-bold text-[#434343]"
+            <div className="bg-[#EBEBEB] px-4 py-4 sm:px-6 sm:py-5 grid grid-cols-12 gap-2 sm:gap-4">
+              <div className="col-span-5 sm:col-span-5">
+                <h3
+                  className="text-sm sm:text-lg font-bold text-[#434343]"
                   style={{
                     fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
                   }}
@@ -120,8 +120,8 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
                   Name Of ID proof
                 </h3>
               </div>
-              <div className="col-span-4">
-                <h3 
+              <div className="col-span-4 sm:col-span-4 hidden sm:block">
+                <h3
                   className="text-lg font-bold text-[#434343]"
                   style={{
                     fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
@@ -130,9 +130,9 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
                   Eligible Amount
                 </h3>
               </div>
-              <div className="col-span-3">
-                <h3 
-                  className="text-xl font-bold text-[#434343]"
+              <div className="col-span-7 sm:col-span-3">
+                <h3
+                  className="text-sm sm:text-xl font-bold text-[#434343]"
                   style={{
                     fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
                   }}
@@ -145,24 +145,33 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
             {/* Table Body */}
             <div className="max-h-[400px] overflow-y-auto">
               {documentsToShow.map((document, index) => (
-                <div 
+                <div
                   key={document.id}
-                  className={`px-6 py-4 grid grid-cols-12 gap-4 items-center border-b border-[#E6E6E6] last:border-b-0 ${
+                  className={`px-4 py-3 sm:px-6 sm:py-4 grid grid-cols-12 gap-2 sm:gap-4 items-center border-b border-[#E6E6E6] last:border-b-0 ${
                     index % 2 === 1 ? 'bg-[#FBFBFB]' : 'bg-white'
                   }`}
                 >
-                  <div className="col-span-5">
-                    <p 
-                      className="text-lg font-medium text-[#434343]"
+                  <div className="col-span-5 sm:col-span-5">
+                    <p
+                      className="text-sm sm:text-lg font-medium text-[#434343] break-words"
                       style={{
                         fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
                       }}
                     >
                       {document.name}
                     </p>
+                    {/* Show eligible amount on mobile */}
+                    <p
+                      className="text-xs text-[#999999] mt-1 sm:hidden"
+                      style={{
+                        fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                      }}
+                    >
+                      {document.eligibleAmount}
+                    </p>
                   </div>
-                  <div className="col-span-4">
-                    <p 
+                  <div className="col-span-4 hidden sm:block">
+                    <p
                       className="text-lg text-[#999999]"
                       style={{
                         fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
@@ -171,10 +180,10 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
                       {document.eligibleAmount}
                     </p>
                   </div>
-                  <div className="col-span-3">
+                  <div className="col-span-7 sm:col-span-3">
                     <button
                       onClick={() => handleViewDocument(document)}
-                      className="text-lg font-bold text-[#079F9F] hover:text-[#058080] transition-colors"
+                      className="text-sm sm:text-lg font-bold text-[#079F9F] hover:text-[#058080] transition-colors px-2 py-1 rounded"
                       style={{
                         fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
                       }}
