@@ -791,6 +791,11 @@ const LeadDetailsDrawer = ({
           </div>
         </div>
       </div>
+
+      <ViewDocumentsModal
+        isOpen={isViewDocumentsModalOpen}
+        onClose={() => setIsViewDocumentsModalOpen(false)}
+      />
     </>
   );
 };
