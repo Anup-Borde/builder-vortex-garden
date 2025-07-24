@@ -39,6 +39,9 @@ const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
     } else if (action === "sendToUW") {
       setShowUWModal(true);
       setIsOpen(false);
+    } else if (action === "viewMerchantDetails") {
+      router.push("/merchant-details");
+      setIsOpen(false);
     } else {
       console.log(`${action} action for lead ${id}`);
       setIsOpen(false);
