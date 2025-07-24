@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useDeferredValue, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -114,6 +115,7 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
 
   const currentConfig = getCurrentSearchConfig();
 
+  const router = useRouter();
   return (
     <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 mb-6 w-full mx-auto">
       {/* Desktop Layout */}
@@ -206,12 +208,12 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
               </div>
             </div>
             <div className="flex gap-4 ml-auto">
-              {/* View Merchant details Button right aligned */}
+              {/* View Merchant details */}
               <Button
                 variant="outline"
                 className="h-12 border-[#079F9F] text-[#079F9F] px-6 rounded-lg font-semibold text-base whitespace-nowrap"
                 onClick={() => {
-                  /* TODO: Add merchant details logic */
+                  router.push("/merchant-details");
                 }}
               >
                 View Merchant details
