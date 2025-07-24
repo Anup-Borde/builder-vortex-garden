@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import ViewDocumentsModal from "@/components/ViewDocumentsModal";
 
 const MerchantDetailsContent = () => {
+  const [isViewDocumentsModalOpen, setIsViewDocumentsModalOpen] = useState(false);
+
   return (
     <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 shadow-sm">
       {/* Product Details Section */}
