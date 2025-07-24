@@ -44,6 +44,12 @@ const MerchantDetailsContent = () => {
           </Button>
         </div>
       </div>
+
+      {/* View Documents Modal */}
+      <ViewDocumentsModal
+        isOpen={isViewDocumentsModalOpen}
+        onClose={() => setIsViewDocumentsModalOpen(false)}
+      />
     </div>
   );
 };
