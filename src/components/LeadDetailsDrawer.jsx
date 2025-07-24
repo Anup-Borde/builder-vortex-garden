@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { LeadTrackingStepper } from "@/components/LeadTrackingStepper";
 import { CommentInput } from "@/components/CommentInput";
+import DocumentUploadCard from "@/components/DocumentUploadCard";
 
 const LeadDetailsDrawer = ({
   isOpen,
@@ -661,21 +662,44 @@ const LeadDetailsDrawer = ({
 
           {activeTab === "documents" && (
             <div className="text-left">
-              <h3 className="text-lg font-semibold text-[#282828] mb-6">
-                Document Upload
-              </h3>
-              <div className="space-y-4">
-                {[1, 2, 3, 4].map((index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    className="w-full h-12 border-[#E0E0E0] text-[#282828] hover:bg-gray-50"
-                    onClick={() => handleAction(`uploadBill${index}`)}
-                  >
-                    <FileText className="mr-2 h-4 w-4" />
-                    Upload Estimated Bill {index}
-                  </Button>
-                ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <DocumentUploadCard
+                  title="Agency Profile"
+                  description="If the doc is available upload"
+                  state="default"
+                  onClick={() => handleAction("uploadAgencyProfile1")}
+                />
+                <DocumentUploadCard
+                  title="Agency Profile"
+                  description="If the doc is available upload"
+                  state="default"
+                  onClick={() => handleAction("uploadAgencyProfile2")}
+                />
+                <DocumentUploadCard
+                  title="List of Agency Pin Codes and Staff"
+                  description="If the doc is available upload"
+                  state="uploaded"
+                  undoText="Undo in 10sec"
+                  onClick={() => handleAction("uploadPinCodesAndStaff1")}
+                />
+                <DocumentUploadCard
+                  title="List of Agency Pin Codes and Staff"
+                  description="If the doc is available upload"
+                  state="uploaded"
+                  onClick={() => handleAction("uploadPinCodesAndStaff2")}
+                />
+                <DocumentUploadCard
+                  title="Onboarding Approval"
+                  description="If the doc is available upload"
+                  state="default"
+                  onClick={() => handleAction("uploadOnboardingApproval1")}
+                />
+                <DocumentUploadCard
+                  title="Onboarding Approval"
+                  description="If the doc is available upload"
+                  state="default"
+                  onClick={() => handleAction("uploadOnboardingApproval2")}
+                />
               </div>
             </div>
           )}
