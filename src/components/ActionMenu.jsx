@@ -110,6 +110,13 @@ const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
               Track Lead
             </button>
             <button
+              onClick={() => handleAction("viewMerchantDetails", leadId)}
+              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
+            >
+              <Building className="mr-2 h-4 w-4" />
+              View Merchant Details
+            </button>
+            <button
               onClick={() => handleAction("sendPortalLink", leadId)}
               className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
             >
