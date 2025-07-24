@@ -32,6 +32,7 @@ const MerchantDetailsContent = () => {
         <div className="flex justify-end max-w-8xl mx-auto">
           <Button
             variant="outline"
+            onClick={() => setIsViewDocumentsModalOpen(true)}
             className="border-[1.5px] border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-2 rounded-lg font-semibold"
             style={{
               fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
