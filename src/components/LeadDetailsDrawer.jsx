@@ -24,6 +24,7 @@ const LeadDetailsDrawer = ({
   userRole = "internal",
 }) => {
   const [activeTab, setActiveTab] = useState("details");
+  const [isViewDocumentsModalOpen, setIsViewDocumentsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     typeOfCall: "",
     categoryType: "",
