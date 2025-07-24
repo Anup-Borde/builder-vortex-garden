@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Button } from './ui/button';
+import React from 'react';
 
 const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
-  // Default documents data if none provided
+  // Default documents data matching the Figma design
   const defaultDocuments = [
     {
       id: 1,
@@ -56,14 +55,13 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
   const documentsToShow = documents.length > 0 ? documents : defaultDocuments;
 
   const handleViewDocument = (document) => {
-    // Handle document viewing logic here
     console.log('Viewing document:', document);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black bg-opacity-50" 
@@ -71,13 +69,14 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-[810px] max-h-[90vh] mx-4 bg-white rounded-2xl border border-[#E6E6E6] overflow-hidden sm:mx-6 lg:mx-auto">
+      <div className="relative w-full max-w-[810px] max-h-[705px] bg-white rounded-2xl border border-[#E6E6E6] overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-4 sm:px-6 sm:py-5 bg-[#FFFBF1] border-b border-[#E6E6E6]">
+        <div className="h-[72px] bg-[#FFFBF1] border-b border-[#E6E6E6] flex items-center justify-between px-6">
           <h2 
-            className="text-xl font-bold text-[#333333]"
+            className="text-[20px] font-semibold text-[#333333] leading-[33px]"
             style={{
               fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+              fontWeight: "600",
             }}
           >
             View Document
@@ -87,12 +86,11 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
             <svg 
-              width="24" 
-              height="24" 
+              width="20" 
+              height="20" 
               viewBox="0 0 32 32" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6"
             >
               <path 
                 d="M21.6575 10.3438L10.3438 21.6575M21.6575 21.6575L10.3438 10.3438" 
@@ -106,35 +104,40 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-6">
-          <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden">
+        <div className="p-6">
+          <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden h-[584px]">
             {/* Table Header */}
-            <div className="bg-[#EBEBEB] px-4 py-4 sm:px-6 sm:py-5 grid grid-cols-12 gap-2 sm:gap-4">
-              <div className="col-span-5 sm:col-span-5">
+            <div className="h-[72px] bg-[#EBEBEB] flex items-center border-b border-[#E6E6E6]">
+              <div className="w-[299px] px-6">
                 <h3
-                  className="text-sm sm:text-lg font-bold text-[#434343]"
+                  className="text-[18px] font-semibold text-[#434343] leading-[32px]"
                   style={{
                     fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    fontWeight: "600",
                   }}
                 >
                   Name Of ID proof
                 </h3>
               </div>
-              <div className="col-span-4 sm:col-span-4 hidden sm:block">
+              <div className="w-px bg-[#E6E6E6] h-full"></div>
+              <div className="w-[193px] px-4">
                 <h3
-                  className="text-lg font-bold text-[#434343]"
+                  className="text-[18px] font-semibold text-[#434343] leading-[32px]"
                   style={{
                     fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    fontWeight: "600",
                   }}
                 >
                   Eligible Amount
                 </h3>
               </div>
-              <div className="col-span-7 sm:col-span-3">
+              <div className="w-px bg-[#E6E6E6] h-full"></div>
+              <div className="flex-1 px-4">
                 <h3
-                  className="text-sm sm:text-xl font-bold text-[#434343]"
+                  className="text-[20px] font-semibold text-[#434343] leading-[24px]"
                   style={{
                     fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    fontWeight: "600",
                   }}
                 >
                   View Document
@@ -143,49 +146,45 @@ const ViewDocumentsModal = ({ isOpen, onClose, documents = [] }) => {
             </div>
 
             {/* Table Body */}
-            <div className="max-h-[400px] overflow-y-auto">
+            <div className="h-[512px] overflow-y-auto">
               {documentsToShow.map((document, index) => (
                 <div
                   key={document.id}
-                  className={`px-4 py-3 sm:px-6 sm:py-4 grid grid-cols-12 gap-2 sm:gap-4 items-center border-b border-[#E6E6E6] last:border-b-0 ${
+                  className={`h-[56px] flex items-center border-b border-[#E6E6E6] last:border-b-0 ${
                     index % 2 === 1 ? 'bg-[#FBFBFB]' : 'bg-white'
                   }`}
                 >
-                  <div className="col-span-5 sm:col-span-5">
+                  <div className="w-[299px] px-6">
                     <p
-                      className="text-sm sm:text-lg font-medium text-[#434343] break-words"
+                      className="text-[18px] font-medium text-[#434343] leading-[22px]"
                       style={{
                         fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                        fontWeight: "500",
                       }}
                     >
                       {document.name}
                     </p>
-                    {/* Show eligible amount on mobile */}
+                  </div>
+                  <div className="w-px bg-[#E6E6E6] h-full"></div>
+                  <div className="w-[193px] px-4">
                     <p
-                      className="text-xs text-[#999999] mt-1 sm:hidden"
+                      className="text-[18px] font-normal text-[#999999] leading-[27px]"
                       style={{
                         fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                        fontWeight: "400",
                       }}
                     >
                       {document.eligibleAmount}
                     </p>
                   </div>
-                  <div className="col-span-4 hidden sm:block">
-                    <p
-                      className="text-lg text-[#999999]"
-                      style={{
-                        fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
-                      }}
-                    >
-                      {document.eligibleAmount}
-                    </p>
-                  </div>
-                  <div className="col-span-7 sm:col-span-3">
+                  <div className="w-px bg-[#E6E6E6] h-full"></div>
+                  <div className="flex-1 px-4">
                     <button
                       onClick={() => handleViewDocument(document)}
-                      className="text-sm sm:text-lg font-bold text-[#079F9F] hover:text-[#058080] transition-colors px-2 py-1 rounded"
+                      className="text-[18px] font-semibold text-[#079F9F] hover:text-[#058080] transition-colors leading-[27px]"
                       style={{
                         fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                        fontWeight: "600",
                       }}
                     >
                       View
