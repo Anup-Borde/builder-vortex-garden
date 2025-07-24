@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   MoreVertical,
   Eye,
@@ -16,12 +17,14 @@ import {
   XCircle,
   AlertTriangle,
   Shield,
+  Building,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Toast } from "@/components/Toast";
 import { LeadDetailsDrawer } from "@/components/LeadDetailsDrawer";
 
 const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showUWModal, setShowUWModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -35,6 +38,9 @@ const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
       setIsOpen(false);
     } else if (action === "sendToUW") {
       setShowUWModal(true);
+      setIsOpen(false);
+    } else if (action === "viewMerchantDetails") {
+      router.push("/merchant-details");
       setIsOpen(false);
     } else {
       console.log(`${action} action for lead ${id}`);
@@ -102,6 +108,13 @@ const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
             >
               <MapPin className="mr-2 h-4 w-4" />
               Track Lead
+            </button>
+            <button
+              onClick={() => handleAction("viewMerchantDetails", leadId)}
+              className="flex w-full items-center px-4 py-2 text-sm text-[#282828] hover:bg-gray-50"
+            >
+              <Building className="mr-2 h-4 w-4" />
+              View Merchant Details
             </button>
             <button
               onClick={() => handleAction("sendPortalLink", leadId)}
