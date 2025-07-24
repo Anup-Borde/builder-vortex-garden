@@ -15,6 +15,7 @@ import {
 import { LeadTrackingStepper } from "@/components/LeadTrackingStepper";
 import { CommentInput } from "@/components/CommentInput";
 import DocumentUploadCard from "@/components/DocumentUploadCard";
+import ViewDocumentsModal from "@/components/ViewDocumentsModal";
 
 const LeadDetailsDrawer = ({
   isOpen,
