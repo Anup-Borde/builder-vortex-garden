@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { ProductDetailsTable } from "@/components/ProductDetailsTable";
 import { MerchantDetailsForm } from "@/components/MerchantDetailsForm";
 import { ContactDetailsSection } from "@/components/ContactDetailsSection";
 import { Button } from "@/components/ui/button";
+import ViewDocumentsModal from "@/components/ViewDocumentsModal";
 
 const MerchantDetailsContent = () => {
   return (
