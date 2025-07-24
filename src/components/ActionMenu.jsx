@@ -24,6 +24,7 @@ import { Toast } from "@/components/Toast";
 import { LeadDetailsDrawer } from "@/components/LeadDetailsDrawer";
 
 const ActionMenu = ({ leadId, onToast, leadData, userRole = "internal" }) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showUWModal, setShowUWModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
