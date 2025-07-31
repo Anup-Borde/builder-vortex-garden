@@ -123,9 +123,8 @@ export default function Dashboard() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
             <div>
               <h1 className="text-2xl font-semibold text-[#282828]">
-                Dashboard
+                Let’s get started
               </h1>
-              <p className="text-[#616060]">Welcome back, {userContact}</p>
             </div>
             <div className="flex space-x-4">
               <Select

@@ -13,6 +13,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { LeadTrackingStepper } from "@/components/LeadTrackingStepper";
+import { CommentInput } from "@/components/CommentInput";
+import DocumentUploadCard from "@/components/DocumentUploadCard";
+import ViewDocumentsModal from "@/components/ViewDocumentsModal";
 
 const LeadDetailsDrawer = ({
   isOpen,
@@ -21,6 +24,7 @@ const LeadDetailsDrawer = ({
   userRole = "internal",
 }) => {
   const [activeTab, setActiveTab] = useState("details");
+  const [isViewDocumentsModalOpen, setIsViewDocumentsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     typeOfCall: "",
     categoryType: "",
@@ -31,12 +35,12 @@ const LeadDetailsDrawer = ({
 
   // Mock data - replace with actual leadData props
   const defaultLeadData = {
-    name: "Gokul Bijarson",
-    mobile: "9999999999",
+    name: "Sudesh shettty",
+    mobile: "+91-9876543210",
     customerId: "CUST001",
-    orderId: "23899344",
-    customerRefId: "5498548845",
-    transactionId: "348934989345",
+    orderId: "ORD2025001",
+    customerRefId: "REF001",
+    transactionId: "N/A",
     emi: "₹9,999.00",
     emiDueDate: "15th of every month",
     dpRefund: "₹2,000.00",
@@ -129,19 +133,19 @@ const LeadDetailsDrawer = ({
   };
 
   const tabs = [
-    { id: "details", label: "Details" },
+    { id: "details", label: "Loan Detail" },
     { id: "track", label: "Track" },
     { id: "documents", label: "Document Upload" },
-    { id: "comments", label: "Comment History" },
+    { id: "comments", label: "Comment details" },
   ];
 
   const bottomActions = [
     { label: "Upload Estimated Bill", action: "uploadBill" },
     { label: "Cancel Lead", action: "cancelLead" },
     { label: "Send to UW", action: "sendToUW" },
-    { label: "Send Bank Statement", action: "sendBankStatement" },
-    { label: "Send to BRE", action: "sendToBRE" },
-    { label: "Send to Webhook", action: "sendToWebhook" },
+    { label: "Send Bank Settlement", action: "sendBankStatement" },
+    { label: "Sent to BRE", action: "sendToBRE" },
+    { label: "Send to webhook", action: "sendToWebhook" },
   ];
 
   if (!isOpen) return null;
@@ -155,81 +159,200 @@ const LeadDetailsDrawer = ({
         onClick={onClose}
       />
 
-      {/* Drawer */}
-      <div className="fixed right-0 top-0 h-full w-full max-w-4xl bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-[#E0E0E0] bg-white sticky top-0 z-10">
-          <div className="flex items-center space-x-4">
-            <h2 className="text-2xl font-semibold text-[#282828]">
-              Lead Details
-            </h2>
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-[#E0E0E0] text-[#079F9F] hover:bg-[#079F9F]/10"
-            >
-              <FileText className="mr-2 h-4 w-4" />
-              View CIBIL Report
-            </Button>
-          </div>
-          <Button variant="ghost" size="sm" onClick={onClose} className="p-2">
+      {/* Drawer - now full screen */}
+      <div className="fixed inset-0 h-full w-full bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto">
+        {/* Customer Details Section - now at top */}
+        <div className="p-6 bg-gray-50 border-b border-[#E0E0E0] relative">
+          {/* Fixed Close Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="p-2 fixed top-6 right-6 z-50"
+            style={{ zIndex: 100 }}
+          >
             <X className="h-5 w-5" />
           </Button>
-        </div>
+          {/* Customer Details Card */}
+          <div className="bg-white border border-[#E6E6E6] rounded-2xl relative p-4 sm:p-6">
+            {/* Title */}
+            <div className="pt-5 pb-4">
+              <h3
+                className="text-xl font-semibold text-[#333] text-left"
+                style={{
+                  fontFamily:
+                    "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                }}
+              >
+                Customer details
+              </h3>
+            </div>
 
-        {/* Lead Summary */}
-        <div className="p-3 sm:p-6 bg-gray-50 border-b border-[#E0E0E0]">
-          <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mb-3 sm:mb-6">
-            {/* Name & Mobile Section */}
-            <div className="text-left">
-              <p className="text-xs text-[#616060] mb-1">Name</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight">
-                {displayData.name}
-              </p>
-              <p className="text-xs text-[#616060] mb-1">Mobile</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight">
-                {displayData.mobile}
-              </p>
-            </div>
-            {/* Customer ID & Order ID Section */}
-            <div className="text-left">
-              <p className="text-xs text-[#616060] mb-1">Customer ID</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight break-all">
-                {displayData.customerId}
-              </p>
-              <p className="text-xs text-[#616060] mb-1">Order ID</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight break-all">
-                {displayData.orderId}
-              </p>
-            </div>
-            {/* Customer Ref ID & Transaction ID Section */}
-            <div className="text-left sm:col-span-2 lg:col-span-1">
-              <p className="text-xs text-[#616060] mb-1">Ref ID</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] mb-2 leading-tight break-all">
-                {displayData.customerRefId}
-              </p>
-              <p className="text-xs text-[#616060] mb-1">Transaction ID</p>
-              <p className="font-medium text-xs sm:text-base text-[#282828] leading-tight break-all">
-                {displayData.transactionId}
-              </p>
+            {/* Content Area */}
+            <div className="pb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-y-4 md:gap-y-0 w-full">
+              {/* Left side - Customer Fields */}
+              <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:gap-12 lg:gap-16 items-start justify-start text-left w-full">
+                {/* Name */}
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Name
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.name}
+                  </span>
+                </div>
+
+                {/* Customer ID */}
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Customer ID
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.customerId}
+                  </span>
+                </div>
+
+                {/* Customer Ref ID */}
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Customer Ref ID
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.customerRefId}
+                  </span>
+                </div>
+
+                {/* Mobile no */}
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Mobile no
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.mobile.startsWith("+91")
+                      ? displayData.mobile
+                      : `+91-${displayData.mobile}`}
+                  </span>
+                </div>
+
+                {/* Order ID */}
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Order ID
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.orderId}
+                  </span>
+                </div>
+
+                {/* Transaction ID */}
+                <div className="flex flex-col gap-1 min-w-[120px]">
+                  <span
+                    className="text-base text-[#999] font-medium"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    Transaction ID
+                  </span>
+                  <span
+                    className="text-lg font-semibold text-[#434343]"
+                    style={{
+                      fontFamily:
+                        "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                    }}
+                  >
+                    {displayData.transactionId}
+                  </span>
+                </div>
+              </div>
+
+              {/* Right side - Button */}
+              <div className="flex-shrink-0 mt-4 md:mt-0 md:ml-8 w-full md:w-auto">
+                <Button
+                  variant="outline"
+                  onClick={() => setIsViewDocumentsModalOpen(true)}
+                  className="border-[#079F9F] text-[#079F9F] hover:bg-[#079F9F]/10 px-6 py-3 rounded-lg font-semibold text-left w-full md:w-auto"
+                  style={{
+                    fontFamily:
+                      "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                  }}
+                >
+                  View Documents
+                </Button>
+              </div>
             </div>
           </div>
 
           {/* Form Fields */}
-          <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-4 mb-4">
-            <div>
-              <Label
-                htmlFor="typeOfCall"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                Type of Call
-              </Label>
+          <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-4 mt-4 w-full">
+            <div className="min-w-[120px] flex-1">
               <Select
                 value={formData.typeOfCall}
                 onValueChange={(value) => handleFormChange("typeOfCall", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
-                  <SelectValue placeholder="Select" />
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
+                  <SelectValue placeholder="Type of Call" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="inbound">Inbound</SelectItem>
@@ -238,21 +361,15 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label
-                htmlFor="categoryType"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                Category Type
-              </Label>
+            <div className="min-w-[120px] flex-1">
               <Select
                 value={formData.categoryType}
                 onValueChange={(value) =>
                   handleFormChange("categoryType", value)
                 }
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
-                  <SelectValue placeholder="Select" />
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
+                  <SelectValue placeholder="Category Type" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="inquiry">Inquiry</SelectItem>
@@ -261,19 +378,13 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label
-                htmlFor="rCode"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                R-Code
-              </Label>
+            <div className="min-w-[100px] flex-1">
               <Select
                 value={formData.rCode}
                 onValueChange={(value) => handleFormChange("rCode", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
-                  <SelectValue placeholder="Select" />
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
+                  <SelectValue placeholder="R-Code" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="R001">R001</SelectItem>
@@ -282,19 +393,13 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label
-                htmlFor="subRCode"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                Sub R-Code
-              </Label>
+            <div className="min-w-[110px] flex-1">
               <Select
                 value={formData.subRCode}
                 onValueChange={(value) => handleFormChange("subRCode", value)}
               >
-                <SelectTrigger className="h-8 sm:h-10 border-[#E0E0E0] text-xs sm:text-sm">
-                  <SelectValue placeholder="Select" />
+                <SelectTrigger className="h-12 border-[#E0E0E0] text-sm">
+                  <SelectValue placeholder="Sub R-Code" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="SR001">SR001</SelectItem>
@@ -303,50 +408,43 @@ const LeadDetailsDrawer = ({
                 </SelectContent>
               </Select>
             </div>
+            <div className="flex-[2] min-w-[296px]">
+              <CommentInput
+                value={formData.comments}
+                onChange={(value) => handleFormChange("comments", value)}
+                onSubmit={(comment) => {
+                  console.log("Comment submitted:", comment);
+                  handleSave();
+                }}
+                placeholder="Add your comment here..."
+                className="w-full max-w-none"
+              />
+            </div>
           </div>
 
           {/* Second Row - Comments and Save Button */}
-          <div className="grid grid-cols-4 sm:grid-cols-4 gap-2 sm:gap-4 mb-4">
-            <div className="col-span-2">
-              <Label
-                htmlFor="comments"
-                className="text-xs sm:text-sm text-[#616060] text-left block mb-1"
-              >
-                Internal Comments
-              </Label>
-              <textarea
-                id="comments"
-                value={formData.comments}
-                onChange={(e) => handleFormChange("comments", e.target.value)}
-                className="w-full p-2 border border-[#E0E0E0] rounded-md resize-none focus:ring-[#079F9F] focus:border-[#079F9F] text-xs sm:text-sm"
-                rows={2}
-                placeholder="Add your comments here..."
-              />
-            </div>
-            <div className="flex items-center">
-              <Button
-                onClick={handleSave}
-                className="h-8 sm:h-10 px-3 sm:px-4 bg-[#079F9F] hover:bg-[#079F9F]/90 text-white text-xs sm:text-sm w-full"
-              >
-                Save
-              </Button>
-            </div>
-            <div></div>
-          </div>
+          {/* ...removed second row, now handled above... */}
         </div>
 
         {/* Tab Navigation */}
-        <div className="border-b border-[#E0E0E0]">
-          <div className="flex space-x-8 px-6">
+        <div className="p-6 border-b border-[#E0E0E0]">
+          <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                className={`flex-shrink-0 h-12 px-4 flex items-center justify-center rounded-full border transition-all duration-200 whitespace-nowrap ${
                   activeTab === tab.id
-                    ? "border-[#079F9F] text-[#079F9F]"
-                    : "border-transparent text-[#616060] hover:text-[#282828]"
+                    ? "border-[#079F9F] bg-[#E6F5F5] text-[#079F9F] font-semibold"
+                    : "border-[#E6E6E6] bg-white text-[#999] hover:text-[#282828] hover:border-[#D0D0D0]"
                 }`}
+                style={{
+                  fontFamily:
+                    "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                  fontSize: activeTab === tab.id ? "14px" : "16px",
+                  fontWeight: activeTab === tab.id ? "600" : "500",
+                  lineHeight: activeTab === tab.id ? "156%" : "168%",
+                }}
               >
                 {tab.label}
               </button>
@@ -357,92 +455,199 @@ const LeadDetailsDrawer = ({
         {/* Tab Content */}
         <div className="p-6 flex-1">
           {activeTab === "details" && (
-            <div className="space-y-6">
-              {/* First Row: Customer Details & Other Details side by side on mobile */}
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-6">
-                <div className="text-left">
-                  <h3 className="text-sm lg:text-lg font-semibold text-[#282828] mb-3 lg:mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Customer Details Card */}
+              <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden">
+                <div className="bg-[#FFFBF1] border-b border-[#E6E6E6] px-7 py-4">
+                  <h3 className="text-lg font-semibold text-black text-left">
                     Customer Details
                   </h3>
-                  <div className="space-y-2 lg:space-y-3">
-                    <div>
-                      <p className="text-xs lg:text-sm text-[#616060]">EMI</p>
-                      <p className="font-medium text-xs lg:text-base text-[#282828]">
-                        {displayData.emi}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs lg:text-sm text-[#616060]">
-                        EMI Due Date
-                      </p>
-                      <p className="font-medium text-xs lg:text-base text-[#282828]">
-                        {displayData.emiDueDate}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs lg:text-sm text-[#616060]">
-                        Number of EMIs
-                      </p>
-                      <p className="font-medium text-xs lg:text-base text-[#282828]">
-                        {displayData.numberOfEmis}
-                      </p>
-                    </div>
-                  </div>
                 </div>
-                <div className="text-left">
-                  <h3 className="text-sm lg:text-lg font-semibold text-[#282828] mb-3 lg:mb-4">
-                    Other Details
-                  </h3>
-                  <div className="space-y-2 lg:space-y-3">
-                    <div>
-                      <p className="text-xs lg:text-sm text-[#616060]">
-                        DP Refund
-                      </p>
-                      <p className="font-medium text-xs lg:text-base text-[#282828]">
-                        {displayData.dpRefund}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs lg:text-sm text-[#616060]">
-                        DP Status
-                      </p>
-                      <p className="font-medium text-xs lg:text-base text-[#282828]">
-                        {displayData.dpStatus}
-                      </p>
-                    </div>
+                <div className="px-7 py-6 space-y-2">
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Name
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.name}
+                    </span>
                   </div>
-                </div>
-                {/* Disbursement Details - Third column on desktop only */}
-                <div className="text-left hidden lg:block">
-                  <h3 className="text-lg font-semibold text-[#282828] mb-4">
-                    Disbursement Details
-                  </h3>
-                  <div className="space-y-3">
-                    <div>
-                      <p className="text-sm text-[#616060]">Settlement Date</p>
-                      <p className="font-medium text-[#282828]">
-                        {displayData.settlementDate}
-                      </p>
-                    </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      EMI Due Date :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.emiDueDate}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Name
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.name}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                    <span className="text-base font-semibold text-[#079F9F] cursor-pointer hover:underline">
+                      Verify link
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* Second Row: Disbursement Details below on mobile/tablet */}
-              <div className="lg:hidden">
-                <div className="text-left">
-                  <h3 className="text-sm lg:text-lg font-semibold text-[#282828] mb-3 lg:mb-4">
+              {/* Order Details Card */}
+              <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden">
+                <div className="bg-[#FFFBF1] border-b border-[#E6E6E6] px-7 py-4">
+                  <h3 className="text-lg font-semibold text-black text-left">
+                    Order Details
+                  </h3>
+                </div>
+                <div className="px-7 py-6 space-y-2">
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Name
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.name}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      EMI Due Date :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.emiDueDate}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Name
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.name}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Disbursement Details Card */}
+              <div className="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden">
+                <div className="bg-[#FFFBF1] border-b border-[#E6E6E6] px-7 py-4">
+                  <h3 className="text-lg font-semibold text-black text-left">
                     Disbursement Details
                   </h3>
-                  <div className="space-y-2 lg:space-y-3">
-                    <div>
-                      <p className="text-xs lg:text-sm text-[#616060]">
-                        Settlement Date
-                      </p>
-                      <p className="font-medium text-xs lg:text-base text-[#282828]">
-                        {displayData.settlementDate}
-                      </p>
-                    </div>
+                </div>
+                <div className="px-7 py-6 space-y-2">
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Name
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.name}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      EMI Due Date :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.emiDueDate}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Name
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.name}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
+                  </div>
+                  <div className="flex items-center py-1 text-left gap-2">
+                    <span className="text-sm text-[#999] font-medium">
+                      Number of EMI :
+                    </span>
+                    <span className="text-base font-semibold text-[#434343]">
+                      {displayData.numberOfEmis}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -460,21 +665,44 @@ const LeadDetailsDrawer = ({
 
           {activeTab === "documents" && (
             <div className="text-left">
-              <h3 className="text-lg font-semibold text-[#282828] mb-6">
-                Document Upload
-              </h3>
-              <div className="space-y-4">
-                {[1, 2, 3, 4].map((index) => (
-                  <Button
-                    key={index}
-                    variant="outline"
-                    className="w-full h-12 border-[#E0E0E0] text-[#282828] hover:bg-gray-50"
-                    onClick={() => handleAction(`uploadBill${index}`)}
-                  >
-                    <FileText className="mr-2 h-4 w-4" />
-                    Upload Estimated Bill {index}
-                  </Button>
-                ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <DocumentUploadCard
+                  title="Agency Profile"
+                  description="If the doc is available upload"
+                  state="default"
+                  onClick={() => handleAction("uploadAgencyProfile1")}
+                />
+                <DocumentUploadCard
+                  title="Agency Profile"
+                  description="If the doc is available upload"
+                  state="default"
+                  onClick={() => handleAction("uploadAgencyProfile2")}
+                />
+                <DocumentUploadCard
+                  title="List of Agency Pin Codes and Staff"
+                  description="If the doc is available upload"
+                  state="uploaded"
+                  undoText="Undo in 10sec"
+                  onClick={() => handleAction("uploadPinCodesAndStaff1")}
+                />
+                <DocumentUploadCard
+                  title="List of Agency Pin Codes and Staff"
+                  description="If the doc is available upload"
+                  state="uploaded"
+                  onClick={() => handleAction("uploadPinCodesAndStaff2")}
+                />
+                <DocumentUploadCard
+                  title="Onboarding Approval"
+                  description="If the doc is available upload"
+                  state="default"
+                  onClick={() => handleAction("uploadOnboardingApproval1")}
+                />
+                <DocumentUploadCard
+                  title="Onboarding Approval"
+                  description="If the doc is available upload"
+                  state="default"
+                  onClick={() => handleAction("uploadOnboardingApproval2")}
+                />
               </div>
             </div>
           )}
@@ -541,17 +769,20 @@ const LeadDetailsDrawer = ({
         </div>
 
         {/* Bottom Actions */}
-        <div className="sticky bottom-0 p-6 border-t border-[#E0E0E0] bg-white z-10 shadow-lg">
-          <div className="flex flex-wrap gap-2">
+        <div className="sticky bottom-0 p-6 border-t border-[#E6E6E6] bg-white z-10 shadow-[0px_-3px_10.4px_0px_rgba(0,0,0,0.12)] rounded-t-2xl">
+          <div className="flex flex-wrap justify-end gap-3 sm:gap-4 overflow-x-auto">
             {bottomActions.map((action, index) => (
               <Button
                 key={index}
-                variant={action.action === "cancelLead" ? "outline" : "default"}
-                className={`flex-shrink-0 h-10 px-3 text-xs ${
-                  action.action === "cancelLead"
-                    ? "border-red-300 text-red-600 hover:bg-red-50"
-                    : "bg-[#079F9F] hover:bg-[#079F9F]/90 text-white"
-                }`}
+                variant="outline"
+                className="flex-shrink-0 h-10 px-2 sm:px-3 text-xs sm:text-sm font-bold border-[1.5px] border-[#079F9F] text-[#079F9F] bg-transparent hover:bg-[#079F9F]/5 focus:bg-[#079F9F]/5 active:bg-[#079F9F]/10 rounded-lg transition-all duration-200 whitespace-nowrap min-w-fit"
+                style={{
+                  fontFamily:
+                    "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  lineHeight: "154%",
+                }}
                 onClick={() => handleAction(action.action)}
               >
                 {action.label}
@@ -560,6 +791,11 @@ const LeadDetailsDrawer = ({
           </div>
         </div>
       </div>
+
+      <ViewDocumentsModal
+        isOpen={isViewDocumentsModalOpen}
+        onClose={() => setIsViewDocumentsModalOpen(false)}
+      />
     </>
   );
 };

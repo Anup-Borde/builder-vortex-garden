@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useDeferredValue, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -114,12 +115,13 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
 
   const currentConfig = getCurrentSearchConfig();
 
+  const router = useRouter();
   return (
-    <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 mb-6">
+    <div className="bg-white border border-[#E6E6E6] rounded-2xl p-6 mb-6 w-full mx-auto">
       {/* Desktop Layout */}
       <div className="hidden lg:block">
         <div className="space-y-4">
-          {/* First Row: Combined Search Input + Date Range */}
+          {/* First Row: Combined Search Input + Date Range + Merchant Details Button (inline) */}
           <div className="flex items-center gap-4">
             {/* Combined Search Type Dropdown + Input */}
             <div className="flex-1 max-w-[372px]">
@@ -155,9 +157,10 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
               </div>
             </div>
 
-            {/* Date Range Section */}
-            <div className="flex-1 max-w-[529px]">
-              <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-12 flex items-center px-4">
+            {/* Date Range Section + Merchant Details Button inline */}
+            <div className="flex-1 max-w-[529px] flex items-center gap-4">
+              {/* Date Range Section */}
+              <div className="relative border border-[#E6E6E6] rounded-lg bg-white h-12 flex items-center px-4 flex-1">
                 <span className="text-[#999] text-base mr-2">To</span>
                 <Input
                   type="date"
@@ -203,6 +206,18 @@ const ManageLeadsFilters = ({ onSearch, onReset }) => {
                   placeholder="DD/MM/YYYY"
                 />
               </div>
+            </div>
+            <div className="flex gap-4 ml-auto">
+              {/* View Merchant details */}
+              <Button
+                variant="outline"
+                className="h-12 border-[#079F9F] text-[#079F9F] px-6 rounded-lg font-semibold text-base whitespace-nowrap"
+                onClick={() => {
+                  router.push("/merchant-details");
+                }}
+              >
+                View Merchant details
+              </Button>
             </div>
           </div>
 

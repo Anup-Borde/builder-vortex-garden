@@ -197,14 +197,6 @@ const ReportsPage = () => {
 
       <main className="container mx-auto px-6 py-8">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          {/* Page Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-[#282828] mb-2">Reports</h1>
-            <p className="text-[#616060]">
-              Filter and download reports based on your criteria
-            </p>
-          </div>
-
           {/* Filters Section */}
           <div className="mb-8 p-2 bg-gray-50 rounded-lg border border-gray-200">
             <h2 className="text-lg font-semibold text-[#282828] mb-4">

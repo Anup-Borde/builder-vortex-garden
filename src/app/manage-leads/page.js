@@ -51,10 +51,7 @@ export default function ManageLeads({ userRole = "internal" }) {
 
       {/* Main Content */}
       <div className="p-4 sm:p-6 lg:p-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Page Header Section */}
-          <ManageLeadsHeader userRole={userRole} />
-
+        <div className="max-w-8xl mx-auto">
           {/* Filters Section */}
           <ManageLeadsFilters onSearch={handleSearch} onReset={handleReset} />
 
