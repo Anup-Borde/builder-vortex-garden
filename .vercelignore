@@ -1,0 +1,5 @@
+# Only ignore development files, not source code
+.git/
+node_modules/
+.next/
+.env.local
