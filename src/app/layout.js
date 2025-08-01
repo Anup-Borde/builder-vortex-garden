@@ -16,10 +16,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${inter.variable} antialiased`}
-        style={{
-          fontFamily:
-            'Gilroy, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-        }}
         suppressHydrationWarning={true}
       >
         {children}
