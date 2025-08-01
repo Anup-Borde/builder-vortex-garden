@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import ViewDocumentsModal from "@/components/ViewDocumentsModal";
 
 export default function ModalDemo() {
+  // Force rebuild for Vercel deployment
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const customDocuments = [
