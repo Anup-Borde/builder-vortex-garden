@@ -101,6 +101,12 @@ const DocumentUploadCard = ({
         </div>
       )}
 
+      {state === "waiting" && (
+        <div className="absolute top-0 right-0 bg-[#F8A63F] text-white text-sm font-semibold px-5 py-1 rounded-br-lg rounded-tl-[12px]" style={{ fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif' }}>
+          Waiting
+        </div>
+      )}
+
       <div className="flex flex-col justify-center flex-1">
         <h3 className="text-[#434343] font-medium text-lg leading-[27px] mb-1" style={{ fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif' }}>
           {title}
