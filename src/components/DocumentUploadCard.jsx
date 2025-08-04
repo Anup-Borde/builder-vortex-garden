@@ -83,10 +83,16 @@ const DocumentUploadCard = ({
       `}
       onClick={onClick}
     >
-      {/* Approved Status Badge */}
+      {/* Status Badge */}
       {state === "approved" && (
-        <div className="absolute top-0 right-0 bg-[#079F9F] text-white text-sm font-semibold px-5 py-1 rounded-br-lg rounded-tl-[12px]">
+        <div className="absolute top-0 right-0 bg-[#079F9F] text-white text-sm font-semibold px-5 py-1 rounded-br-lg rounded-tl-[12px]" style={{ fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif' }}>
           Approved
+        </div>
+      )}
+
+      {state === "rejected" && (
+        <div className="absolute top-0 right-0 bg-[#FF3E79] text-white text-sm font-semibold px-5 py-1 rounded-br-lg rounded-tl-[12px]" style={{ fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif' }}>
+          Rejected
         </div>
       )}
 
