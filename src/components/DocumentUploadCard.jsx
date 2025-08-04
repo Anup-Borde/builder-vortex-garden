@@ -86,11 +86,11 @@ const DocumentUploadCard = ({
       )}
 
       <div className="flex flex-col justify-center flex-1">
-        <h3 className="text-[#434343] font-medium text-lg leading-[27px] mb-2">
+        <h3 className="text-[#434343] font-medium text-lg leading-[27px] mb-1" style={{ fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif' }}>
           {title}
         </h3>
         <div className="flex items-center gap-4">
-          <p className="text-[#999999] text-sm leading-[21px]">
+          <p className="text-[#999999] text-sm leading-[21px]" style={{ fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif' }}>
             {description}
           </p>
           {undoText && (
