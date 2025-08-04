@@ -60,7 +60,7 @@ const DocumentUploadCard = ({
       );
     }
 
-    if (state === "approved" || state === "rejected") {
+    if (state === "approved" || state === "rejected" || state === "waiting") {
       return (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.3333 29.3337L17.3333 24.0003C17.3333 21.0548 19.7211 18.667 22.6667 18.667L28 18.667M4 24.0003L4 8.00033C4 5.05481 6.38782 2.66699 9.33333 2.66699L22.6667 2.66699C25.6122 2.66699 28 5.05481 28 8.00033V16.4579C28 17.8723 27.4381 19.2289 26.4379 20.2291L18.8954 27.7716C17.8952 28.7718 16.5387 29.3337 15.1242 29.3337H9.33333C6.38781 29.3337 4 26.9458 4 24.0003Z" stroke="#333333" strokeWidth="2" strokeLinejoin="round"/>
