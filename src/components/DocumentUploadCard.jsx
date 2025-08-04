@@ -20,6 +20,11 @@ const DocumentUploadCard = ({
           container: "border-2 border-solid border-[#E6E6E6] bg-white",
           iconContainer: "border-[#E6E6E6] bg-white"
         };
+      case "rejected":
+        return {
+          container: "border-2 border-solid border-[#E6E6E6] bg-white",
+          iconContainer: "border-[#E6E6E6] bg-white"
+        };
       default:
         return {
           container: "border-2 border-dashed border-[#E6E6E6] bg-[#FBFBFB] hover:border-[#079F9F] hover:bg-[#F8FEFE]",
