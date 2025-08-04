@@ -681,8 +681,7 @@ const LeadDetailsDrawer = ({
                 <DocumentUploadCard
                   title="List of Agency Pin Codes and Staff"
                   description="If the doc is available upload"
-                  state="uploaded"
-                  undoText="Undo in 10sec"
+                  state="approved"
                   onClick={() => handleAction("uploadPinCodesAndStaff1")}
                 />
                 <DocumentUploadCard
