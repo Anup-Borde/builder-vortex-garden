@@ -699,7 +699,7 @@ const LeadDetailsDrawer = ({
                 <DocumentUploadCard
                   title="Onboarding Approval"
                   description="If the doc is available upload"
-                  state="default"
+                  state="waiting"
                   onClick={() => handleAction("uploadOnboardingApproval2")}
                 />
               </div>
