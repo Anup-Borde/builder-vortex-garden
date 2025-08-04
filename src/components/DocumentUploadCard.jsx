@@ -3,7 +3,7 @@ import React from 'react';
 const DocumentUploadCard = ({
   title = "Agency Profile",
   description = "If the doc is available upload",
-  state = "default", // default, uploaded, uploading, approved, rejected
+  state = "default", // default, uploaded, uploading, approved, rejected, waiting
   undoText,
   onClick,
   className = ""
