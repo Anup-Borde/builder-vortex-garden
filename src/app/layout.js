@@ -12,9 +12,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  if (typeof window === 'undefined') {
-    console.log('Lead Beacon - Server side rendering');
-  }
   return (
     <html lang="en">
       <body
