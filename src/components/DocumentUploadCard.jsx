@@ -70,7 +70,7 @@ const DocumentUploadCard = ({
   return (
     <div
       className={`
-        flex items-center justify-between w-full h-[104px] p-4
+        relative flex items-center justify-between w-full h-[126px] p-6
         ${styles.container}
         rounded-lg
         transition-all duration-200 cursor-pointer
