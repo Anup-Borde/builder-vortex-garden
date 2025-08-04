@@ -24,7 +24,8 @@ const LeadDetailsDrawer = ({
   userRole = "internal",
 }) => {
   const [activeTab, setActiveTab] = useState("details");
-  const [isViewDocumentsModalOpen, setIsViewDocumentsModalOpen] = useState(false);
+  const [isViewDocumentsModalOpen, setIsViewDocumentsModalOpen] =
+    useState(false);
   const [formData, setFormData] = useState({
     typeOfCall: "",
     categoryType: "",
@@ -673,10 +674,10 @@ const LeadDetailsDrawer = ({
                   onClick={() => handleAction("uploadAgencyProfile1")}
                 />
                 <DocumentUploadCard
-                  title="Agency Profile"
+                  title="List of Agency Pin Codes and Staff"
                   description="If the doc is available upload"
-                  state="default"
-                  onClick={() => handleAction("uploadAgencyProfile2")}
+                  state="suspended"
+                  onClick={() => handleAction("uploadPinCodesAndStaff1")}
                 />
                 <DocumentUploadCard
                   title="List of Agency Pin Codes and Staff"
