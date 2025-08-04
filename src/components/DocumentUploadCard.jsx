@@ -78,6 +78,13 @@ const DocumentUploadCard = ({
       `}
       onClick={onClick}
     >
+      {/* Approved Status Badge */}
+      {state === "approved" && (
+        <div className="absolute top-0 right-0 bg-[#079F9F] text-white text-sm font-semibold px-5 py-1 rounded-br-lg rounded-tl-[12px]">
+          Approved
+        </div>
+      )}
+
       <div className="flex flex-col justify-center flex-1">
         <h3 className="text-[#434343] font-medium text-lg leading-[27px] mb-2">
           {title}
