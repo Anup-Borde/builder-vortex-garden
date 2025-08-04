@@ -681,14 +681,13 @@ const LeadDetailsDrawer = ({
                 <DocumentUploadCard
                   title="List of Agency Pin Codes and Staff"
                   description="If the doc is available upload"
-                  state="uploaded"
-                  undoText="Undo in 10sec"
+                  state="approved"
                   onClick={() => handleAction("uploadPinCodesAndStaff1")}
                 />
                 <DocumentUploadCard
                   title="List of Agency Pin Codes and Staff"
                   description="If the doc is available upload"
-                  state="uploaded"
+                  state="rejected"
                   onClick={() => handleAction("uploadPinCodesAndStaff2")}
                 />
                 <DocumentUploadCard
@@ -700,7 +699,7 @@ const LeadDetailsDrawer = ({
                 <DocumentUploadCard
                   title="Onboarding Approval"
                   description="If the doc is available upload"
-                  state="default"
+                  state="waiting"
                   onClick={() => handleAction("uploadOnboardingApproval2")}
                 />
               </div>
