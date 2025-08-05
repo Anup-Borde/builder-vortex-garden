@@ -206,44 +206,41 @@ const CalendarComponent = ({
 
   const renderYearlyView = () => {
     const currentYear = getYear(new Date());
-    const yearRange = [];
-    
-    // Generate years from 2016 to current year + 5
-    for (let year = 2016; year <= currentYear + 5; year++) {
-      yearRange.push(year);
-    }
+    const firstRowYears = [2016, 2017, 2018, 2019, 2020, 2021, 2022];
+    const secondRowYears = [2023, 2024, 2025];
 
     return (
-      <div className="mb-6">
+      <div className="mb-4">
         {/* Year Selection Header */}
-        <div className="flex items-center justify-between mb-6 p-4 border border-gray-200 rounded-lg bg-gray-50">
-          <div className="text-gray-500">Select Year</div>
+        <div className="flex items-center justify-between mb-6 p-3 border border-[#E6E6E6] rounded-lg bg-white">
+          <div className="text-gray-500 text-base font-medium">Select Year</div>
           <div className="flex items-center">
-            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7l4-4m0 0l4 4m-4-4v18" />
+            <svg className="w-4 h-4 text-gray-400" viewBox="0 0 18 18" fill="none">
+              <path d="M13 1L17 5L1 5" stroke="#999999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M5 17L1 13L17 13" stroke="#999999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <div className="text-gray-500">Select Year</div>
+          <div className="text-gray-500 text-base font-medium">Select Year</div>
         </div>
 
-        {/* Years Grid */}
-        <div className="grid grid-cols-6 gap-4 mb-6">
-          {yearRange.slice(0, 12).map((year) => {
+        {/* First row of years */}
+        <div className="flex items-center justify-start gap-4 mb-6">
+          {firstRowYears.map((year) => {
             const isSelected = selectedYears.includes(year);
-            const isAvailable = year <= currentYear + 1; // Available years
-            
+            const isDisabled = year > 2022 && year < 2016;
+
             return (
               <button
                 key={year}
-                onClick={() => isAvailable && handleYearClick(year)}
-                disabled={!isAvailable}
+                onClick={() => handleYearClick(year)}
+                disabled={isDisabled}
                 className={`
-                  p-3 text-sm font-medium rounded transition-colors
-                  ${isSelected 
-                    ? "bg-teal-600 text-white" 
-                    : isAvailable 
-                      ? "text-gray-800 hover:bg-gray-100" 
-                      : "text-gray-300 cursor-not-allowed"
+                  relative px-3 py-1.5 text-base font-medium rounded transition-colors min-w-[45px] h-7
+                  ${isSelected
+                    ? "bg-[#079F9F] text-white"
+                    : year === 2017 || year === 2018 || year === 2019 || year === 2020 || year === 2021
+                      ? "text-[#BCBCBC]"
+                      : "text-gray-800 hover:bg-gray-100"
                   }
                 `}
               >
@@ -253,24 +250,20 @@ const CalendarComponent = ({
           })}
         </div>
 
-        {/* Additional years row */}
-        <div className="grid grid-cols-6 gap-4">
-          {yearRange.slice(12).map((year) => {
+        {/* Second row of years */}
+        <div className="flex items-center justify-start gap-4 mb-6">
+          {secondRowYears.map((year) => {
             const isSelected = selectedYears.includes(year);
-            const isAvailable = year <= currentYear + 1;
-            
+
             return (
               <button
                 key={year}
-                onClick={() => isAvailable && handleYearClick(year)}
-                disabled={!isAvailable}
+                onClick={() => handleYearClick(year)}
                 className={`
-                  p-3 text-sm font-medium rounded transition-colors
-                  ${isSelected 
-                    ? "bg-teal-600 text-white" 
-                    : isAvailable 
-                      ? "text-gray-800 hover:bg-gray-100" 
-                      : "text-gray-300 cursor-not-allowed"
+                  relative px-3 py-1.5 text-base font-medium rounded transition-colors min-w-[45px] h-7
+                  ${isSelected
+                    ? "bg-[#079F9F] text-white"
+                    : "text-gray-800 hover:bg-gray-100"
                   }
                 `}
               >
