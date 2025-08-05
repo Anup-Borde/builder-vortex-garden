@@ -136,16 +136,16 @@ const CalendarComponent = ({
   const renderMonthlyView = () => {
     const currentMonth = startOfMonth(currentDate);
     const nextMonth = addMonths(currentMonth, 1);
-    
+
     const renderMonth = (monthDate, isNext = false) => {
       const monthStart = startOfMonth(monthDate);
       const monthEnd = endOfMonth(monthDate);
       const startDate = startOfWeek(monthStart);
       const endDate = endOfWeek(monthEnd);
-      
+
       const days = [];
       let currentDay = startDate;
-      
+
       while (currentDay <= endDate) {
         days.push(currentDay);
         currentDay = addDays(currentDay, 1);
@@ -153,15 +153,15 @@ const CalendarComponent = ({
 
       return (
         <div className="flex-1">
-          <div className="text-center mb-4">
-            <h3 className="text-lg font-semibold text-gray-800">
+          <div className="text-center mb-3">
+            <h3 className="text-base font-semibold text-gray-800">
               {format(monthDate, "MMM yyyy")}
             </h3>
           </div>
-          
+
           <div className="grid grid-cols-7 gap-1">
             {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
-              <div key={day} className="text-center text-xs font-medium text-gray-500 p-2">
+              <div key={day} className="text-center text-xs font-medium text-gray-500 py-2 px-1">
                 {day}
               </div>
             ))}
@@ -170,19 +170,19 @@ const CalendarComponent = ({
               const isSelected = selectedDates.includes(dayString);
               const isCurrentMonth = isSameMonth(day, monthDate);
               const isTodayDate = isToday(day);
-              
+
               return (
                 <button
                   key={index}
                   onClick={() => handleDateClick(day)}
                   className={`
-                    p-2 text-sm rounded transition-colors aspect-square flex items-center justify-center
-                    ${!isCurrentMonth 
-                      ? "text-gray-300" 
-                      : isSelected 
-                        ? "bg-teal-600 text-white font-semibold" 
-                        : isTodayDate 
-                          ? "bg-teal-100 text-teal-800 font-medium" 
+                    relative w-7 h-7 text-sm font-medium rounded transition-colors flex items-center justify-center mx-auto
+                    ${!isCurrentMonth
+                      ? "text-gray-300"
+                      : isSelected
+                        ? "bg-[#079F9F] text-white font-semibold"
+                        : isTodayDate
+                          ? "bg-teal-100 text-teal-800 font-medium"
                           : "text-gray-700 hover:bg-gray-100"
                     }
                   `}
@@ -197,7 +197,7 @@ const CalendarComponent = ({
     };
 
     return (
-      <div className="flex gap-8 mb-6">
+      <div className="flex gap-12 mb-4">
         {renderMonth(currentMonth)}
         {renderMonth(nextMonth, true)}
       </div>
