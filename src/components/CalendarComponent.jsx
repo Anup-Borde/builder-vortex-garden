@@ -311,11 +311,11 @@ const CalendarComponent = ({
       </div>
 
       {/* Filter Buttons */}
-      <div className="flex flex-wrap gap-3 p-6 pt-2 bg-white">
+      <div className="flex flex-wrap gap-2 sm:gap-3 p-4 sm:p-6 pt-2 bg-white">
         <button
           onClick={() => handleFilterClick("lastWeek")}
           className={`
-            px-4 py-2 text-base font-semibold rounded-lg border transition-colors min-w-[111px] h-10
+            px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg border transition-colors min-w-[100px] sm:min-w-[111px] h-10 flex-1 sm:flex-initial
             ${(viewMode === "weekly" || viewMode === "lastWeek")
               ? "border-[#079F9F] text-[#079F9F] bg-white"
               : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
@@ -328,7 +328,7 @@ const CalendarComponent = ({
         <button
           onClick={() => handleFilterClick("lastMonth")}
           className={`
-            px-4 py-2 text-base font-semibold rounded-lg border transition-colors min-w-[111px] h-10
+            px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg border transition-colors min-w-[100px] sm:min-w-[111px] h-10 flex-1 sm:flex-initial
             ${(viewMode === "monthly" || viewMode === "lastMonth")
               ? "border-[#079F9F] text-[#079F9F] bg-white"
               : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
@@ -341,7 +341,7 @@ const CalendarComponent = ({
         <button
           onClick={() => handleFilterClick("today")}
           className={`
-            px-4 py-2 text-base font-semibold rounded-lg border transition-colors min-w-[111px] h-10
+            px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg border transition-colors min-w-[100px] sm:min-w-[111px] h-10 flex-1 sm:flex-initial
             ${viewMode === "today"
               ? "border-[#079F9F] text-[#079F9F] bg-white"
               : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
@@ -354,7 +354,7 @@ const CalendarComponent = ({
         <button
           onClick={() => handleFilterClick("yearly")}
           className={`
-            px-4 py-2 text-base font-semibold rounded-lg border transition-colors min-w-[111px] h-10
+            px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg border transition-colors min-w-[100px] sm:min-w-[111px] h-10 flex-1 sm:flex-initial
             ${viewMode === "yearly"
               ? "border-[#079F9F] text-[#079F9F] bg-white"
               : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
