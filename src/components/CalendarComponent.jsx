@@ -210,7 +210,7 @@ const CalendarComponent = ({
     const secondRowYears = [2023, 2024, 2025];
 
     return (
-      <div className="mb-4">
+      <div className="mb-4 pt-4">
         {/* Year Selection Header */}
         <div className="flex items-center justify-between mb-6 p-3 border border-[#E6E6E6] rounded-lg bg-white">
           <div className="text-gray-500 text-base font-medium">Select Year</div>
