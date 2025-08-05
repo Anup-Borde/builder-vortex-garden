@@ -18,7 +18,7 @@ import {
   startOfYear,
   endOfYear,
   getYear,
-  setYear
+  setYear,
 } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -26,10 +26,11 @@ const CalendarComponent = ({
   selectedDates = [],
   onDateSelect = () => {},
   onViewChange = () => {},
-  className = ""
+  initialViewMode = "monthly",
+  className = "",
 }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [viewMode, setViewMode] = useState("monthly"); // weekly, monthly, yearly
+  const [viewMode, setViewMode] = useState(initialViewMode);
   const [selectedYears, setSelectedYears] = useState([2016, 2022]);
 
   useEffect(() => {
@@ -39,9 +40,9 @@ const CalendarComponent = ({
   const handleDateClick = (date) => {
     const dateString = format(date, "yyyy-MM-dd");
     const isSelected = selectedDates.includes(dateString);
-    
+
     if (isSelected) {
-      onDateSelect(selectedDates.filter(d => d !== dateString));
+      onDateSelect(selectedDates.filter((d) => d !== dateString));
     } else {
       onDateSelect([...selectedDates, dateString]);
     }
@@ -50,7 +51,7 @@ const CalendarComponent = ({
   const handleYearClick = (year) => {
     const isSelected = selectedYears.includes(year);
     if (isSelected) {
-      setSelectedYears(selectedYears.filter(y => y !== year));
+      setSelectedYears(selectedYears.filter((y) => y !== year));
     } else {
       setSelectedYears([...selectedYears, year]);
     }
@@ -58,7 +59,7 @@ const CalendarComponent = ({
 
   const handleFilterClick = (filter) => {
     const today = new Date();
-    
+
     switch (filter) {
       case "lastWeek":
         setCurrentDate(subWeeks(today, 1));
@@ -80,6 +81,22 @@ const CalendarComponent = ({
     }
   };
 
+  // Auto-select appropriate filter based on initial view mode
+  useEffect(() => {
+    const today = new Date();
+
+    if (initialViewMode === "weekly") {
+      setCurrentDate(subWeeks(today, 1));
+      setViewMode("weekly");
+    } else if (initialViewMode === "yearly") {
+      setCurrentDate(today);
+      setViewMode("yearly");
+    } else if (initialViewMode === "monthly") {
+      setCurrentDate(subMonths(today, 1));
+      setViewMode("monthly");
+    }
+  }, [initialViewMode]);
+
   const navigateMonth = (direction) => {
     if (direction === "prev") {
       setCurrentDate(addMonths(currentDate, -1));
@@ -92,7 +109,7 @@ const CalendarComponent = ({
     const startDate = startOfWeek(currentDate);
     const endDate = endOfWeek(currentDate);
     const days = [];
-    
+
     let currentDay = startDate;
     while (currentDay <= endDate) {
       days.push(currentDay);
@@ -102,7 +119,10 @@ const CalendarComponent = ({
     return (
       <div className="grid grid-cols-7 gap-2 mb-6">
         {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
-          <div key={day} className="text-center text-sm font-medium text-gray-500 p-2">
+          <div
+            key={day}
+            className="text-center text-sm font-medium text-gray-500 p-2"
+          >
             {day}
           </div>
         ))}
@@ -110,17 +130,18 @@ const CalendarComponent = ({
           const dayString = format(day, "yyyy-MM-dd");
           const isSelected = selectedDates.includes(dayString);
           const isTodayDate = isToday(day);
-          
+
           return (
             <button
               key={index}
               onClick={() => handleDateClick(day)}
               className={`
                 p-2 text-sm font-medium rounded transition-colors
-                ${isSelected 
-                  ? "bg-teal-600 text-white" 
-                  : isTodayDate 
-                    ? "bg-teal-100 text-teal-800" 
+                ${
+                  isSelected
+                    ? "bg-teal-600 text-white"
+                    : isTodayDate
+                    ? "bg-teal-100 text-teal-800"
                     : "text-gray-700 hover:bg-gray-100"
                 }
               `}
@@ -161,7 +182,10 @@ const CalendarComponent = ({
 
           <div className="grid grid-cols-7 gap-1">
             {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => (
-              <div key={day} className="text-center text-xs font-medium text-gray-500 py-2 px-1">
+              <div
+                key={day}
+                className="text-center text-xs font-medium text-gray-500 py-2 px-1"
+              >
                 {day}
               </div>
             ))}
@@ -177,13 +201,14 @@ const CalendarComponent = ({
                   onClick={() => handleDateClick(day)}
                   className={`
                     relative w-7 h-7 text-sm font-medium rounded transition-colors flex items-center justify-center mx-auto
-                    ${!isCurrentMonth
-                      ? "text-gray-300"
-                      : isSelected
+                    ${
+                      !isCurrentMonth
+                        ? "text-gray-300"
+                        : isSelected
                         ? "bg-[#079F9F] text-white font-semibold"
                         : isTodayDate
-                          ? "bg-teal-100 text-teal-800 font-medium"
-                          : "text-gray-700 hover:bg-gray-100"
+                        ? "bg-teal-100 text-teal-800 font-medium"
+                        : "text-gray-700 hover:bg-gray-100"
                     }
                   `}
                 >
@@ -215,9 +240,25 @@ const CalendarComponent = ({
         <div className="flex items-center justify-between mb-6 p-3 border border-[#E6E6E6] rounded-lg bg-white">
           <div className="text-gray-500 text-base font-medium">Select Year</div>
           <div className="flex items-center">
-            <svg className="w-4 h-4 text-gray-400" viewBox="0 0 18 18" fill="none">
-              <path d="M13 1L17 5L1 5" stroke="#999999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M5 17L1 13L17 13" stroke="#999999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg
+              className="w-4 h-4 text-gray-400"
+              viewBox="0 0 18 18"
+              fill="none"
+            >
+              <path
+                d="M13 1L17 5L1 5"
+                stroke="#999999"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5 17L1 13L17 13"
+                stroke="#999999"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
           <div className="text-gray-500 text-base font-medium">Select Year</div>
@@ -236,9 +277,14 @@ const CalendarComponent = ({
                 disabled={isDisabled}
                 className={`
                   relative px-2 sm:px-3 py-1.5 text-sm sm:text-base font-medium rounded transition-colors min-w-[40px] sm:min-w-[45px] h-7
-                  ${isSelected
-                    ? "bg-[#079F9F] text-white"
-                    : year === 2017 || year === 2018 || year === 2019 || year === 2020 || year === 2021
+                  ${
+                    isSelected
+                      ? "bg-[#079F9F] text-white"
+                      : year === 2017 ||
+                        year === 2018 ||
+                        year === 2019 ||
+                        year === 2020 ||
+                        year === 2021
                       ? "text-[#BCBCBC]"
                       : "text-gray-800 hover:bg-gray-100"
                   }
@@ -261,9 +307,10 @@ const CalendarComponent = ({
                 onClick={() => handleYearClick(year)}
                 className={`
                   relative px-2 sm:px-3 py-1.5 text-sm sm:text-base font-medium rounded transition-colors min-w-[40px] sm:min-w-[45px] h-7
-                  ${isSelected
-                    ? "bg-[#079F9F] text-white"
-                    : "text-gray-800 hover:bg-gray-100"
+                  ${
+                    isSelected
+                      ? "bg-[#079F9F] text-white"
+                      : "text-gray-800 hover:bg-gray-100"
                   }
                 `}
               >
@@ -277,7 +324,12 @@ const CalendarComponent = ({
   };
 
   return (
-    <div className={`bg-white rounded-2xl shadow-[0_13px_20px_0_rgba(0,0,0,0.20)] w-full max-w-[598px] min-h-[352px] mx-auto ${className}`} style={{ fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif' }}>
+    <div
+      className={`bg-white rounded-2xl shadow-[0_13px_20px_0_rgba(0,0,0,0.20)] w-full max-w-[598px] min-h-[352px] mx-auto ${className}`}
+      style={{
+        fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
+      }}
+    >
       {/* Header with Navigation - Only show for monthly view */}
       {viewMode === "monthly" && (
         <div className="flex items-center justify-between p-6 pb-2">
@@ -290,7 +342,8 @@ const CalendarComponent = ({
 
           <div className="text-center">
             <h2 className="text-base font-semibold text-gray-800">
-              {format(currentDate, "MMM yyyy")} - {format(addMonths(currentDate, 1), "MMM yyyy")}
+              {format(currentDate, "MMM yyyy")} -{" "}
+              {format(addMonths(currentDate, 1), "MMM yyyy")}
             </h2>
           </div>
 
@@ -316,9 +369,10 @@ const CalendarComponent = ({
           onClick={() => handleFilterClick("lastWeek")}
           className={`
             px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg border transition-colors min-w-[100px] sm:min-w-[111px] h-10 flex-1 sm:flex-initial
-            ${(viewMode === "weekly" || viewMode === "lastWeek")
-              ? "border-[#079F9F] text-[#079F9F] bg-white"
-              : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
+            ${
+              viewMode === "weekly" || viewMode === "lastWeek"
+                ? "border-[#079F9F] text-[#079F9F] bg-white"
+                : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
             }
           `}
         >
@@ -329,9 +383,10 @@ const CalendarComponent = ({
           onClick={() => handleFilterClick("lastMonth")}
           className={`
             px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg border transition-colors min-w-[100px] sm:min-w-[111px] h-10 flex-1 sm:flex-initial
-            ${(viewMode === "monthly" || viewMode === "lastMonth")
-              ? "border-[#079F9F] text-[#079F9F] bg-white"
-              : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
+            ${
+              viewMode === "monthly" || viewMode === "lastMonth"
+                ? "border-[#079F9F] text-[#079F9F] bg-white"
+                : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
             }
           `}
         >
@@ -342,9 +397,10 @@ const CalendarComponent = ({
           onClick={() => handleFilterClick("today")}
           className={`
             px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg border transition-colors min-w-[100px] sm:min-w-[111px] h-10 flex-1 sm:flex-initial
-            ${viewMode === "today"
-              ? "border-[#079F9F] text-[#079F9F] bg-white"
-              : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
+            ${
+              viewMode === "today"
+                ? "border-[#079F9F] text-[#079F9F] bg-white"
+                : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
             }
           `}
         >
@@ -355,9 +411,10 @@ const CalendarComponent = ({
           onClick={() => handleFilterClick("yearly")}
           className={`
             px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold rounded-lg border transition-colors min-w-[100px] sm:min-w-[111px] h-10 flex-1 sm:flex-initial
-            ${viewMode === "yearly"
-              ? "border-[#079F9F] text-[#079F9F] bg-white"
-              : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
+            ${
+              viewMode === "yearly"
+                ? "border-[#079F9F] text-[#079F9F] bg-white"
+                : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
             }
           `}
         >

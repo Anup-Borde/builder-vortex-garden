@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { PrimaryHeader } from "@/components/PrimaryHeader";
 import MonthlyDisbursedChart from "@/components/MonthlyDisbursedChart";
 import FunnelMetricsCard from "@/components/FunnelMetricsCard";
+import CalendarComponent from "@/components/CalendarComponent";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -35,10 +36,65 @@ export default function Dashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
   const [chartViewType, setChartViewType] = useState("value");
   const [userContact] = useState("Darshna"); // You can get this from auth context
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [calendarViewMode, setCalendarViewMode] = useState("monthly");
+  const [selectedDates, setSelectedDates] = useState([]);
+  const [calendarPosition, setCalendarPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
   const handleLogout = () => {
     // Add your logout logic here (clear tokens, etc.)
     router.push("/signin");
+  };
+
+  const handlePeriodChange = (value) => {
+    setSelectedPeriod(value);
+    setShowCalendar(true);
+
+    // Map dropdown values to calendar view modes
+    switch (value) {
+      case "weekly":
+        setCalendarViewMode("weekly");
+        break;
+      case "monthly":
+        setCalendarViewMode("monthly");
+        break;
+      case "yearly":
+        setCalendarViewMode("yearly");
+        break;
+      default:
+        setCalendarViewMode("monthly");
+    }
+  };
+
+  const handleCalendarViewChange = (viewMode) => {
+    setCalendarViewMode(viewMode);
+  };
+
+  const handleDateSelect = (dates) => {
+    setSelectedDates(dates);
+  };
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setDragStart({
+      x: e.clientX - calendarPosition.x,
+      y: e.clientY - calendarPosition.y,
+    });
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+
+    setCalendarPosition({
+      x: e.clientX - dragStart.x,
+      y: e.clientY - dragStart.y,
+    });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
   };
 
   const metricCards = [
@@ -153,7 +209,7 @@ export default function Dashboard() {
                   <SelectItem value="merchant3">Merchant 3</SelectItem>
                 </SelectContent>
               </Select>
-              <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
+              <Select value={selectedPeriod} onValueChange={handlePeriodChange}>
                 <SelectTrigger className="w-32 border-[#E0E0E0]">
                   <SelectValue />
                 </SelectTrigger>
@@ -274,6 +330,36 @@ export default function Dashboard() {
           </div>
         </div>
       </main>
+
+      {/* Calendar Modal */}
+      {showCalendar && (
+        <div
+          className="fixed inset-0 z-50"
+          onClick={() => setShowCalendar(false)}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+        >
+          <div
+            className="absolute cursor-move select-none"
+            style={{
+              left: calendarPosition.x || '50%',
+              top: calendarPosition.y || '50%',
+              transform: (!calendarPosition.x && !calendarPosition.y) ? 'translate(-50%, -50%)' : 'none',
+            }}
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={handleMouseDown}
+          >
+            <CalendarComponent
+              key={`${calendarViewMode}-${showCalendar}`}
+              selectedDates={selectedDates}
+              onDateSelect={handleDateSelect}
+              onViewChange={handleCalendarViewChange}
+              initialViewMode={calendarViewMode}
+              className="w-full"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
