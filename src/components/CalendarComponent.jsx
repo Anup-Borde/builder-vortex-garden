@@ -223,8 +223,8 @@ const CalendarComponent = ({
           <div className="text-gray-500 text-base font-medium">Select Year</div>
         </div>
 
-        {/* First row of years */}
-        <div className="flex items-center justify-start gap-4 mb-6">
+        {/* Years Grid - Responsive */}
+        <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-7 gap-2 sm:gap-4 mb-6">
           {firstRowYears.map((year) => {
             const isSelected = selectedYears.includes(year);
             const isDisabled = year > 2022 && year < 2016;
@@ -235,7 +235,7 @@ const CalendarComponent = ({
                 onClick={() => handleYearClick(year)}
                 disabled={isDisabled}
                 className={`
-                  relative px-3 py-1.5 text-base font-medium rounded transition-colors min-w-[45px] h-7
+                  relative px-2 sm:px-3 py-1.5 text-sm sm:text-base font-medium rounded transition-colors min-w-[40px] sm:min-w-[45px] h-7
                   ${isSelected
                     ? "bg-[#079F9F] text-white"
                     : year === 2017 || year === 2018 || year === 2019 || year === 2020 || year === 2021
@@ -251,7 +251,7 @@ const CalendarComponent = ({
         </div>
 
         {/* Second row of years */}
-        <div className="flex items-center justify-start gap-4 mb-6">
+        <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-3 gap-2 sm:gap-4 mb-6">
           {secondRowYears.map((year) => {
             const isSelected = selectedYears.includes(year);
 
@@ -260,7 +260,7 @@ const CalendarComponent = ({
                 key={year}
                 onClick={() => handleYearClick(year)}
                 className={`
-                  relative px-3 py-1.5 text-base font-medium rounded transition-colors min-w-[45px] h-7
+                  relative px-2 sm:px-3 py-1.5 text-sm sm:text-base font-medium rounded transition-colors min-w-[40px] sm:min-w-[45px] h-7
                   ${isSelected
                     ? "bg-[#079F9F] text-white"
                     : "text-gray-800 hover:bg-gray-100"
