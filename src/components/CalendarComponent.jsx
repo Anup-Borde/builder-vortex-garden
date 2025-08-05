@@ -284,87 +284,87 @@ const CalendarComponent = ({
   };
 
   return (
-    <div className={`bg-white rounded-2xl shadow-lg p-6 max-w-2xl mx-auto ${className}`}>
+    <div className={`bg-white rounded-2xl shadow-[0_13px_20px_0_rgba(0,0,0,0.20)] w-full max-w-[598px] min-h-[352px] mx-auto ${className}`}>
       {/* Header with Navigation - Only show for monthly view */}
       {viewMode === "monthly" && (
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between p-6 pb-2">
           <button
             onClick={() => navigateMonth("prev")}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-1 rounded hover:bg-gray-100 transition-colors"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-600" />
+            <ChevronLeft className="w-4 h-4 text-gray-600" />
           </button>
-          
+
           <div className="text-center">
-            <h2 className="text-xl font-semibold text-gray-800">
-              {format(currentDate, "MMMM yyyy")} - {format(addMonths(currentDate, 1), "MMMM yyyy")}
+            <h2 className="text-base font-semibold text-gray-800">
+              {format(currentDate, "MMM yyyy")} - {format(addMonths(currentDate, 1), "MMM yyyy")}
             </h2>
           </div>
-          
+
           <button
             onClick={() => navigateMonth("next")}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-1 rounded hover:bg-gray-100 transition-colors"
           >
-            <ChevronRight className="w-5 h-5 text-gray-600" />
+            <ChevronRight className="w-4 h-4 text-gray-600" />
           </button>
         </div>
       )}
 
       {/* Calendar Content */}
-      <div className="calendar-content">
+      <div className="calendar-content px-6 pb-2">
         {viewMode === "weekly" && renderWeeklyView()}
         {viewMode === "monthly" && renderMonthlyView()}
         {viewMode === "yearly" && renderYearlyView()}
       </div>
 
       {/* Filter Buttons */}
-      <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-100">
+      <div className="flex flex-wrap gap-3 p-6 pt-2 bg-white">
         <button
           onClick={() => handleFilterClick("lastWeek")}
           className={`
-            px-4 py-2 text-sm font-semibold rounded-lg border transition-colors
-            ${viewMode === "weekly" && currentDate < new Date()
-              ? "border-teal-600 text-teal-600 bg-white" 
-              : "border-gray-300 text-gray-600 bg-white hover:border-teal-600 hover:text-teal-600"
+            px-4 py-2 text-base font-semibold rounded-lg border transition-colors min-w-[111px] h-10
+            ${(viewMode === "weekly" || viewMode === "lastWeek")
+              ? "border-[#079F9F] text-[#079F9F] bg-white"
+              : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
             }
           `}
         >
           Last Week
         </button>
-        
+
         <button
           onClick={() => handleFilterClick("lastMonth")}
           className={`
-            px-4 py-2 text-sm font-semibold rounded-lg border transition-colors
-            ${viewMode === "monthly" && currentDate < new Date()
-              ? "border-teal-600 text-teal-600 bg-white" 
-              : "border-gray-300 text-gray-600 bg-white hover:border-teal-600 hover:text-teal-600"
+            px-4 py-2 text-base font-semibold rounded-lg border transition-colors min-w-[111px] h-10
+            ${(viewMode === "monthly" || viewMode === "lastMonth")
+              ? "border-[#079F9F] text-[#079F9F] bg-white"
+              : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
             }
           `}
         >
           Last Month
         </button>
-        
+
         <button
           onClick={() => handleFilterClick("today")}
           className={`
-            px-4 py-2 text-sm font-semibold rounded-lg border transition-colors
-            ${viewMode === "weekly" && isToday(currentDate)
-              ? "border-teal-600 text-teal-600 bg-white" 
-              : "border-gray-300 text-gray-600 bg-white hover:border-teal-600 hover:text-teal-600"
+            px-4 py-2 text-base font-semibold rounded-lg border transition-colors min-w-[111px] h-10
+            ${viewMode === "today"
+              ? "border-[#079F9F] text-[#079F9F] bg-white"
+              : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
             }
           `}
         >
           Today
         </button>
-        
+
         <button
           onClick={() => handleFilterClick("yearly")}
           className={`
-            px-4 py-2 text-sm font-semibold rounded-lg border transition-colors
+            px-4 py-2 text-base font-semibold rounded-lg border transition-colors min-w-[111px] h-10
             ${viewMode === "yearly"
-              ? "border-teal-600 text-teal-600 bg-white" 
-              : "border-gray-300 text-gray-600 bg-white hover:border-teal-600 hover:text-teal-600"
+              ? "border-[#079F9F] text-[#079F9F] bg-white"
+              : "border-gray-400 text-gray-400 bg-white hover:border-[#079F9F] hover:text-[#079F9F]"
             }
           `}
         >
