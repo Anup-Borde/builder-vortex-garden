@@ -277,7 +277,7 @@ const CalendarComponent = ({
   };
 
   return (
-    <div className={`bg-white rounded-2xl shadow-[0_13px_20px_0_rgba(0,0,0,0.20)] w-full max-w-[598px] min-h-[352px] mx-auto ${className}`}>
+    <div className={`bg-white rounded-2xl shadow-[0_13px_20px_0_rgba(0,0,0,0.20)] w-full max-w-[598px] min-h-[352px] mx-auto ${className}`} style={{ fontFamily: 'Gilroy, -apple-system, Roboto, Helvetica, sans-serif' }}>
       {/* Header with Navigation - Only show for monthly view */}
       {viewMode === "monthly" && (
         <div className="flex items-center justify-between p-6 pb-2">
