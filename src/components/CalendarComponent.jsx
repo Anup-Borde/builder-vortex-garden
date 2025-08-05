@@ -197,7 +197,7 @@ const CalendarComponent = ({
     };
 
     return (
-      <div className="flex gap-12 mb-4">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 mb-4">
         {renderMonth(currentMonth)}
         {renderMonth(nextMonth, true)}
       </div>
