@@ -48,11 +48,11 @@ const CalendarDemo = ({
           <h3 className="font-medium text-gray-800 mb-2">Selected Dates:</h3>
           <div className="flex flex-wrap gap-2">
             {selectedDates.map((date) => (
-              <span 
-                key={date} 
+              <span
+                key={date}
                 className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm font-medium"
               >
-                {new Date(date).toLocaleDateString()}
+                {format(new Date(date), "MMM d, yyyy")}
               </span>
             ))}
           </div>
