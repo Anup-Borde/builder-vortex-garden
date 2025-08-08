@@ -77,6 +77,11 @@ const NavigationDrawer = ({ isOpen, onClose, onLogout }) => {
       path: "/delinquency-report",
     },
     {
+      icon: ClipboardList,
+      label: "User Config",
+      path: "/user-config",
+    },
+    {
       icon: HelpCircle,
       label: "Need help",
       path: "/help",

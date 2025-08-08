@@ -69,7 +69,15 @@ export default function SignIn() {
     setTimeout(() => {
       setIsLoading(false);
       console.log("Sign in with:", { contact, otp });
-      router.push("/dashboard");
+
+      // Enhanced navigation with fallback handling
+      try {
+        router.push("/dashboard");
+      } catch (error) {
+        console.error("Navigation error, using fallback:", error);
+        // Fallback to window.location for problematic cases
+        window.location.href = "/dashboard";
+      }
     }, 1500);
   };
 
