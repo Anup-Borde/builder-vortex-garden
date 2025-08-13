@@ -84,13 +84,10 @@ export function PostDisbursalFilters({ filters, onFiltersChange, loading }) {
         {/* Search and Date Range Row */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {/* Global Search */}
-          <div className="relative">
-            {/* Reserve vertical space equal to other labels so input aligns */}
-            <label
-              htmlFor="pdq-search"
-              className="block text-xs font-medium mb-1 invisible"
-            >
-              Search
+          <div className="relative lg:pt-5">
+            {/* add top padding at lg to align with date inputs */}
+            <label htmlFor="pdq-search" className="sr-only">
+              Search loans, customers, or merchants
             </label>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
