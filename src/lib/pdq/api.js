@@ -189,6 +189,29 @@ export const getStatuses = () => {
   return ['Pending', 'In Review', 'Completed', 'Rejected'];
 };
 
+// Get summary counts for dashboard
+export const getSummaryCounts = async () => {
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, Math.random() * 300 + 100));
+
+  // Simulate occasional errors (2% chance)
+  if (Math.random() < 0.02) {
+    throw new Error('Failed to fetch summary counts. Please try again.');
+  }
+
+  // Return mock data based on the provided structure
+  return {
+    summary: Math.floor(Math.random() * 50),
+    details: Math.floor(Math.random() * 1500) + 800, // Higher count as this seems to be main bucket
+    unsettled: Math.floor(Math.random() * 1200) + 600, // Second highest
+    refund: Math.floor(Math.random() * 150) + 50,
+    refundsAndCancellations: "",
+    refundInitiated: Math.floor(Math.random() * 10) + 1,
+    bulkrefundInitiated: "",
+    tranchePending: Math.floor(Math.random() * 20)
+  };
+};
+
 // Bulk action stubs - TODO: Replace with actual API calls
 export const bulkAssignOwner = async (itemIds, assigneeId) => {
   await new Promise(resolve => setTimeout(resolve, 1000));

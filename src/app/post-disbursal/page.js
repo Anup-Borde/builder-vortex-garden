@@ -1,18 +1,23 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { PostDisbursalFilters } from '@/components/pdq/Filters';
-import { PostDisbursalTable } from '@/components/pdq/Table';
-import { BulkActionsBar } from '@/components/pdq/BulkActions';
-import { fetchPostDisbursal } from '@/lib/pdq/api';
-import { parseFiltersFromURL, buildURLFromFilters } from '@/lib/pdq/url';
-import { saveFiltersToStorage, loadFiltersFromStorage, clearFiltersFromStorage } from '@/lib/pdq/storage';
+import { useState, useEffect, useMemo, useCallback, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { PostDisbursalFilters } from "@/components/pdq/Filters";
+import { PostDisbursalTable } from "@/components/pdq/Table";
+import { BulkActionsBar } from "@/components/pdq/BulkActions";
+import { SummaryCards } from "@/components/pdq/SummaryCards";
+import { fetchPostDisbursal, getSummaryCounts } from "@/lib/pdq/api";
+import { parseFiltersFromURL, buildURLFromFilters } from "@/lib/pdq/url";
+import {
+  saveFiltersToStorage,
+  loadFiltersFromStorage,
+  clearFiltersFromStorage,
+} from "@/lib/pdq/storage";
 
-export default function PostDisbursalPage() {
+function PostDisbursalPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   // Parse initial filters from URL or localStorage
   const initialFilters = useMemo(() => {
     const urlFilters = parseFiltersFromURL(searchParams);
@@ -22,11 +27,18 @@ export default function PostDisbursalPage() {
 
   // State management
   const [filters, setFilters] = useState(initialFilters);
-  const [data, setData] = useState({ data: [], total: 0, page: 1, pageSize: 25 });
+  const [data, setData] = useState({
+    data: [],
+    total: 0,
+    page: 1,
+    pageSize: 25,
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedRows, setSelectedRows] = useState(new Set());
   const [expandedRows, setExpandedRows] = useState(new Set());
+  const [counts, setCounts] = useState(null);
+  const [countsLoading, setCountsLoading] = useState(false);
 
   // Debounced search
   const [searchDebounce, setSearchDebounce] = useState(null);
@@ -45,12 +57,26 @@ export default function PostDisbursalPage() {
     }
   }, []);
 
+  // Fetch summary counts
+  const fetchCounts = useCallback(async () => {
+    setCountsLoading(true);
+    try {
+      const countsResult = await getSummaryCounts();
+      setCounts(countsResult);
+    } catch (err) {
+      console.error("Failed to fetch counts:", err);
+      // Don't show error for counts, just log it
+    } finally {
+      setCountsLoading(false);
+    }
+  }, []);
+
   // Update URL and fetch data when filters change
   useEffect(() => {
     const newURL = buildURLFromFilters(filters);
     router.replace(newURL, { shallow: true });
     saveFiltersToStorage(filters);
-    
+
     // Clear search debounce if exists
     if (searchDebounce) {
       clearTimeout(searchDebounce);
@@ -76,41 +102,42 @@ export default function PostDisbursalPage() {
   // Initial data fetch
   useEffect(() => {
     fetchData(initialFilters);
+    fetchCounts();
   }, []);
 
   const handleFiltersChange = useCallback((newFilters) => {
-    setFilters(prev => ({ ...prev, ...newFilters, page: 1 }));
+    setFilters((prev) => ({ ...prev, ...newFilters, page: 1 }));
     setSelectedRows(new Set());
   }, []);
 
   const handlePageChange = useCallback((page, pageSize) => {
-    setFilters(prev => ({ ...prev, page, pageSize }));
+    setFilters((prev) => ({ ...prev, page, pageSize }));
     setSelectedRows(new Set());
   }, []);
 
   const handleSortChange = useCallback((sortConfig) => {
-    setFilters(prev => ({ ...prev, sort: sortConfig, page: 1 }));
+    setFilters((prev) => ({ ...prev, sort: sortConfig, page: 1 }));
     setSelectedRows(new Set());
   }, []);
 
   const handleClearFilters = useCallback(() => {
     clearFiltersFromStorage();
     const clearedFilters = {
-      q: '',
-      from: '',
-      to: '',
+      q: "",
+      from: "",
+      to: "",
       merchantIds: [],
       statuses: [],
       page: 1,
       pageSize: 25,
-      sort: []
+      sort: [],
     };
     setFilters(clearedFilters);
     setSelectedRows(new Set());
   }, []);
 
   const handleRowSelect = useCallback((rowId, selected) => {
-    setSelectedRows(prev => {
+    setSelectedRows((prev) => {
       const newSet = new Set(prev);
       if (selected) {
         newSet.add(rowId);
@@ -121,16 +148,19 @@ export default function PostDisbursalPage() {
     });
   }, []);
 
-  const handleSelectAll = useCallback((selected) => {
-    if (selected) {
-      setSelectedRows(new Set(data.data.map(item => item.id)));
-    } else {
-      setSelectedRows(new Set());
-    }
-  }, [data.data]);
+  const handleSelectAll = useCallback(
+    (selected) => {
+      if (selected) {
+        setSelectedRows(new Set(data.data.map((item) => item.id)));
+      } else {
+        setSelectedRows(new Set());
+      }
+    },
+    [data.data]
+  );
 
   const handleRowExpand = useCallback((rowId) => {
-    setExpandedRows(prev => {
+    setExpandedRows((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(rowId)) {
         newSet.delete(rowId);
@@ -167,6 +197,9 @@ export default function PostDisbursalPage() {
           </div>
         </div>
 
+        {/* Summary Cards */}
+        <SummaryCards counts={counts} loading={countsLoading} />
+
         {/* Filters */}
         <PostDisbursalFilters
           filters={filters}
@@ -178,7 +211,9 @@ export default function PostDisbursalPage() {
         {selectedRows.size > 0 && (
           <BulkActionsBar
             selectedCount={selectedRows.size}
-            selectedItems={data.data.filter(item => selectedRows.has(item.id))}
+            selectedItems={data.data.filter((item) =>
+              selectedRows.has(item.id)
+            )}
             onClearSelection={() => setSelectedRows(new Set())}
           />
         )}
@@ -202,5 +237,13 @@ export default function PostDisbursalPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PostDisbursalPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PostDisbursalPageContent />
+    </Suspense>
   );
 }

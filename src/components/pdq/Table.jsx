@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
-import { 
-  ChevronDown, 
-  ChevronUp, 
-  ChevronLeft, 
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import {
+  ChevronDown,
+  ChevronUp,
+  ChevronLeft,
   ChevronRight,
   MoreHorizontal,
   ArrowUpDown,
@@ -13,10 +13,10 @@ import {
   ExternalLink,
   RefreshCw,
   AlertCircle,
-  Inbox
-} from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
-import { RowDetail } from './RowDetail';
+  Inbox,
+} from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
+import { RowDetail } from "./RowDetail";
 
 const VIRTUAL_THRESHOLD = 200;
 const ROW_HEIGHT = 64;
@@ -33,7 +33,7 @@ export function PostDisbursalTable({
   onRowExpand,
   onSortChange,
   onPageChange,
-  onRetry
+  onRetry,
 }) {
   const [columnVisibility, setColumnVisibility] = useState({
     select: true,
@@ -45,7 +45,7 @@ export function PostDisbursalTable({
     status: true,
     agingDays: true,
     assignedTo: true,
-    lastUpdatedAt: true
+    lastUpdatedAt: true,
   });
 
   const tableRef = useRef(null);
@@ -56,132 +56,185 @@ export function PostDisbursalTable({
     setVirtualized(data.total > VIRTUAL_THRESHOLD);
   }, [data.total]);
 
-  const columns = useMemo(() => [
-    {
-      key: 'select',
-      label: '',
-      width: '50px',
-      sortable: false,
-      sticky: true
-    },
-    {
-      key: 'loanAccountNo',
-      label: 'Loan A/c No',
-      width: '140px',
-      sortable: true,
-      sticky: false
-    },
-    {
-      key: 'customerName',
-      label: 'Customer Name',
-      width: '180px',
-      sortable: true,
-      sticky: false
-    },
-    {
-      key: 'merchantName',
-      label: 'Merchant',
-      width: '160px',
-      sortable: true,
-      sticky: false
-    },
-    {
-      key: 'disbursalDate',
-      label: 'Disbursal Date',
-      width: '140px',
-      sortable: true,
-      sticky: false
-    },
-    {
-      key: 'amount',
-      label: 'Amount',
-      width: '120px',
-      sortable: true,
-      sticky: false
-    },
-    {
-      key: 'status',
-      label: 'Status',
-      width: '120px',
-      sortable: true,
-      sticky: false
-    },
-    {
-      key: 'agingDays',
-      label: 'Aging (Days)',
-      width: '110px',
-      sortable: true,
-      sticky: false
-    },
-    {
-      key: 'assignedTo',
-      label: 'Assigned To',
-      width: '140px',
-      sortable: true,
-      sticky: false
-    },
-    {
-      key: 'lastUpdatedAt',
-      label: 'Last Updated',
-      width: '130px',
-      sortable: true,
-      sticky: false
-    }
-  ], []);
+  const columns = useMemo(
+    () => [
+      {
+        key: "select",
+        label: "",
+        width: "50px",
+        sortable: false,
+        sticky: true,
+      },
+      {
+        key: "settlementId",
+        label: "Settlement Id",
+        width: "140px",
+        sortable: true,
+      },
+      {
+        key: "referenceId",
+        label: "Reference Id",
+        width: "140px",
+        sortable: true,
+      },
+      { key: "orderId", label: "Order Id", width: "140px", sortable: true },
+      {
+        key: "customerId",
+        label: "Customer Id",
+        width: "140px",
+        sortable: true,
+      },
+      { key: "esRefNo", label: "ES Ref. No", width: "140px", sortable: true },
+      {
+        key: "txnStatus",
+        label: "Txn. Status",
+        width: "120px",
+        sortable: true,
+      },
+      { key: "txnAmount", label: "Txn. Amt", width: "120px", sortable: true },
+      {
+        key: "totalSubvention",
+        label: "Total Subvention",
+        width: "140px",
+        sortable: true,
+      },
+      {
+        key: "netSettlement",
+        label: "Net Settlement",
+        width: "140px",
+        sortable: true,
+      },
+      { key: "utrDate", label: "UTR Date", width: "140px", sortable: true },
+      { key: "utr", label: "UTR", width: "160px", sortable: true },
+      // existing columns (can be toggled off later if needed)
+      {
+        key: "loanAccountNo",
+        label: "Loan A/c No",
+        width: "140px",
+        sortable: true,
+        sticky: false,
+      },
+      {
+        key: "customerName",
+        label: "Customer Name",
+        width: "180px",
+        sortable: true,
+        sticky: false,
+      },
+      {
+        key: "merchantName",
+        label: "Merchant",
+        width: "160px",
+        sortable: true,
+        sticky: false,
+      },
+      {
+        key: "disbursalDate",
+        label: "Disbursal Date",
+        width: "140px",
+        sortable: true,
+        sticky: false,
+      },
+      {
+        key: "amount",
+        label: "Amount",
+        width: "120px",
+        sortable: true,
+        sticky: false,
+      },
+      {
+        key: "status",
+        label: "Status",
+        width: "120px",
+        sortable: true,
+        sticky: false,
+      },
+      {
+        key: "agingDays",
+        label: "Aging (Days)",
+        width: "110px",
+        sortable: true,
+        sticky: false,
+      },
+      {
+        key: "assignedTo",
+        label: "Assigned To",
+        width: "140px",
+        sortable: true,
+        sticky: false,
+      },
+      {
+        key: "lastUpdatedAt",
+        label: "Last Updated",
+        width: "130px",
+        sortable: true,
+        sticky: false,
+      },
+    ],
+    []
+  );
 
-  const visibleColumns = useMemo(() => 
-    columns.filter(col => columnVisibility[col.key]),
+  const visibleColumns = useMemo(
+    () => columns.filter((col) => columnVisibility[col.key]),
     [columns, columnVisibility]
   );
 
-  const handleSort = useCallback((columnKey) => {
-    const currentSort = filters.sort || [];
-    const existingSort = currentSort.find(s => s.field === columnKey);
-    
-    let newSort;
-    if (existingSort) {
-      if (existingSort.direction === 'asc') {
-        newSort = currentSort.map(s => 
-          s.field === columnKey ? { ...s, direction: 'desc' } : s
-        );
-      } else {
-        newSort = currentSort.filter(s => s.field !== columnKey);
-      }
-    } else {
-      newSort = [...currentSort, { field: columnKey, direction: 'asc' }];
-    }
-    
-    onSortChange(newSort);
-  }, [filters.sort, onSortChange]);
+  const handleSort = useCallback(
+    (columnKey) => {
+      const currentSort = filters.sort || [];
+      const existingSort = currentSort.find((s) => s.field === columnKey);
 
-  const getSortIcon = useCallback((columnKey) => {
-    const currentSort = filters.sort || [];
-    const sortConfig = currentSort.find(s => s.field === columnKey);
-    
-    if (!sortConfig) {
-      return <ArrowUpDown className="h-3 w-3 text-gray-400" />;
-    }
-    
-    return sortConfig.direction === 'asc' 
-      ? <ArrowUp className="h-3 w-3 text-blue-600" />
-      : <ArrowDown className="h-3 w-3 text-blue-600" />;
-  }, [filters.sort]);
+      let newSort;
+      if (existingSort) {
+        if (existingSort.direction === "asc") {
+          newSort = currentSort.map((s) =>
+            s.field === columnKey ? { ...s, direction: "desc" } : s
+          );
+        } else {
+          newSort = currentSort.filter((s) => s.field !== columnKey);
+        }
+      } else {
+        newSort = [...currentSort, { field: columnKey, direction: "asc" }];
+      }
+
+      onSortChange(newSort);
+    },
+    [filters.sort, onSortChange]
+  );
+
+  const getSortIcon = useCallback(
+    (columnKey) => {
+      const currentSort = filters.sort || [];
+      const sortConfig = currentSort.find((s) => s.field === columnKey);
+
+      if (!sortConfig) {
+        return <ArrowUpDown className="h-3 w-3 text-gray-400" />;
+      }
+
+      return sortConfig.direction === "asc" ? (
+        <ArrowUp className="h-3 w-3 text-blue-600" />
+      ) : (
+        <ArrowDown className="h-3 w-3 text-blue-600" />
+      );
+    },
+    [filters.sort]
+  );
 
   const formatCurrency = useCallback((amount) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
       minimumFractionDigits: 0,
-      maximumFractionDigits: 0
+      maximumFractionDigits: 0,
     }).format(amount);
   }, []);
 
   const formatDate = useCallback((dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric'
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
     });
   }, []);
 
@@ -197,7 +250,9 @@ export function PostDisbursalTable({
     return (
       <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center">
         <AlertCircle className="mx-auto h-12 w-12 text-red-500 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">Failed to load data</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          Failed to load data
+        </h3>
         <p className="text-gray-600 mb-4">{error}</p>
         <button
           onClick={onRetry}
@@ -214,7 +269,9 @@ export function PostDisbursalTable({
     return (
       <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center">
         <Inbox className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">No results found</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          No results found
+        </h3>
         <p className="text-gray-600 mb-4">
           No post-disbursal items match your current filters.
         </p>
@@ -244,7 +301,7 @@ export function PostDisbursalTable({
               </div>
             )}
           </div>
-          <ColumnVisibilityMenu 
+          <ColumnVisibilityMenu
             columns={columns}
             visibility={columnVisibility}
             onVisibilityChange={setColumnVisibility}
@@ -255,7 +312,7 @@ export function PostDisbursalTable({
       {/* Table */}
       <div className="overflow-auto" ref={tableRef} data-testid="pdq-table">
         <table className="w-full">
-          <TableHeader 
+          <TableHeader
             columns={visibleColumns}
             selectedRows={selectedRows}
             totalRows={data.data.length}
@@ -295,7 +352,14 @@ export function PostDisbursalTable({
 }
 
 // Table Header Component
-function TableHeader({ columns, selectedRows, totalRows, onSelectAll, onSort, getSortIcon }) {
+function TableHeader({
+  columns,
+  selectedRows,
+  totalRows,
+  onSelectAll,
+  onSort,
+  getSortIcon,
+}) {
   const allSelected = totalRows > 0 && selectedRows.size === totalRows;
   const someSelected = selectedRows.size > 0 && selectedRows.size < totalRows;
 
@@ -306,11 +370,11 @@ function TableHeader({ columns, selectedRows, totalRows, onSelectAll, onSort, ge
           <th
             key={column.key}
             className={`px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
-              column.sticky ? 'sticky left-0 bg-gray-50 z-20' : ''
+              column.sticky ? "sticky left-0 bg-gray-50 z-20" : ""
             }`}
             style={{ width: column.width }}
           >
-            {column.key === 'select' ? (
+            {column.key === "select" ? (
               <input
                 type="checkbox"
                 checked={allSelected}
@@ -339,28 +403,31 @@ function TableHeader({ columns, selectedRows, totalRows, onSelectAll, onSort, ge
 }
 
 // Table Row Component
-function TableRow({ 
-  item, 
-  index, 
-  columns, 
-  isSelected, 
-  isExpanded, 
-  onSelect, 
-  onExpand, 
-  formatCurrency, 
-  formatDate, 
-  formatRelativeTime 
+function TableRow({
+  item,
+  index,
+  columns,
+  isSelected,
+  isExpanded,
+  onSelect,
+  onExpand,
+  formatCurrency,
+  formatDate,
+  formatRelativeTime,
 }) {
   const getStatusBadge = (status) => {
     const colors = {
-      'Completed': 'bg-green-100 text-green-800',
-      'Pending': 'bg-yellow-100 text-yellow-800',
-      'In Review': 'bg-blue-100 text-blue-800',
-      'Rejected': 'bg-red-100 text-red-800'
+      Completed: "bg-green-100 text-green-800",
+      Pending: "bg-yellow-100 text-yellow-800",
+      "In Review": "bg-blue-100 text-blue-800",
+      Rejected: "bg-red-100 text-red-800",
     };
-    
     return (
-      <span className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${colors[status] || 'bg-gray-100 text-gray-800'}`}>
+      <span
+        className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
+          colors[status] || "bg-gray-100 text-gray-800"
+        }`}
+      >
         {status}
       </span>
     );
@@ -368,7 +435,7 @@ function TableRow({
 
   const renderCell = (column, item) => {
     switch (column.key) {
-      case 'select':
+      case "select":
         return (
           <input
             type="checkbox"
@@ -377,8 +444,8 @@ function TableRow({
             className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
           />
         );
-      
-      case 'loanAccountNo':
+
+      case "loanAccountNo":
         return (
           <button
             onClick={() => onExpand(item.id)}
@@ -389,15 +456,18 @@ function TableRow({
             <ExternalLink className="h-3 w-3" />
           </button>
         );
-      
-      case 'customerName':
+
+      case "customerName":
         return (
           <div>
             <div className="font-medium text-gray-900">{item.customerName}</div>
             {item.tags && item.tags.length > 0 && (
               <div className="flex gap-1 mt-1">
                 {item.tags.slice(0, 2).map((tag, idx) => (
-                  <span key={idx} className="inline-flex items-center rounded px-1.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700">
+                  <span
+                    key={idx}
+                    className="inline-flex items-center rounded px-1.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-700"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -405,48 +475,87 @@ function TableRow({
             )}
           </div>
         );
-      
-      case 'merchantName':
+
+      case "merchantName":
         return <span className="text-gray-900">{item.merchantName}</span>;
-      
-      case 'disbursalDate':
+
+      case "disbursalDate":
         return (
           <time className="text-gray-900" dateTime={item.disbursalDate}>
             {formatDate(item.disbursalDate)}
           </time>
         );
-      
-      case 'amount':
-        return <span className="font-medium text-gray-900">{formatCurrency(item.amount)}</span>;
-      
-      case 'status':
-        return getStatusBadge(item.status);
-      
-      case 'agingDays':
+
+      case "amount":
         return (
-          <span className={`font-medium ${item.agingDays > 30 ? 'text-red-600' : item.agingDays > 14 ? 'text-yellow-600' : 'text-gray-900'}`}>
+          <span className="font-medium text-gray-900">
+            {formatCurrency(item.amount)}
+          </span>
+        );
+
+      case "status":
+        return getStatusBadge(item.status);
+
+      case "agingDays":
+        return (
+          <span
+            className={`font-medium ${
+              item.agingDays > 30
+                ? "text-red-600"
+                : item.agingDays > 14
+                ? "text-yellow-600"
+                : "text-gray-900"
+            }`}
+          >
             {item.agingDays}
           </span>
         );
-      
-      case 'assignedTo':
+
+      case "assignedTo":
         return item.assignedTo ? (
           <span className="text-gray-900">{item.assignedTo}</span>
         ) : (
           <span className="text-gray-400">Unassigned</span>
         );
-      
-      case 'lastUpdatedAt':
+
+      case "lastUpdatedAt":
         return (
-          <time 
-            className="text-gray-600 text-sm" 
+          <time
+            className="text-gray-600 text-sm"
             dateTime={item.lastUpdatedAt}
             title={new Date(item.lastUpdatedAt).toLocaleString()}
           >
             {formatRelativeTime(item.lastUpdatedAt)}
           </time>
         );
-      
+
+      // New settlement / transaction columns
+      case "settlementId":
+      case "referenceId":
+      case "orderId":
+      case "customerId":
+      case "esRefNo":
+      case "utr":
+        return (
+          <span className="text-gray-900 font-medium">{item[column.key]}</span>
+        );
+      case "txnStatus":
+        return getStatusBadge(item.txnStatus);
+      case "txnAmount":
+      case "totalSubvention":
+      case "netSettlement":
+        return (
+          <span className="font-medium text-gray-900">
+            {formatCurrency(item[column.key])}
+          </span>
+        );
+      case "utrDate":
+        return (
+          <time className="text-gray-900" dateTime={item.utrDate}>
+            {formatDate(item.utrDate)}
+          </time>
+        );
+
       default:
         return null;
     }
@@ -454,16 +563,16 @@ function TableRow({
 
   return (
     <>
-      <tr 
-        className={`hover:bg-gray-50 ${isSelected ? 'bg-blue-50' : ''}`}
+      <tr
+        className={`hover:bg-gray-50 ${isSelected ? "bg-blue-50" : ""}`}
         data-testid={`pdq-row-${item.id}`}
       >
         {columns.map((column) => (
           <td
             key={column.key}
             className={`px-4 py-3 whitespace-nowrap text-sm ${
-              column.sticky ? 'sticky left-0 bg-white z-10' : ''
-            } ${isSelected && column.sticky ? 'bg-blue-50' : ''}`}
+              column.sticky ? "sticky left-0 bg-white z-10" : ""
+            } ${isSelected && column.sticky ? "bg-blue-50" : ""}`}
           >
             {renderCell(column, item)}
           </td>
@@ -489,13 +598,17 @@ function TablePagination({ currentPage, pageSize, totalItems, onPageChange }) {
   const pageSizeOptions = [10, 25, 50, 100];
 
   return (
-    <div className="border-t border-gray-200 bg-white px-4 py-3 sm:px-6" data-testid="pdq-pagination">
+    <div
+      className="border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
+      data-testid="pdq-pagination"
+    >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         {/* Results Info */}
         <div className="text-sm text-gray-700">
-          Showing <span className="font-medium">{startItem}</span> to{' '}
-          <span className="font-medium">{endItem}</span> of{' '}
-          <span className="font-medium">{totalItems.toLocaleString()}</span> results
+          Showing <span className="font-medium">{startItem}</span> to{" "}
+          <span className="font-medium">{endItem}</span> of{" "}
+          <span className="font-medium">{totalItems.toLocaleString()}</span>{" "}
+          results
         </div>
 
         {/* Page Size Selector */}
@@ -554,9 +667,9 @@ function ColumnVisibilityMenu({ columns, visibility, onVisibilityChange }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleColumn = (columnKey) => {
-    onVisibilityChange(prev => ({
+    onVisibilityChange((prev) => ({
       ...prev,
-      [columnKey]: !prev[columnKey]
+      [columnKey]: !prev[columnKey],
     }));
   };
 
@@ -574,23 +687,25 @@ function ColumnVisibilityMenu({ columns, visibility, onVisibilityChange }) {
         <>
           <div className="absolute right-0 z-20 mt-1 w-48 rounded-lg border border-gray-200 bg-white shadow-lg">
             <div className="p-2">
-              {columns.filter(col => col.key !== 'select').map((column) => (
-                <label
-                  key={column.key}
-                  className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-gray-50 cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    checked={visibility[column.key]}
-                    onChange={() => toggleColumn(column.key)}
-                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  {column.label}
-                </label>
-              ))}
+              {columns
+                .filter((col) => col.key !== "select")
+                .map((column) => (
+                  <label
+                    key={column.key}
+                    className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-gray-50 cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={visibility[column.key]}
+                      onChange={() => toggleColumn(column.key)}
+                      className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    {column.label}
+                  </label>
+                ))}
             </div>
           </div>
-          <div 
+          <div
             className="fixed inset-0 z-10"
             onClick={() => setIsOpen(false)}
           />
@@ -609,7 +724,10 @@ function TableSkeleton() {
       </div>
       <div className="p-4">
         {Array.from({ length: 10 }).map((_, i) => (
-          <div key={i} className="flex gap-4 py-3 border-b border-gray-100 last:border-0">
+          <div
+            key={i}
+            className="flex gap-4 py-3 border-b border-gray-100 last:border-0"
+          >
             <div className="h-4 bg-gray-200 rounded w-4 animate-pulse"></div>
             <div className="h-4 bg-gray-200 rounded w-24 animate-pulse"></div>
             <div className="h-4 bg-gray-200 rounded w-32 animate-pulse"></div>
