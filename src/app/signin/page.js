@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import FibeLogo from "@/components/FibeLogo";
 
 export default function SignIn() {
   const router = useRouter();
@@ -65,20 +66,13 @@ export default function SignIn() {
             </div>
             
             {/* Stamp illustration */}
-            <div className="flex justify-center">
-              <div className="w-[300px] h-[300px] relative">
-                <svg viewBox="0 0 472 472" className="w-full h-full">
-                  {/* Stamp base */}
-                  <rect x="120" y="120" width="232" height="160" rx="8" fill="#E8A87C" />
-                  <rect x="120" y="120" width="232" height="160" rx="8" stroke="#D4956B" strokeWidth="2" />
-                  
-                  {/* Stamp handle */}
-                  <ellipse cx="236" cy="150" rx="25" ry="35" fill="#4A5568" />
-                  <ellipse cx="236" cy="140" rx="15" ry="15" fill="#2D3748" />
-                  
-                  {/* Shadow */}
-                  <ellipse cx="236" cy="320" rx="80" ry="20" fill="#00000010" />
-                </svg>
+            <div className="flex justify-center mt-auto">
+              <div className="w-[472px] h-[472px] relative">
+                <img
+                  src="https://api.builder.io/api/v1/image/assets/TEMP/08a0d4caf31663a654c081181b93c7f3f8aa7696?width=944"
+                  alt="Stamp illustration"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
           </div>
@@ -89,12 +83,7 @@ export default function SignIn() {
           <div className="w-full max-w-[437px]">
             {/* Logo */}
             <div className="mb-8 flex justify-start">
-              <svg width="102" height="88" viewBox="0 0 102 88" fill="none">
-                <circle cx="15" cy="15" r="8" fill="#F8A63F" />
-                <circle cx="35" cy="8" r="6" fill="#079F9F" />
-                <circle cx="8" cy="5" r="4" fill="#FF3E79" />
-                <text x="0" y="45" fill="#121212" fontSize="24" fontWeight="700" fontFamily="Gilroy, sans-serif">fibe</text>
-              </svg>
+              <FibeLogo width={102} height={88} />
             </div>
 
             {/* Heading */}
