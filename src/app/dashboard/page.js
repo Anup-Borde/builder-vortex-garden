@@ -385,7 +385,7 @@ export default function Dashboard() {
                 </h3>
                 <div className="space-y-4">
                   <div className="text-[#434343] text-lg font-semibold" style={{ fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif" }}>
-                    • All Validations Pass + High Score (BRE1/BRE2 > 700) = "Low Credit Risk"
+                    • All Validations Pass + High Score (BRE1/BRE2 &gt; 700) = "Low Credit Risk"
                   </div>
                   <div className="text-[#434343] text-lg font-semibold" style={{ fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif" }}>
                     • 1–2 Mismatches OR Mid Bureau Score = "Moderate Risk"
