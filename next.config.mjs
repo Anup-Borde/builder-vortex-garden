@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Allow cross-origin requests in development
-  allowedDevOrigins: process.env.NODE_ENV === "development" ? ["*"] : [],
+  allowedDevOrigins: [
+    "*.projects.builder.codes",
+    "*.fly.dev",
+    "*.org",
+    "*"
+  ],
 
   // Configure external image domains
   images: {
