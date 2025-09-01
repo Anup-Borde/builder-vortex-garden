@@ -16,9 +16,7 @@ const Header = ({ onLogout }) => {
   };
 
   const navItems = [
-    { label: "Dashboard", path: "/dashboard" },
-    { label: "Manage Leads", path: "/manage-leads" },
-    { label: "Reports", path: "/reports" },
+    // Navigation items will be added as new pages are created
   ];
 
   return (
@@ -28,7 +26,7 @@ const Header = ({ onLogout }) => {
           <div className="flex items-center">
             {/* Desktop Navigation */}
             <nav className="flex space-x-6">
-              {navItems.map((item) => (
+              {navItems.length > 0 ? navItems.map((item) => (
                 <a
                   key={item.path}
                   href="#"
@@ -44,7 +42,11 @@ const Header = ({ onLogout }) => {
                 >
                   {item.label}
                 </a>
-              ))}
+              )) : (
+                <div className="text-[#616060] text-sm">
+                  UWLO Portal
+                </div>
+              )}
             </nav>
           </div>
           {/* Button Group on Right Side */}
