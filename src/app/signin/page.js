@@ -25,14 +25,10 @@ export default function SignIn() {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      console.log("Sign in with:", { email, password, rememberMe });
-      
-      try {
-        router.push("/dashboard");
-      } catch (error) {
-        console.error("Navigation error, using fallback:", error);
-        window.location.href = "/dashboard";
-      }
+      console.log("Sign in successful:", { email, rememberMe });
+
+      // For now, just show success message - no navigation
+      alert("Login successful! Portal features will be added as they are developed.");
     }, 1500);
   };
 
