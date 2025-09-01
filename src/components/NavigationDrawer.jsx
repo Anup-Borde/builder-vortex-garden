@@ -34,62 +34,12 @@ const NavigationDrawer = ({ isOpen, onClose, onLogout }) => {
     onClose();
   };
 
-  // Main navigation items
+  // Main navigation items - will be populated as new pages are created
   const navigationItems = [
-    {
-      icon: LayoutDashboard,
-      label: "Dashboard",
-      path: "/dashboard",
-    },
-    {
-      icon: TrendingUp,
-      label: "Post Disbursal Queue",
-      path: "/post-disbursal",
-    },
-    {
-      icon: Users,
-      label: "Unregister Leads",
-      path: "/unregister-leads",
-    },
-    {
-      icon: FileStack,
-      label: "Bulk Cancellation",
-      path: "/bulk-cancellation",
-    },
-    {
-      icon: RefreshCw,
-      label: "Ops refund Queue",
-      path: "/ops-refund",
-    },
-    {
-      icon: Scale,
-      label: "Settlement Queue",
-      path: "/settlement",
-    },
-    {
-      icon: Calendar,
-      label: "Emailer Date Range",
-      path: "/emailer-date-range",
-    },
-    {
-      icon: FileText,
-      label: "Delinquency Report",
-      path: "/delinquency-report",
-    },
-    {
-      icon: ClipboardList,
-      label: "User Config",
-      path: "/user-config",
-    },
     {
       icon: HelpCircle,
       label: "Need help",
       path: "/help",
-    },
-    {
-      icon: ClipboardList,
-      label: "Reports",
-      path: "/reports",
     },
   ];
 
@@ -135,6 +85,11 @@ const NavigationDrawer = ({ isOpen, onClose, onLogout }) => {
                 <span className="font-medium">{item.label}</span>
               </button>
             ))}
+
+            {/* Placeholder for future navigation items */}
+            <div className="px-4 py-6 text-center text-gray-500 text-sm">
+              Navigation items will be added as<br />new pages are created
+            </div>
 
             {/* Logout Button */}
             <div className="pt-4 border-t border-gray-200">
