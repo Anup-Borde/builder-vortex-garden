@@ -3,6 +3,24 @@ const nextConfig = {
   // Allow cross-origin requests in development
   allowedDevOrigins: process.env.NODE_ENV === "development" ? ["*"] : [],
 
+  // Configure external image domains
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.builder.io',
+        port: '',
+        pathname: '/api/v1/image/assets/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.builder.io',
+        port: '',
+        pathname: '/api/v1/image/assets/**',
+      },
+    ],
+  },
+
   // Additional security headers
   async headers() {
     return [
