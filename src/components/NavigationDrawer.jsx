@@ -3,16 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import {
-  LayoutDashboard,
-  TrendingUp,
-  Users,
-  FileStack,
-  RefreshCw,
-  Scale,
-  Calendar,
-  FileText,
   HelpCircle,
-  ClipboardList,
   LogOut,
 } from "lucide-react";
 
