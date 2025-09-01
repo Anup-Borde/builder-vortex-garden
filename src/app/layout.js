@@ -50,7 +50,6 @@ export default function RootLayout({ children }) {
                       url.includes('/_next/') ||
                       url.includes('__nextjs') ||
                       url.includes('localhost') ||
-                      url.includes('signin') ||
                       url.match(/\\.(js|css|json)$/) ||
                       url.includes('static') ||
                       url.includes('chunks')
