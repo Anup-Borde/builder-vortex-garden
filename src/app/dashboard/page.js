@@ -37,7 +37,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-[#F2F7FA]">
       {/* Header */}
-      <header className="bg-white border-b border-[#E6E6E6] h-[106px] flex items-center px-10">
+      <header className="sticky top-0 bg-white border-b border-[#E6E6E6] h-[106px] flex items-center px-10 z-20">
         <div className="flex items-center justify-between w-full max-w-[1338px] mx-auto">
           {/* Left side - Logo and Welcome */}
           <div className="flex items-center gap-8">
