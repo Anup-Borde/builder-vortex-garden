@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -68,10 +69,11 @@ export default function SignIn() {
             {/* Stamp illustration */}
             <div className="flex justify-center mt-auto">
               <div className="w-[472px] h-[472px] relative">
-                <img
+                <Image
                   src="https://api.builder.io/api/v1/image/assets/TEMP/08a0d4caf31663a654c081181b93c7f3f8aa7696?width=944"
                   alt="Stamp illustration"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
                 />
               </div>
             </div>
