@@ -7,8 +7,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Lead Beacon - Sign In",
-  description: "Lead tracking and management platform",
+  title: "UWLO Portal - Sign In",
+  description: "Underwriting portal for smart lending decisions",
 };
 
 export default function RootLayout({ children }) {
