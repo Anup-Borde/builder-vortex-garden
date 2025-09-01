@@ -404,7 +404,7 @@ export default function Dashboard() {
             </Card>
 
             {/* Action Buttons */}
-            <div className="bg-[#FBFBFB] border border-[#E6E6E6] rounded-lg p-8">
+            <div className="sticky bottom-0 bg-[#FBFBFB] border border-[#E6E6E6] rounded-lg p-8 z-10 shadow-lg">
               <div className="flex gap-4 flex-wrap">
                 <Button variant="outline" className="border-[#079F9F] text-[#079F9F] bg-white">
                   Audit comments
