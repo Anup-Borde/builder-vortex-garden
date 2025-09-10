@@ -113,12 +113,13 @@ export default function SignIn() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter email ID"
+                  autoFocus
                   className={cn(
                     "h-16 px-4 text-base border-2 rounded-lg",
                     "border-[#079F9F] focus:border-[#079F9F] focus:ring-[#079F9F]",
                     "placeholder:text-[#999999] placeholder:font-medium"
                   )}
-                  style={{ 
+                  style={{
                     fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif",
                     fontSize: "16px"
                   }}

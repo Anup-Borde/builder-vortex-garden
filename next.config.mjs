@@ -26,17 +26,12 @@ const nextConfig = {
     ],
   },
 
-  // Additional security headers
+  // Additional headers (avoid X-Frame-Options to allow embedding in Builder preview)
   async headers() {
     return [
       {
-        // Apply security headers to all routes
         source: "/(.*)",
         headers: [
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
           {
             key: "X-Content-Type-Options",
             value: "nosniff",
