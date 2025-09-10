@@ -34,6 +34,10 @@ export default function Dashboard() {
     router.push("/signin");
   };
 
+  const handleEmploymentClick = () => {
+    router.push("/employment");
+  };
+
   return (
     <div className="min-h-screen bg-[#F2F7FA]">
       {/* Header */}
@@ -135,22 +139,30 @@ export default function Dashboard() {
               </div>
 
               {[
-                { icon: "speed-test", label: "Bureau Summary" },
-                { icon: "notepad", label: "Employment Details" },
-                { icon: "bank", label: "Banking Details" },
-                { icon: "tick-double", label: "Enablers" },
-                { icon: "smile", label: "Remarks" }
+                { icon: "speed-test", label: "Bureau Summary", onClick: null },
+                { icon: "notepad", label: "Employment Details", onClick: handleEmploymentClick },
+                { icon: "bank", label: "Banking Details", onClick: null },
+                { icon: "tick-double", label: "Enablers", onClick: null },
+                { icon: "smile", label: "Remarks", onClick: null }
               ].map((item, index) => (
-                <div key={index} className="flex items-center gap-3 text-[#999999] py-2">
+                <button
+                  key={index}
+                  onClick={item.onClick}
+                  className={cn(
+                    "flex items-center gap-3 py-2 w-full text-left transition-colors",
+                    item.onClick ? "text-[#999999] hover:text-[#434343] cursor-pointer" : "text-[#999999] cursor-default"
+                  )}
+                  disabled={!item.onClick}
+                >
                   <div className="w-6 h-6">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <rect width="24" height="24" fill="#999999" opacity="0.3" rx="4"/>
+                      <rect width="24" height="24" fill="currentColor" opacity="0.3" rx="4"/>
                     </svg>
                   </div>
                   <span className="font-medium text-lg" style={{ fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif" }}>
                     {item.label}
                   </span>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -295,9 +307,9 @@ export default function Dashboard() {
                     { label: "Mobile", value: "8991589173", validations: ["NSDL", "Bureau", { status: "Banking", variant: "error" }], remarksInput: true },
                     { label: "Email ID", value: "Yogesh@gmail.com", validations: ["NSDL", { status: "Bureau", variant: "notFound" }, "Banking"], remarksInput: true },
                     { label: "Pan Card", value: "EBX4547C", validations: [{ status: "NSDL", variant: "error" }, "Bureau", "Banking", "UID & PAN"], remarksInput: true },
-                    { label: "Correspondence Address", value: "555, Gold crest, Vallabh Nagar, Kharadi, Pune", validations: ["NSDL", "Bureau", { status: "Banking", variant: "notFound" }], remarksInput: false },
-                    { label: "Permanent Address", value: "555, Gold crest, Vallabh Nagar, Kharadi, Pune", validations: [{ status: "NSDL", variant: "notFound" }, "Bureau", "Banking"], remarksInput: false },
-                    { label: "Office Address", value: "555, Gold crest, Vallabh Nagar, Kharadi, Pune", validations: ["NSDL", "Bureau", { status: "Banking", variant: "error" }], remarksInput: false }
+                    { label: "Correspondence Address", value: "555, Gold crest, Vallabh Nagar, Kharadi, Pune", validations: [], remarksInput: false },
+                    { label: "Permanent Address", value: "555, Gold crest, Vallabh Nagar, Kharadi, Pune", validations: [], remarksInput: false },
+                    { label: "Office Address", value: "555, Gold crest, Vallabh Nagar, Kharadi, Pune", validations: [], remarksInput: false }
                   ].map((item, index) => (
                     <div key={index} className="flex items-center justify-between">
                       <div className="flex-1 grid grid-cols-3 gap-8">
