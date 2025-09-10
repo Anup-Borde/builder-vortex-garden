@@ -38,6 +38,10 @@ export default function Dashboard() {
     router.push("/employment");
   };
 
+  const handleBankingClick = () => {
+    router.push("/banking");
+  };
+
   return (
     <div className="min-h-screen bg-[#F2F7FA]">
       {/* Header */}
@@ -141,7 +145,7 @@ export default function Dashboard() {
               {[
                 { icon: "speed-test", label: "Bureau Summary", onClick: null },
                 { icon: "notepad", label: "Employment Details", onClick: handleEmploymentClick },
-                { icon: "bank", label: "Banking Details", onClick: null },
+                { icon: "bank", label: "Banking Details", onClick: handleBankingClick },
                 { icon: "tick-double", label: "Enablers", onClick: null },
                 { icon: "smile", label: "Remarks", onClick: null }
               ].map((item, index) => (

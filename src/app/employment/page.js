@@ -35,6 +35,10 @@ export default function Employment() {
     router.push("/dashboard");
   };
 
+  const handleBankingClick = () => {
+    router.push("/banking");
+  };
+
   const handleLogout = () => {
     router.push("/signin");
   };
@@ -162,20 +166,28 @@ export default function Employment() {
               </div>
 
               {[
-                { icon: "bank", label: "Banking Details" },
-                { icon: "tick-double", label: "Enablers" },
-                { icon: "smile", label: "Remarks" }
+                { icon: "bank", label: "Banking Details", onClick: handleBankingClick },
+                { icon: "tick-double", label: "Enablers", onClick: null },
+                { icon: "smile", label: "Remarks", onClick: null }
               ].map((item, index) => (
-                <div key={index} className="flex items-center gap-3 text-[#999999] py-2">
+                <button
+                  key={index}
+                  onClick={item.onClick}
+                  className={cn(
+                    "flex items-center gap-3 py-2 w-full text-left transition-colors",
+                    item.onClick ? "text-[#999999] hover:text-[#434343] cursor-pointer" : "text-[#999999] cursor-default"
+                  )}
+                  disabled={!item.onClick}
+                >
                   <div className="w-6 h-6">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <rect width="24" height="24" fill="#999999" opacity="0.3" rx="4"/>
+                      <rect width="24" height="24" fill="currentColor" opacity="0.3" rx="4"/>
                     </svg>
                   </div>
                   <span className="font-medium text-lg" style={{ fontFamily: "Gilroy, -apple-system, Roboto, Helvetica, sans-serif" }}>
                     {item.label}
                   </span>
-                </div>
+                </button>
               ))}
             </div>
           </div>
